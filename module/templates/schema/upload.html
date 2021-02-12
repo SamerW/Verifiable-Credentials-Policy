@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/credential_profile/create">{{ _('Credential Profile') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/property_selection/create">{{ _('Property Selection') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/policy/create">{{ _('Policy') }}</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">{{ _('Upload Schema') }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-5">{{ _('Upload Schema') }}</h2>
+  </div>
+</div>
+<div class="bg-dark text-white">
+    <hr>
+    <div class="container" id="form_container">
+        <form method="post" action="{{ url_for('core.upload_schema') }}" enctype=multipart/form-data>
+            <div>
+                <label>{{ _('Choose a json schema file:') }}</label>
+            </div>
+            <div class="file-loading">
+                  <input id="file" name="file" type="file" accept="application/JSON">
+            </div>
+            <div style="margin-top:30px;">
+                <label>Or</label>
+            </div>
+            <div style="margin-top:15px;">
+                <label>{{ _('Enter the url of the schema to fetch:') }}</label>
+            </div>
+            <div>
+                <input style="width:300px;" class="form-control" id="schema_url" name="schema_url" placeholder="{{ _('url of the schema') }}">
+            </div>
+            <div style="margin-top:50px;" class="form_control">
+                <label for="nested_properties">{{ _('Extract nested properties:') }}</label>
+                <input type="checkbox" id="nested_properties" name="nested_properties">
+            </div>
+            <div>
+                <input class="btn btn-primary" id="final_submit" name="final_submit" type="submit" value="{{ _('Submit') }}">
+            </div>
+        </form>
+    </div>
+    <hr>
+    {% if message is defined %}
+        <div class="text-center text-danger">
+          <p>
+            <h3>{{message}}</h3>
+          </p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

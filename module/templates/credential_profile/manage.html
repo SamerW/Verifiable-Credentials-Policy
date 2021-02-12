@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">{{ _('Credential Profile') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/property_selection/create">{{ _('Property Selection') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/policy/create">{{ _('Policy') }}</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/schema/upload">{{ _('Upload Schema') }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h2 class="display-5">{{ _('Credential Profile') }}</h2>
+        <p class="lead">{{ _('A VC profile contains the filtering criteria that are needed to select a VC from the VC Holder’s wallet') }}</p>
+    </div>
+</div>
+<div class="bg-dark text-white">
+
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar32">
+            <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/credential_profile/create">{{ _('Create new profile') }}</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/credential_profile/manage">{{ _('Manage existing profiles') }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <hr>
+    <div class="container">
+        <div align="center">
+            <p>{{ _('OR') }}</p>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <form method="post" action="{{ url_for('core.manage_credential_profile') }}">
+                    <div class="form-check form-check-inline">
+                        {{ _('Select a profile:') }}
+                    </div>
+                    <div class="form-check form-check-inline">
+                        {% for field in form %}
+                            <div class="form-check form-check-inline">
+                            {% if "label" in field.id %}
+                                <div class="form-check form-check-inline">
+                                    <label>{{field.data}}</label>
+                                </div>
+                            {% else %}
+                                {{ field() }}
+                            {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm">
+                <form method="post"  action="{{ url_for('core.manage_credential_profile') }}">
+                    <div class="form-check form-check-inline">
+                        {{ _('Search for') }}
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-control" id="input_search_profile" name="input_search_profile">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        {{ _('in a profile') }}
+                    </div>
+                    <input class="btn btn-primary" id="final_submit" name="final_submit" type="submit" value="{{ _('Submit') }}">
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if profiles is defined %}
+        <div class="divider py-1 bg-dark"><hr style="border-top: 1px solid #ccc; background: transparent;"></div>
+        <div class="container">
+            <p>
+            </p>
+            <div>
+                {% for profile in profiles %}
+                    <div class="row">
+                        <div class="col-sm">
+                            {{profile["str"] | safe}}
+                        </div>
+                        <div class="col-sm align-middle">
+                            <form method="post"  action="{{ url_for('core.update_credential_profile') }}">
+                                <input id="modify_{{profile['id'] | safe}}" name="modify_{{profile['id'] | safe}}"  class="btn btn-secondary" type="submit" value="{{ _('Modify') }}">
+                            </form>
+                            <p></p>
+                            <form method="post"  action="{{ url_for('core.manage_credential_profile') }}">
+                                <input id="delete_{{profile['id'] | safe}}" name="delete_{{profile['id'] | safe}}"  class="btn btn-danger" type="submit" value="{{ _('Delete') }}">
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+    {% else %}
+        <hr>
+    {% endif %}
+    {% if message is defined %}
+        <div class="text-center text-danger">
+          <p>
+            <h3>{{message}}</h3>
+          </p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

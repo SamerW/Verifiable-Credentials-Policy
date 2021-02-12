@@ -1,0 +1,488 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block nav %}
+<nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/credential_profile/create">{{ _('Credential Profile') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/property_selection/create">{{ _('Property Selection') }}</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">{{ _('Policy') }}</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="admin">{{ _('Upload Schema') }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-5">{{ _('Policy') }}</h2>
+    <p class="lead">{{ _("Policy's page description") }}</p>
+  </div>
+</div>
+<div class="bg-dark text-white">
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar32">
+            <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/policy/create">{{ _('Create new Policy') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/policy/manage">{{ _('Manage existing Policies') }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <hr>
+    <div class="container" id="form_container">
+        <form method="post" action="{{ url_for('core.update_policy') }}">
+            <div id="buildyourform">
+                <div id="line-0" data-idx="0">
+                    <div class="form-check form-check-inline">
+                        <input type="hidden" name="policy_id" id="policy_id" value="{{policy_id}}">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label>{{ _('In order to') }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input style="width: 310px;" class="form-control" name="policy_perform_action_label" id="policy_perform_action_label" placeholder="{{ _('perform this action') }}" value="{{action}}">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input style="width: 310px;" class="form-control" name="resource_name" id="resource_name" placeholder="{{ _('on this resource') }}" value="{{target}}">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label>{{ _('users must present') }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <select name="select_either" id="select_either" onchange="func_select_either(this);" class="form-control">
+                            <option disabled>{{ _('either or blank') }}</option>
+                            {% if select_either == "either" %}
+                                <option selected>{{ _('either') }}</option>
+                                <option>{{ _('(blank)') }}</option>
+                            {% endif %}
+                            {% if select_either == "blank" %}
+                                <option>{{ _('either') }}</option>
+                                <option selected>{{ _('(blank)') }}</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+{% if dnf is defined %}
+{% set line_number = namespace(value=1) %}
+    {% for cnf_policy in dnf %}
+                <div style="margin-top: 15px;" id="line-{{line_number.value}}" data-idx="{{line_number.value}}">
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <label>{{ _('(') }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="text" id="description" name="description_line{{line_number.value}}"  class="form-control" style="width: 300px;" placeholder= "{{_('Enter description')}}" value="{{cnf_policy['description']}}"/>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <label>{{ _('being') }}</label>
+                    </div>
+                </div>
+        {% for and_node in cnf_policy["cnf_policy"] %}
+                <div style="margin-top: 15px; margin-left: 50px;" id="line-{{line_number.value}}" data-idx="{{line_number.value}}">
+                    <div class="form-check form-check-inline">
+                        <label>{{ _('for') }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="text" id="purpose" name="purpose_line{{line_number.value}}"  class="form-control" style="width: 200px;" placeholder= "{{_('Enter purpose')}}" value="{{and_node['purpose']}}"/>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <label>{{ _('(') }}</label>
+                    </div>
+            {% for policy in and_node['policies'] %}
+                {% if loop.index > 1 %}
+                </div>
+                <div style="margin-top: 15px; margin-left: 340px;" id="line-{{line_number.value}}" data-idx="{{line_number.value}}">
+                {% endif %}
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <select name="statement_select_line{{line_number.value}}" id="statement_select" class="form-control">
+                            <option disabled="disabled"> {{ _('List of statements') }}</option>
+                {% for option in statements_options %}
+                    {% if policy["statement"] == option %}
+                            <option selected="true">{{ option }}</option>
+                    {% else %}
+                            <option>{{ option }}</option>
+                    {% endif %}
+                {% endfor %}
+                        </select>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <label>{{_('from a')}}</label>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <select name="profile_select_line{{line_number.value}}" id="profile_select" class="form-control">
+                            <option disabled="disabled"> {{ _('List of profiles') }}</option>
+                {% for option in profiles_options %}
+                    {% if policy["profile"] == option %}
+                            <option selected="true">{{ option }}</option>
+                    {% else %}
+                            <option>{{ option }}</option>
+                    {% endif %}
+                {% endfor %}
+                        </select>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <select name="and_or_select_line{{line_number.value}}" id="and_or_select" onchange="func_select_dnf_and_or(this);"   class="form-control">
+                            <option disabled="disabled"> {{ _(')and / or / )) / )or(') }}</option>
+                {% for option in select_options %}
+                    {% if policy["select"] == option %}
+                            <option selected="true">{{ option }}</option>
+                    {% else %}
+                            <option>{{ option }}</option>
+                    {% endif %}
+                {% endfor %}
+                        </select>
+                    </div>
+                {% if loop.index < and_node['policies']|length %}
+                    {% set line_number.value = line_number.value + 1 %}
+                {% endif %}
+            {% endfor %}
+                </div>
+            {% set line_number.value = line_number.value + 1 %}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+{% if cnf is defined %}
+{% set line_number = namespace(value=1) %}
+                <div class="form-check form-check-inline">
+                    <input type="hidden" name="policy_id" id="policy_id" value="{{policy_id}}">
+                </div>
+    {% for and_node in cnf %}
+                <div style="margin-top: 15px; margin-left: 50px;" id="line-{{line_number.value}}" data-idx="{{line_number.value}}">
+                    <div class="form-check form-check-inline">
+                        <label>{{ _('for') }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="text" id="purpose" name="purpose_line{{line_number.value}}"  class="form-control" style="width: 200px;" placeholder= "{{_('Enter purpose')}}" value="{{and_node['purpose']}}"/>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <label>{{ _('(') }}</label>
+                    </div>
+        {% for policy in and_node['policies'] %}
+            {% if loop.index > 1 %}
+                </div>
+                <div style="margin-top: 15px; margin-left: 340px;" id="line-{{line_number.value}}" data-idx="{{line_number.value}}">
+            {% endif %}
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <select name="statement_select_line{{line_number.value}}" id="statement_select" class="form-control">
+                            <option disabled="disabled"> {{ _('List of statements') }}</option>
+            {% for option in statements_options %}
+                {% if policy["statement"] == option %}
+                            <option selected="true">{{ option }}</option>
+                {% else %}
+                            <option>{{ option }}</option>
+                {% endif %}
+            {% endfor %}
+                        </select>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <label>{{_('from a')}}</label>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <select name="profile_select_line{{line_number.value}}" id="profile_select" class="form-control">
+                            <option disabled="disabled"> {{ _('List of profiles') }}</option>
+            {% for option in profiles_options %}
+                {% if policy["profile"] == option %}
+                            <option selected="true">{{ option }}</option>
+                {% else %}
+                            <option>{{ option }}</option>
+                {% endif %}
+            {% endfor %}
+                        </select>
+                    </div>
+                    <div style="margin-left: 15px;" class="form-check form-check-inline">
+                        <select name="and_or_select_line{{line_number.value}}" id="and_or_select" onchange="func_select_and_or(this);"   class="form-control">
+                            <option disabled="disabled"> {{ _(')and / or / )) / )or(') }}</option>
+            {% for option in select_options %}
+                {% if policy["select"] == option %}
+                            <option selected="true">{{ option }}</option>
+                {% else %}
+                            <option>{{ option }}</option>
+                {% endif %}
+            {% endfor %}
+                        </select>
+                    </div>
+            {% if loop.index < and_node['policies']|length %}
+                {% set line_number.value = line_number.value + 1 %}
+            {% endif %}
+        {% endfor %}
+                </div>
+        {% set line_number.value = line_number.value + 1 %}
+    {% endfor %}
+{% endif %}
+            </div>
+            <input style="margin-top: 30px;" class="btn btn-primary" id="final_submit" name="final_submit" type="submit" value="{{ _('Submit') }}">
+        </form>
+    </div>
+    <hr>
+    {% if message is defined %}
+        <div class="text-center text-danger">
+          <p>
+            <h3>{{message}}</h3>
+          </p>
+        </div>
+    {% endif %}
+</div>
+<script>
+function func_select_either(sel){
+    var either = "{{_('either')}}";
+    if(sel.value == either){
+        add_dnf_line();
+    }else{
+        add_cnf_line();
+    }
+}
+
+function add_cnf_line(){
+    var lastField = $("#buildyourform div:last").parent();
+    var firstField = $("#buildyourform div:first");
+    while(firstField.next().length){
+        firstField.next().remove();
+    }
+    var intId = 1;
+    var fieldWrapper = $("<div style=\"margin-top: 15px;\" id=\"line-"+intId+"\" data-idx=\""+intId+"\">");
+    var fLabel = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('for') }}</label> </div>");
+    var fInputPurpose = $("<div class=\"form-check form-check-inline\"> <input type=\"text\" id=\"description\" name=\"purpose_line"+intId+"\"  class=\"form-control\" style=\"width: 200px;\" placeholder= \"{{_('Purpose of this specific credential')}}\" /> </div>");
+    var fLabel2 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('(') }}</label> </div>");
+    var fSelectStatement = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"statement_select_line"+intId+"\" id=\"statement_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of statements') }}</option>{% for option in statements_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fLabel3 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{_('from a')}}</label> </div>");
+    var fSelectProfile = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"profile_select_line"+intId+"\" id=\"profile_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of profiles') }}</option>{% for option in profiles_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fSelectAndOr = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"and_or_select_line"+intId+"\" id=\"and_or_select\" onchange=\"func_select_and_or(this);\"   class=\"form-control\"><option disabled=\"disabled\">{{ _(')and / or / )') }}</option><option>{{ _('or') }}</option><option>{{ _(') and') }}</option><option selected=\"true\">)</option></select></div>");
+
+    fieldWrapper.append(fLabel);
+    fieldWrapper.append(fInputPurpose);
+    fieldWrapper.append(fLabel2);
+    fieldWrapper.append(fSelectStatement);
+    fieldWrapper.append(fLabel3);
+    fieldWrapper.append(fSelectProfile);
+    fieldWrapper.append(fSelectAndOr);
+    $("#buildyourform").append(fieldWrapper);
+}
+
+function add_dnf_line(){
+    var lastField = $("#buildyourform div:last").parent();
+    var firstField = $("#buildyourform div:first");
+    while(firstField.next().length){
+        firstField.next().remove();
+    }
+    var intId = 1;
+    var fieldWrapper = $("<div style=\"margin-top: 15px;\" id=\"line-"+intId+"\" data-idx=\""+intId+"\">");
+    var fLabel = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('(') }}</label> </div>");
+    var fInputDescription = $("<div class=\"form-check form-check-inline\"> <input type=\"text\" id=\"description\" name=\"description_line"+intId+"\"  class=\"form-control\" style=\"width: 300px;\" placeholder= \"{{_('Enter description')}}\" /> </div>");
+    var fLabel2 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('being') }}</label> </div>");
+    var fSelectStatement = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"statement_select_line"+intId+"\" id=\"statement_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of statements') }}</option>{% for option in statements_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fLabel3 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{_('from a')}}</label> </div>");
+    var fSelectProfile = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"profile_select_line"+intId+"\" id=\"profile_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of profiles') }}</option>{% for option in profiles_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fSelectOr = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"or_select_line"+intId+"\" id=\"or_select\" onchange=\"func_select_or(this);\"  class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('or / blank') }}</option><option>{{ _('or') }}</option><option>{{ _('blank') }}</option></select></div>");
+    var fendDiv = $("</div>");
+    fieldWrapper.append(fLabel);
+    fieldWrapper.append(fInputDescription);
+    fieldWrapper.append(fLabel2);
+    $("#buildyourform").append(fieldWrapper);
+    add_dnf_cnf_line();
+}
+
+function add_dnf_cnf_line(){
+    var lastField = $("#buildyourform div:last").parent();
+    var intId = lastField.data('idx');
+    var fieldWrapper = $("<div style=\"margin-top: 15px; margin-left: 40px;\" id=\"line-"+intId+"\" data-idx=\""+intId+"\">");
+    var fLabel = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('for') }}</label> </div>");
+    var fInputPurpose = $("<div class=\"form-check form-check-inline\"> <input type=\"text\" id=\"description\" name=\"purpose_line"+intId+"\"  class=\"form-control\" style=\"width: 200px;\" placeholder= \"{{_('Purpose of this specific credential')}}\" /> </div>");
+    var fLabel2 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('(') }}</label> </div>");
+    var fSelectStatement = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"statement_select_line"+intId+"\" id=\"statement_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of statements') }}</option>{% for option in statements_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fLabel3 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{_('from a')}}</label> </div>");
+    var fSelectProfile = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"profile_select_line"+intId+"\" id=\"profile_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of profiles') }}</option>{% for option in profiles_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fSelectAndOr = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"and_or_select_line"+intId+"\" id=\"and_or_select\" onchange=\"func_select_dnf_and_or(this);\"   class=\"form-control\"><option disabled=\"disabled\"> {{ _(')and / or / )) / )or(') }}</option><option>{{ _('or') }}</option><option>{{ _(') and') }}</option><option selected=\"true\" >))</option><option>{{ _(')or(') }}</option></select></div>");
+
+    fieldWrapper.append(fLabel);
+    fieldWrapper.append(fInputPurpose);
+    fieldWrapper.append(fLabel2);
+    fieldWrapper.append(fSelectStatement);
+    fieldWrapper.append(fLabel3);
+    fieldWrapper.append(fSelectProfile);
+    fieldWrapper.append(fSelectAndOr);
+    $("#buildyourform").append(fieldWrapper);
+}
+
+function cnf_add_or(sel){
+    var lastField = $("#buildyourform div:last").parent();
+    var field = $(sel).parent().parent();
+    while(field.next().length){
+        field.next().remove();
+    }
+    var intId = lastField.data('idx') + 1;
+    var fieldWrapper = $("<div style=\"margin-top: 15px; margin-left: 340px;\" id=\"line-"+intId+"\" data-idx=\""+intId+"\">");
+    var fSelectStatement = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"statement_select_line"+intId+"\" id=\"statement_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of statements') }}</option>{% for option in statements_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fLabel3 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{_('from a')}}</label> </div>");
+    var fSelectProfile = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"profile_select_line"+intId+"\" id=\"profile_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of profiles') }}</option>{% for option in profiles_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fSelectAndOr = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"and_or_select_line"+intId+"\" id=\"and_or_select\" onchange=\"func_select_and_or(this);\"   class=\"form-control\"><option disabled=\"disabled\">{{ _(')and / or / )') }}</option><option>{{ _('or') }}</option><option>{{ _(') and') }}</option><option selected=\"true\">)</option></select></div>");
+
+    fieldWrapper.append(fSelectStatement);
+    fieldWrapper.append(fLabel3);
+    fieldWrapper.append(fSelectProfile);
+    fieldWrapper.append(fSelectAndOr);
+    $("#buildyourform").append(fieldWrapper);
+}
+
+function dnf_add_or(sel){
+    var lastField = $("#buildyourform div:last").parent();
+    var field = $(sel).parent().parent();
+    while(field.next().length){
+        field.next().remove();
+    }
+    var intId = field.data('idx') + 1;
+    var fieldWrapper = $("<div style=\"margin-top: 15px; margin-left: 340px;\" id=\"line-"+intId+"\" data-idx=\""+intId+"\">");
+    var fSelectStatement = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"statement_select_line"+intId+"\" id=\"statement_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of statements') }}</option>{% for option in statements_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fLabel3 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{_('from a')}}</label> </div>");
+    var fSelectProfile = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"profile_select_line"+intId+"\" id=\"profile_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of profiles') }}</option>{% for option in profiles_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fSelectAndOr = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"and_or_select_line"+intId+"\" id=\"and_or_select\" onchange=\"func_select_dnf_and_or(this);\"   class=\"form-control\"><option disabled=\"disabled\">{{ _(')and / or / )) / )or(') }}</option><option>{{ _('or') }}</option><option>{{ _(') and') }}</option><option selected=\"true\">))</option><option>{{ _(')or(') }}</option></select></div>");
+
+    fieldWrapper.append(fSelectStatement);
+    fieldWrapper.append(fLabel3);
+    fieldWrapper.append(fSelectProfile);
+    fieldWrapper.append(fSelectAndOr);
+    $("#buildyourform").append(fieldWrapper);
+}
+
+function cnf_add_and(sel){
+    var lastField = $("#buildyourform div:last").parent();
+    var field = $(sel).parent().parent();
+    while(field.next().length){
+        field.next().remove();
+    }
+    var intId = field.data('idx') + 1;
+    var fieldWrapper = $("<div style=\"margin-top: 15px;\" id=\"line-"+intId+"\" data-idx=\""+intId+"\">");
+    var fLabel = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('for') }}</label> </div>");
+    var fInputPurpose = $("<div class=\"form-check form-check-inline\"> <input type=\"text\" id=\"description\" name=\"purpose_line"+intId+"\"  class=\"form-control\" style=\"width: 200px;\" placeholder= \"{{_('Purpose of this specific credential')}}\" /> </div>");
+    var fLabel2 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('(') }}</label> </div>");
+    var fSelectStatement = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"statement_select_line"+intId+"\" id=\"statement_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of statements') }}</option>{% for option in statements_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fLabel3 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{_('from a')}}</label> </div>");
+    var fSelectProfile = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"profile_select_line"+intId+"\" id=\"profile_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of profiles') }}</option>{% for option in profiles_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fSelectAndOr = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"and_or_select_line"+intId+"\" id=\"and_or_select\" onchange=\"func_select_and_or(this);\"   class=\"form-control\"><option disabled=\"disabled\">{{ _(')and / or / )') }}</option><option>{{ _('or') }}</option><option>{{ _(') and') }}</option><option selected=\"true\">)</option></select></div>");
+
+    fieldWrapper.append(fLabel);
+    fieldWrapper.append(fInputPurpose);
+    fieldWrapper.append(fLabel2);
+    fieldWrapper.append(fSelectStatement);
+    fieldWrapper.append(fLabel3);
+    fieldWrapper.append(fSelectProfile);
+    fieldWrapper.append(fSelectAndOr);
+    $("#buildyourform").append(fieldWrapper);
+}
+
+function dnf_add_and(sel){
+    var lastField = $("#buildyourform div:last").parent();
+    var field = $(sel).parent().parent();
+    while(field.next().length){
+        field.next().remove();
+    }
+    var intId = field.data('idx') + 1;
+    var fieldWrapper = $("<div style=\"margin-top: 15px; margin-left: 40px;\" id=\"line-"+intId+"\" data-idx=\""+intId+"\">");
+    var fLabel = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('for') }}</label> </div>");
+    var fInputPurpose = $("<div class=\"form-check form-check-inline\"> <input type=\"text\" id=\"description\" name=\"purpose_line"+intId+"\"  class=\"form-control\" style=\"width: 200px;\" placeholder= \"{{_('Purpose of this specific credential')}}\" /> </div>");
+    var fLabel2 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('(') }}</label> </div>");
+    var fSelectStatement = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"statement_select_line"+intId+"\" id=\"statement_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of statements') }}</option>{% for option in statements_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fLabel3 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{_('from a')}}</label> </div>");
+    var fSelectProfile = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"profile_select_line"+intId+"\" id=\"profile_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of profiles') }}</option>{% for option in profiles_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fSelectAndOr = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"and_or_select_line"+intId+"\" id=\"and_or_select\" onchange=\"func_select_dnf_and_or(this);\"   class=\"form-control\"><option disabled=\"disabled\">{{ _(')and / or / )) / )or(') }}</option><option>{{ _('or') }}</option><option>{{ _(') and') }}</option><option selected=\"true\">))</option><option>{{ _(')or(') }}</option></select></div>");
+
+    fieldWrapper.append(fLabel);
+    fieldWrapper.append(fInputPurpose);
+    fieldWrapper.append(fLabel2);
+    fieldWrapper.append(fSelectStatement);
+    fieldWrapper.append(fLabel3);
+    fieldWrapper.append(fSelectProfile);
+    fieldWrapper.append(fSelectAndOr);
+    $("#buildyourform").append(fieldWrapper);
+}
+
+function dnf_add_cnf(sel){
+    var lastField = $("#buildyourform div:last").parent();
+    var field = $(sel).parent().parent();
+    while(field.next().length){
+        field.next().remove();
+    }
+    var intId = field.data('idx') + 1;
+    var fieldWrapper = $("<div style=\"margin-top: 15px;\" id=\"line-"+intId+"\" data-idx=\""+intId+"\">");
+    var fLabel = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('(') }}</label> </div>");
+    var fInputDescription = $("<div class=\"form-check form-check-inline\"> <input type=\"text\" id=\"description\" name=\"description_line"+intId+"\"  class=\"form-control\" style=\"width: 300px;\" placeholder= \"{{_('Enter description')}}\" /> </div>");
+    var fLabel2 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{ _('being') }}</label> </div>");
+    var fSelectStatement = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"statement_select_line"+intId+"\" id=\"statement_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of statements') }}</option>{% for option in statements_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fLabel3 = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <label>{{_('from a')}}</label> </div>");
+    var fSelectProfile = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"profile_select_line"+intId+"\" id=\"profile_select\" class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('List of profiles') }}</option>{% for option in profiles_options %}<option>{{ option }}</option>{% endfor %}</select></div>");
+    var fSelectOr = $("<div style=\"margin-left: 15px;\" class=\"form-check form-check-inline\"> <select name=\"or_select_line"+intId+"\" id=\"or_select\" onchange=\"func_select_or(this);\"  class=\"form-control\"><option selected=\"true\" disabled=\"disabled\"> {{ _('or / blank') }}</option><option>{{ _('or') }}</option><option>{{ _('blank') }}</option></select></div>");
+    var fendDiv = $("</div>");
+    fieldWrapper.append(fInputDescription);
+    fieldWrapper.append(fLabel2);
+    $("#buildyourform").append(fieldWrapper);
+    add_dnf_cnf_line();
+}
+
+function cnf_stop(sel){
+    var lastField = $("#buildyourform div:last").parent();
+    var field = $(sel).parent().parent();
+    while(field.next().length){
+        field.next().remove();
+    }
+}
+</script>
+<script>
+function func_select_or(sel){
+    var or = "{{_('or')}}";
+    if(sel.value == or){
+        add_line();
+    }else{
+        while($(sel).parent().parent().next().length) {
+            $(sel).parent().parent().next().remove();
+        }
+    }
+}
+
+function func_select_and_or(sel){
+    var or = "{{_('or')}}";
+    var and = "{{_(') and')}}";
+    if(sel.value == or){
+        cnf_add_or(sel);
+    }else if (sel.value == and){
+        cnf_add_and(sel);
+    }else{
+        cnf_stop(sel);
+    }
+}
+
+function func_select_dnf_and_or(sel){
+    var or = "{{_('or')}}";
+    var and = "{{_(') and')}}";
+    var or2 = "{{_(')or(')}}";
+    if(sel.value == or){
+        dnf_add_or(sel);
+    }else if (sel.value == and){
+        dnf_add_and(sel);
+    }else if (sel.value == or2){
+        dnf_add_cnf(sel);
+    }else{
+        cnf_stop(sel);
+    }
+}
+</script>
+{% endblock %}
+

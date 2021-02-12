@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+<nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">{{ _('Credential Profile') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/property_selection/create">{{ _('Property Selection') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/policy/create">{{ _('Policy') }}</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/schema/upload">{{ _('Upload Schema') }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h2 class="display-5">{{ _('Credential Profile') }}</h2>
+        <p class="lead">{{ _('A VC profile contains the filtering criteria that are needed to select a VC from the VC Holder’s wallet') }}</p>
+    </div>
+</div>
+<div class="bg-dark text-white">
+
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar32">
+            <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/credential_profile/create">{{ _('Create new profile') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/credential_profile/manage">{{ _('Manage existing profiles') }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <hr>
+    <div class="container">
+        <form method="post" action="{{ url_for('core.create_credential_profile') }}">
+            <div>
+                <div class="form-check form-check-inline">
+                    <label>{{ _('A') }}</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input style="width: 310px;" class="form-control" id="crendential_profile_name" name="crendential_profile_name" placeholder="{{ _('Enter your name for a credential profile') }}">
+                </div>
+                <div class="form-check form-check-inline">
+                    <label>{{ _('credential must:') }}</label>
+                </div>
+            </div>
+            <div>
+                <div style="margin-left: 100px; margin-top: 30px;" class="form-check form-check-inline">
+                    <label>{{ _('be issued by') }}</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <select id="input_issuer" name="input_issuer" class="form-control">
+                        <option selected="true" disabled="disabled">{{ _('List of issuers') }}</option>
+                        {% for option in issuers_options %}
+                            <option>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label>{{ _('and') }}</label>
+                </div>
+            </div>
+            <div>
+                <div style="margin-left: 100px; margin-top: 30px;" class="form-check form-check-inline">
+                    <label>{{ _('be of type') }}</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <select id="input_vc_type "name="input_vc_type" class="form-control">
+                        <option selected="true" disabled="disabled">{{ _('List of credential types') }}</option>
+                        {% for option in vc_types_options %}
+                            <option>{{ option }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+            </div>
+            <input class="btn btn-primary" id="final_submit" type="submit" value="{{ _('Submit') }}">
+        </form>
+    </div>
+    <hr>
+    {% if message is defined %}
+        <div class="text-center text-danger">
+          <p>
+            <h3>{{message}}</h3>
+          </p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

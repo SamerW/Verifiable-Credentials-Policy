@@ -1,0 +1,5 @@
+include module/cnl.sqlite
+graft module/static
+graft module/templates
+graft module/translations
+global-exclude *.pyc

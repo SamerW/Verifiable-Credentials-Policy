@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block nav %}
+<nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/credential_profile/create">{{ _('Credential Profile') }}</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">{{ _('Property Selection') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/policy/create">{{ _('Policy') }}</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/schema/upload">{{ _('Upload Schema') }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-5">{{ _('Property Selection') }}</h2>
+    <p class="lead">{{ _('A Selective Disclosure Statement tells the VC Holder which properties of the VC should be returned to the verifier') }}</p>
+  </div>
+</div>
+<div class="bg-dark text-white">
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar32">
+            <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/property_selection/create">{{ _('Create new Sd Statement') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/property_selection/manage">{{ _('Manage existing Sd Statements') }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <hr>
+    <div class="container">
+        <form method="post" action="{{ url_for('core.create_property_selection') }}">
+            <div id="buildyourform">
+                <div style="margin-top: 15px;" id="line-1" data-idx="1">
+                    <div class="form-check form-check-inline" data-idx="1">
+                        <div class="form-check form-check-inline">
+                            <input id="property_name" name="property_name" style="width: 310px;" class="form-control" placeholder= "{{_('Enter your name for property selection')}}">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label>{{ _('requires') }}</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <select id="property_select" name="property_select" class="form-control">
+                                <option selected="true" disabled="disabled"> {{ _('List of properties') }}</option>
+                                {% for option in properties_options %}
+                                    <option>{{ option }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <button id="add" type="button" class="btn btn-default">
+                                 <img src="../static/images/plus_icon.png" width="20" />
+                            </button>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <button type="button" class="btn btn-default" disabled>
+                                 <img src="../static/images/minus_icon.png" width="20"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input style="margin-top: 30px;" class="btn btn-primary" id="final_submit" name="final_submit" type="submit" value="{{ _('Submit') }}">
+        </form>
+    </div>
+    <hr>
+    {% if message is defined %}
+        <div class="text-center text-danger">
+          <p>
+            <h3>{{message}}</h3>
+          </p>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+$(document).ready(function() {
+    $("#add").click(function add_line() {
+    	var lastField = $("#buildyourform div:last").parent();
+        var intId = lastField.data('idx') + 1;
+        var fieldWrapper = $("<div id=\"line-" + intId + "\"data-idx=\"" + intId + "\"/>");
+        fieldWrapper.data("idx", intId);
+        var fStartDiv = $("<div style=\"margin-top: 15px;\" id=\"line\">");
+        var fName = $("<div class=\"form-check form-check-inline\"> <input type=\"text\" id=\"property_name\"  class=\"form-control\" style=\"width: 310px;\" placeholder= \"{{_('Enter your name for property selection')}}\" /> </div>");
+        var fLabel = $("<div class=\"form-check form-check-inline\"> <label>{{ _('requires') }}</label> </div>");
+        var fType = $("<div style=\"margin-left: 393px; margin-top: 15px;\" class=\"form-check form-check-inline\"> <select class=\"form-control\" id=\"property_select\"> <option selected=\"true\" disabled=\"disabled\"> {{ _('List of properties') }}</option>{% for option in properties_options %}<option>{{ option }}</option>{% endfor %}</select> </div>");
+        var addButton = $("<div id=\"add\" class=\"form-check form-check-inline\"> <button type=\"button\" class=\"btn btn-default\"> <img src=\"../static/images/plus_icon.png\" width=\"20\" /> </button> </div> ");
+        addButton.click(function() {
+            add_line();
+        });
+        var removeButton = $("<div class=\"form-check form-check-inline\"> <button type=\"button\" class=\"btn btn-default\"> <img src=\"../static/images/minus_icon.png\" width=\"20\" /> </button> </div> ");
+        removeButton.click(function() {
+            $(this).parent().remove();
+        });
+        var fEndDiv = $("</div>");
+        var hr = $("<hr>");
+        fieldWrapper.append(fType);
+        fieldWrapper.append(addButton);
+        fieldWrapper.append(removeButton);
+        $("#buildyourform").append(fieldWrapper);
+    });
+    $("final_submit").on("submit", function(event){
+        $.post("process.php", $("#reg-form").serialize(), function(data) {
+        alert(data);
+        });
+    });
+    $("#preview").click(function() {
+        $("#yourform").remove();
+        var fieldSet = $("<fieldset id=\"yourform\"><legend>Your Form</legend></fieldset>");
+        $("#buildyourform div").each(function() {
+            var id = "input" + $(this).attr("id").replace("field","");
+            var label = $("<label for=\"" + id + "\">" + $(this).find("input.fieldname").first().val() + "</label>");
+            var input;
+            switch ($(this).find("select.fieldtype").first().val()) {
+                case "checkbox":
+                    input = $("<input type=\"checkbox\" id=\"" + id + "\" name=\"" + id + "\" />");
+                    break;
+                case "textbox":
+                    input = $("<input type=\"text\" id=\"" + id + "\" name=\"" + id + "\" />");
+                    break;
+                case "textarea":
+                    input = $("<textarea id=\"" + id + "\" name=\"" + id + "\" ></textarea>");
+                    break;
+            }
+            fieldSet.append(label);
+            fieldSet.append(input);
+        });
+        $("body").append(fieldSet);
+    });
+});
+</script>
+{% endblock %}

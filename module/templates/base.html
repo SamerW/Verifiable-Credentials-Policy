@@ -1,0 +1,34 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>{{ _('CNL') }}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    {% block head %}{% endblock %}
+    <!-- Custom styles for this template -->
+  </head>
+
+  <body>
+    {% block nav %}{% endblock %}
+
+    <main role="main">
+      <div class="container">
+        <section class="content">
+          {% for message in get_flashed_messages() %}
+            <div style="color:red" class="flash">{{ message }}</div>
+          {% endfor %}
+          {% block content %}{% endblock %}
+        </section>
+      </div> <!-- /container -->
+    </main>
+
+  </body>
+</html>

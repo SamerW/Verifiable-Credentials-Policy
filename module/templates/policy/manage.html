@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% block nav %}
+<nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/credential_profile/create">{{ _('Credential Profile') }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/credential_profile/create">{{ _('Property Selection') }}</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">{{ _('Policy') }}</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/schema/upload">{{ _('Upload Schema') }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-5">{{ _('Policy') }}</h2>
+    <p class="lead">{{ _("Policy's page description") }}</p>
+  </div>
+</div>
+<div class="bg-dark text-white">
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar32">
+            <ul class="navbar-nav w-100 justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/policy/create">{{ _('Create new Policy') }}</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/policy/manage">{{ _('Manage existing Policies') }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <hr>
+    <div class="container">
+        <div align="center">
+            <p>{{ _('OR') }}</p>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <form method="post"  action="{{ url_for('core.manage_policy') }}">
+                    <div class="form-check form-check-inline">
+                        {{ _('Select a Policy:') }}
+                    </div>
+                    <div class="form-check form-check-inline">
+                        {% for field in form %}
+                            <div class="form-check form-check-inline">
+                            {% if "label" in field.id %}
+                                <div class="form-check form-check-inline">
+                                    <label>{{field.data}}</label>
+                                </div>
+                            {% else %}
+                                {{ field() }}
+                            {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm">
+                <form method="post"  action="{{ url_for('core.manage_policy') }}">
+                    <div class="form-check form-check-inline">
+                        {{ _('Search for') }}
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-control" id="input_search_policy" name="input_search_policy">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        {{ _('in a Policy') }}
+                    </div>
+                    <input class="btn btn-primary" id="final_submit" name="final_submit" type="submit" value="{{ _('Submit') }}">
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if policies is defined %}
+        <div class="divider py-1 bg-dark"><hr style="border-top: 1px solid #ccc; background: transparent;"></div>
+        <div class="container">
+            <p>
+            </p>
+            <div>
+                {% for policy in policies %}
+                    <div class="row">
+                        <div class="col-sm">
+                            {{policy["str"] | safe}}
+                        </div>
+                        <div class="col-sm align-middle">
+                            <div class="form-check form-check-inline">
+                                <form method="post"  action="{{ url_for('core.update_policy') }}">
+                                    <input id="modify_{{policy['id'] | safe}}" name="modify_{{policy['id'] | safe}}"  class="btn btn-secondary" type="submit" value="{{ _('Modify') }}">
+                                </form>
+                                <form style="margin-left: 15px;" method="post"  action="{{ url_for('core.manage_policy') }}">
+                                    <input id="delete_{{policy['id'] | safe}}" name="delete_{{policy['id'] | safe}}"  class="btn btn-danger" type="submit" value="{{ _('Delete') }}">
+                                </form>
+                                <form style="margin-left: 15px;" method="post"  action="{{ url_for('core.manage_policy') }}">
+                                    <input id="get_json_{{policy['id'] | safe}}" name="get_json_{{policy['id'] | safe}}"  class="btn btn-primary" type="submit" value="{{ _('Get Policy in Json') }}">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+    {% else %}
+        <hr>
+    {% endif %}
+    {% if message is defined %}
+        <div class="text-center text-danger">
+          <p>
+            <h3>{{message}}</h3>
+          </p>
+        </div>
+    {% endif %}
+</div>
+{% if json_policy is defined %}
+    <div>
+        <pre>{{ json_policy }}</pre>
+    </div>
+{% endif %}
+{% endblock %}
