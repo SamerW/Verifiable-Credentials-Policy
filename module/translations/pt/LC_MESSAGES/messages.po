@@ -20,78 +20,78 @@ msgstr ""
 
 #: module/core.py:81
 msgid "Profile with name {profile_name} already exists."
-msgstr ""
+msgstr "Um perfil com o nome {profile_name} já existe."
 
 #: module/core.py:83 module/core.py:255
 msgid "Unknown Error"
-msgstr ""
+msgstr "Erro Desconhecido"
 
 #: module/core.py:89
 msgid "Profile created"
-msgstr ""
+msgstr "Perfil criado"
 
 #: module/core.py:96 module/core.py:266
 msgid "Please fill all parameters"
-msgstr ""
+msgstr "Por favor, preencha todos os parâmetros"
 
 #: module/core.py:138
 msgid "Could not update profile"
-msgstr ""
+msgstr "Não foi possível atualizar o perfil"
 
 #: module/core.py:140
 msgid "Profile updated"
-msgstr ""
+msgstr "Perfil atualizado"
 
 #: module/core.py:186 module/core.py:359 module/core.py:559
 #: module/templates/credential_profile/manage.html:107
 #: module/templates/policy/manage.html:105
 #: module/templates/property_selection/manage.html:105
 msgid "Delete"
-msgstr ""
+msgstr "Excluir"
 
 #: module/core.py:187 module/core.py:360
 msgid "Error - Profile can't be deleted"
-msgstr ""
+msgstr "Erro - O perfil não pode ser excluído"
 
 #: module/core.py:192
 msgid "Profile deleted"
-msgstr ""
+msgstr "Perfil excluído"
 
 #: module/core.py:205
 msgid "A {name} credential must :<br>"
-msgstr ""
+msgstr "Uma credencial {name} deve :<br>"
 
 #: module/core.py:208
 msgid "<div style=\"margin-left: 40px\">• be issued by {issuer}<br></div>"
-msgstr ""
+msgstr "<div style=\"margin-left: 40px\">• ser emitida por {issuer}<br></div>"
 
 #: module/core.py:210
 msgid "<div style=\"margin-left: 40px\">• be of type {type}<br></div>"
-msgstr ""
+msgstr "<div style=\"margin-left: 40px\">• ser do tipo {type}<br>"
 
 #: module/core.py:253
 msgid "Statement with name \"{property_name}\" already exists."
-msgstr ""
+msgstr "Já existe uma declaração com o nome \"{property_name}\"."
 
 #: module/core.py:260
 msgid "Selective Disclosure Statement created"
-msgstr ""
+msgstr "Uma declaração do tipo Divulgação Seletiva (SD) foi criada"
 
 #: module/core.py:307
 msgid "Statement \"{statement_name}\" updated"
-msgstr ""
+msgstr "Declaração \"{statement_name}\" atualizada"
 
 #: module/core.py:313
 msgid "Error: Statement \"{statement_name}\" could not be updated"
-msgstr ""
+msgstr "Erro: A declaração \"{statement_name}\" não pode ser atualizada"
 
 #: module/core.py:365
 msgid "Statement deleted"
-msgstr ""
+msgstr "Declaração excluída"
 
 #: module/core.py:374
 msgid "{sdName} requires :<br>"
-msgstr ""
+msgstr "{sdName} requer :<br>"
 
 #: module/core.py:399 module/core.py:400 module/core.py:672
 #: module/templates/policy/create.html:72
@@ -100,19 +100,19 @@ msgstr ""
 #: module/templates/policy/update.html:79
 #: module/templates/policy/update.html:247
 msgid "either"
-msgstr ""
+msgstr "ou"
 
 #: module/core.py:512 module/templates/policy/manage.html:108
 msgid "Get Policy in Json"
-msgstr ""
+msgstr "Pegar Política no formato Json"
 
 #: module/core.py:560
 msgid "Error - Policy can't be deleted"
-msgstr ""
+msgstr "Erro - A política não pode ser excluída"
 
 #: module/core.py:565
 msgid "Policy deleted"
-msgstr ""
+msgstr "Política excluída"
 
 #: module/core.py:600 module/core.py:632 module/forms.py:48
 #: module/templates/policy/create.html:114
@@ -138,7 +138,7 @@ msgstr ""
 #: module/templates/policy/update.html:461
 #: module/templates/policy/update.html:473
 msgid "or"
-msgstr ""
+msgstr "ou"
 
 #: module/core.py:600 module/core.py:632
 #: module/templates/policy/create.html:114
@@ -158,7 +158,7 @@ msgstr ""
 #: module/templates/policy/update.html:462
 #: module/templates/policy/update.html:474
 msgid ") and"
-msgstr ""
+msgstr ") e"
 
 #: module/core.py:632 module/templates/policy/create.html:159
 #: module/templates/policy/create.html:202
@@ -169,69 +169,69 @@ msgstr ""
 #: module/templates/policy/update.html:406
 #: module/templates/policy/update.html:475
 msgid ")or("
-msgstr ""
+msgstr ")ou("
 
 #: module/core.py:704
 msgid "Policy updated"
-msgstr ""
+msgstr "Política atualizada"
 
 #: module/core.py:712 module/core.py:741
 msgid "In order to "
-msgstr ""
+msgstr "Para "
 
 #: module/core.py:715
 msgid "you must present "
-msgstr ""
+msgstr "você deve apresentar "
 
 #: module/core.py:720
 msgid " for "
-msgstr ""
+msgstr " para "
 
 #: module/core.py:727 module/core.py:762
 msgid "from a "
-msgstr ""
+msgstr "de um "
 
 #: module/core.py:730 module/core.py:765
 msgid "or "
-msgstr ""
+msgstr "ou "
 
 #: module/core.py:735
 msgid "and "
-msgstr ""
+msgstr "e "
 
 #: module/core.py:744
 msgid "you must present either ("
-msgstr ""
+msgstr "você deve apresentar ou ("
 
 #: module/core.py:751
 msgid "being "
-msgstr ""
+msgstr "sendo "
 
 #: module/core.py:769
 msgid "and for "
-msgstr ""
+msgstr "e para "
 
 #: module/core.py:772
 msgid ") or ("
-msgstr ""
+msgstr ") ou ("
 
 #: module/forms.py:13 module/forms.py:75 module/forms.py:86
 msgid "please select an option"
-msgstr ""
+msgstr "por favor, escolha uma opção"
 
 #: module/forms.py:19 module/templates/property_selection/create.html:53
 #: module/templates/property_selection/create.html:100
 #: module/templates/property_selection/update.html:57
 #: module/templates/property_selection/update.html:136
 msgid "Enter your name for property selection"
-msgstr ""
+msgstr "Entre um nome para a seleção de propriedades"
 
 #: module/forms.py:20 module/templates/property_selection/create.html:56
 #: module/templates/property_selection/create.html:101
 #: module/templates/property_selection/update.html:60
 #: module/templates/property_selection/update.html:137
 msgid "requires"
-msgstr ""
+msgstr "requer"
 
 #: module/forms.py:21 module/forms.py:42
 #: module/templates/property_selection/create.html:60
@@ -240,7 +240,7 @@ msgstr ""
 #: module/templates/property_selection/update.html:91
 #: module/templates/property_selection/update.html:138
 msgid "List of properties"
-msgstr ""
+msgstr "Lista de propriedades"
 
 #: module/forms.py:40 module/templates/policy/create.html:110
 #: module/templates/policy/create.html:134
@@ -258,7 +258,7 @@ msgstr ""
 #: module/templates/policy/update.html:402
 #: module/templates/policy/update.html:426
 msgid "("
-msgstr ""
+msgstr "("
 
 #: module/forms.py:41 module/templates/policy/create.html:112
 #: module/templates/policy/create.html:138
@@ -279,117 +279,117 @@ msgstr ""
 #: module/templates/policy/update.html:404
 #: module/templates/policy/update.html:430
 msgid "from a"
-msgstr ""
+msgstr "de um"
 
 #: module/forms.py:43
 msgid "List of credential profiles"
-msgstr ""
+msgstr "Lista de perfies de credenciais"
 
 #: module/forms.py:45
 msgid "and, ), or"
-msgstr ""
+msgstr "e, ), ou"
 
 #: module/forms.py:46 module/templates/credential_profile/create.html:75
 #: module/templates/credential_profile/update.html:79
 msgid "and"
-msgstr ""
+msgstr "e"
 
 #: module/forms.py:47
 msgid ")"
-msgstr ""
+msgstr ")"
 
 #: module/policy_api.py:112 module/policy_api.py:190 module/policy_api.py:242
 msgid "Policy already exists"
-msgstr ""
+msgstr "A política já existe"
 
 #: module/policy_api.py:193 module/policy_api.py:245
 msgid "Json Error"
-msgstr ""
+msgstr "Erro no Json"
 
 #: module/policy_api.py:265 module/policy_api.py:267 module/policy_api.py:306
 #: module/policy_api.py:308
 msgid "Policy {action} {target} doesn't exist"
-msgstr ""
+msgstr "A política {action} {target} não foi encontrada"
 
 #: module/policy_api.py:269 module/policy_api.py:310 module/policy_api.py:341
 #: module/policy_api.py:436 module/profile_api.py:43 module/statement_api.py:29
 #: module/statement_api.py:45 module/statement_api.py:82
 #: module/statement_api.py:120
 msgid "Required argument(s) missing"
-msgstr ""
+msgstr "Um ou mais argumentos necessários estão faltando"
 
 #: module/policy_api.py:283 module/policy_api.py:285
 msgid "Policy with PolicyMatchId {policy_match_id} doesn't exist"
-msgstr ""
+msgstr "A política com o PolicyMatchId {policy_match_id} não foi encontrada"
 
 #: module/policy_api.py:325
 msgid "Policy with id {policy_id} doesn't exist"
-msgstr ""
+msgstr "A política com id {policy_id} não foi encontrada"
 
 #: module/profile_api.py:23
 msgid "VC Profile with name {profile_name} already exists"
-msgstr ""
+msgstr "Já existe um perfil de VC com o nome {profile_name}"
 
 #: module/profile_api.py:31
 msgid "Issuer is not recognized"
-msgstr ""
+msgstr "O emissor não é reconhecido"
 
 #: module/profile_api.py:33
 msgid "Vc Type is not recognized"
-msgstr ""
+msgstr "O tipo da VC não é reconhecido"
 
 #: module/profile_api.py:41
 msgid "VC Profile Created"
-msgstr ""
+msgstr "Perfil de VC Criado"
 
 #: module/profile_api.py:57 module/profile_api.py:91
 msgid "VC Profile with name {profile_name} doesn't exist"
-msgstr ""
+msgstr "Perfil de VC com o nome {profile_name} não encontrado"
 
 #: module/profile_api.py:59 module/profile_api.py:93 module/profile_api.py:137
 #: module/profile_api.py:169
 msgid "Required argument missing"
-msgstr ""
+msgstr "Um argumento necessário está faltando"
 
 #: module/profile_api.py:70 module/profile_api.py:182
 msgid "VC Profile with id {profile_id} doesn't exist"
-msgstr ""
+msgstr "O perfil de VC com id {profile_id} não foi encontrado"
 
 #: module/profile_api.py:180
 msgid "VC Profile with id {profile_id} deleted"
-msgstr ""
+msgstr "O perfil de VC com id {profile_id} foi excluído"
 
 #: module/statement_api.py:21
 msgid "Sd Statement with name {sd_name} already exists"
-msgstr ""
+msgstr "Já existe uma declaração SD com o nome {sd_name}"
 
 #: module/statement_api.py:27
 msgid "Sd Statement Created"
-msgstr ""
+msgstr "Declaração SD Criada"
 
 #: module/statement_api.py:43
 msgid "Sd Statement with name {sd_name} doesn't exist"
-msgstr ""
+msgstr "A declaração SD com nome {sd_name} não foi encontrada"
 
 #: module/statement_api.py:56 module/statement_api.py:133
 msgid "Sd Statement with id {statement_id} doesn't exist"
-msgstr ""
+msgstr "A declaração SD com id {statement_id} não foi encontrada"
 
 #: module/statement_api.py:116
 msgid "Sd Statement name {sd_name} deleted"
-msgstr ""
+msgstr "A declaração SD com nome {sd_name} foi excluída"
 
 #: module/statement_api.py:118
 msgid "Sd Statement name {sd_name} doesn't exist"
-msgstr ""
+msgstr "A declaração SD com nome {sd_name} não foi encontrada"
 
 #: module/statement_api.py:131
 msgid "Sd Statement with id {statement_id} deleted"
-msgstr ""
+msgstr "A declaração SD com id {statement_id} não foi encontrada"
 
 #: module/templates/base.html:11
 msgid "CNL"
-msgstr ""
+msgstr "CNL"
 
 #: module/templates/credential_profile/create.html:5
 #: module/templates/credential_profile/manage.html:5
@@ -401,7 +401,7 @@ msgstr ""
 #: module/templates/property_selection/update.html:4
 #: module/templates/schema/upload.html:9
 msgid "Home"
-msgstr ""
+msgstr "Menu Principal"
 
 #: module/templates/credential_profile/create.html:12
 #: module/templates/credential_profile/create.html:30
@@ -417,7 +417,7 @@ msgstr ""
 #: module/templates/property_selection/update.html:11
 #: module/templates/schema/upload.html:16
 msgid "Credential Profile"
-msgstr ""
+msgstr "Perfil de Credencial"
 
 #: module/templates/credential_profile/create.html:15
 #: module/templates/credential_profile/manage.html:15
@@ -433,7 +433,7 @@ msgstr ""
 #: module/templates/property_selection/update.html:29
 #: module/templates/schema/upload.html:19
 msgid "Property Selection"
-msgstr ""
+msgstr "Escolha de Propriedades"
 
 #: module/templates/credential_profile/create.html:18
 #: module/templates/credential_profile/manage.html:18
@@ -449,7 +449,7 @@ msgstr ""
 #: module/templates/property_selection/update.html:17
 #: module/templates/schema/upload.html:22
 msgid "Policy"
-msgstr ""
+msgstr "Política"
 
 #: module/templates/credential_profile/create.html:23
 #: module/templates/credential_profile/manage.html:23
@@ -463,7 +463,7 @@ msgstr ""
 #: module/templates/schema/upload.html:27
 #: module/templates/schema/upload.html:34
 msgid "Upload Schema"
-msgstr ""
+msgstr "Enviar Esquema"
 
 #: module/templates/credential_profile/create.html:31
 #: module/templates/credential_profile/manage.html:31
@@ -472,51 +472,53 @@ msgid ""
 "A VC profile contains the filtering criteria that are needed to select a "
 "VC from the VC Holder’s wallet"
 msgstr ""
+"Um perfil VC contém os critérios de filtragem necessários para selecionar um "
+"VC da carteira do Portador de VC"
 
 #: module/templates/credential_profile/create.html:40
 #: module/templates/credential_profile/manage.html:40
 msgid "Create new profile"
-msgstr ""
+msgstr "Criar novo perfil"
 
 #: module/templates/credential_profile/create.html:43
 #: module/templates/credential_profile/manage.html:43
 msgid "Manage existing profiles"
-msgstr ""
+msgstr "Gerenciar perfis existentes"
 
 #: module/templates/credential_profile/create.html:53
 #: module/templates/credential_profile/update.html:53
 msgid "A"
-msgstr ""
+msgstr "Um"
 
 #: module/templates/credential_profile/create.html:56
 #: module/templates/credential_profile/update.html:56
 msgid "Enter your name for a credential profile"
-msgstr ""
+msgstr "Entre o nome para o perfil de credencial"
 
 #: module/templates/credential_profile/create.html:59
 #: module/templates/credential_profile/update.html:59
 msgid "credential must:"
-msgstr ""
+msgstr "credencial deve:"
 
 #: module/templates/credential_profile/create.html:64
 #: module/templates/credential_profile/update.html:64
 msgid "be issued by"
-msgstr ""
+msgstr "ser emitida por"
 
 #: module/templates/credential_profile/create.html:68
 #: module/templates/credential_profile/update.html:68
 msgid "List of issuers"
-msgstr ""
+msgstr "Lista de emissores"
 
 #: module/templates/credential_profile/create.html:80
 #: module/templates/credential_profile/update.html:84
 msgid "be of type"
-msgstr ""
+msgstr "ser do tipo"
 
 #: module/templates/credential_profile/create.html:84
 #: module/templates/credential_profile/update.html:88
 msgid "List of credential types"
-msgstr ""
+msgstr "Lista de tipos de credenciais"
 
 #: module/templates/credential_profile/create.html:92
 #: module/templates/credential_profile/manage.html:85
@@ -528,86 +530,86 @@ msgstr ""
 #: module/templates/property_selection/update.html:116
 #: module/templates/schema/upload.html:61
 msgid "Submit"
-msgstr ""
+msgstr "Submeter"
 
 #: module/templates/credential_profile/manage.html:51
 #: module/templates/policy/manage.html:49
 #: module/templates/property_selection/manage.html:49
 msgid "OR"
-msgstr ""
+msgstr "OU"
 
 #: module/templates/credential_profile/manage.html:57
 msgid "Select a profile:"
-msgstr ""
+msgstr "Selecionar um perfil:"
 
 #: module/templates/credential_profile/manage.html:77
 #: module/templates/policy/manage.html:75
 #: module/templates/property_selection/manage.html:75
 msgid "Search for"
-msgstr ""
+msgstr "Buscar por"
 
 #: module/templates/credential_profile/manage.html:83
 msgid "in a profile"
-msgstr ""
+msgstr "em um perfil"
 
 #: module/templates/credential_profile/manage.html:103
 #: module/templates/policy/manage.html:102
 #: module/templates/property_selection/manage.html:101
 msgid "Modify"
-msgstr ""
+msgstr "Modificar"
 
 #: module/templates/credential_profile/update.html:100
 msgid "Update"
-msgstr ""
+msgstr "Atualizar"
 
 #: module/templates/policy/create.html:35
 #: module/templates/policy/manage.html:30
 #: module/templates/policy/update.html:35
 msgid "Policy's page description"
-msgstr ""
+msgstr "Descrição da página de Política"
 
 #: module/templates/policy/create.html:44
 #: module/templates/policy/manage.html:38
 #: module/templates/policy/update.html:43
 msgid "Create new Policy"
-msgstr ""
+msgstr "Criar nova Política"
 
 #: module/templates/policy/create.html:47
 #: module/templates/policy/manage.html:41
 #: module/templates/policy/update.html:46
 msgid "Manage existing Policies"
-msgstr ""
+msgstr "Gerenciar Políticas existentes"
 
 #: module/templates/policy/create.html:58
 #: module/templates/policy/update.html:60
 msgid "In order to"
-msgstr ""
+msgstr "Para"
 
 #: module/templates/policy/create.html:61
 #: module/templates/policy/update.html:63
 msgid "perform this action"
-msgstr ""
+msgstr "realizar esta ação"
 
 #: module/templates/policy/create.html:64
 #: module/templates/policy/update.html:66
 msgid "on this resource"
-msgstr ""
+msgstr "neste recurso"
 
 #: module/templates/policy/create.html:67
 #: module/templates/policy/update.html:69
 msgid "users must present"
-msgstr ""
+msgstr "usuários devem apresentar"
 
 #: module/templates/policy/create.html:71
 #: module/templates/policy/update.html:73
 msgid "either or blank"
-msgstr ""
+msgstr "ou em branco"
 
 #: module/templates/policy/create.html:73
 #: module/templates/policy/update.html:76
 #: module/templates/policy/update.html:80
 msgid "(blank)"
-msgstr ""
+msgstr "(em branco)"
 
 #: module/templates/policy/create.html:108
 #: module/templates/policy/create.html:153
@@ -620,7 +622,7 @@ msgstr ""
 #: module/templates/policy/update.html:374
 #: module/templates/policy/update.html:400
 msgid "for"
-msgstr ""
+msgstr "para"
 
 #: module/templates/policy/create.html:109
 #: module/templates/policy/create.html:154
@@ -631,7 +633,7 @@ msgstr ""
 #: module/templates/policy/update.html:375
 #: module/templates/policy/update.html:401
 msgid "Purpose of this specific credential"
-msgstr ""
+msgstr "Motivo desta credencial específica"
 
 #: module/templates/policy/create.html:111
 #: module/templates/policy/create.html:137
@@ -652,7 +654,7 @@ msgstr ""
 #: module/templates/policy/update.html:403
 #: module/templates/policy/update.html:429
 msgid "List of statements"
-msgstr ""
+msgstr "Lista de declarações"
 
 #: module/templates/policy/create.html:113
 #: module/templates/policy/create.html:139
@@ -673,7 +675,7 @@ msgstr ""
 #: module/templates/policy/update.html:405
 #: module/templates/policy/update.html:431
 msgid "List of profiles"
-msgstr ""
+msgstr "Lista de perfis"
 
 #: module/templates/policy/create.html:114
 #: module/templates/policy/create.html:182
@@ -682,7 +684,7 @@ msgstr ""
 #: module/templates/policy/update.html:337
 #: module/templates/policy/update.html:380
 msgid ")and / or / )"
-msgstr ""
+msgstr ")e / ou / )"
 
 #: module/templates/policy/create.html:135
 #: module/templates/policy/create.html:272
@@ -690,7 +692,7 @@ msgstr ""
 #: module/templates/policy/update.html:290
 #: module/templates/policy/update.html:427
 msgid "Enter description"
-msgstr ""
+msgstr "Entre uma descrição"
 
 #: module/templates/policy/create.html:136
 #: module/templates/policy/create.html:273
@@ -698,21 +700,21 @@ msgstr ""
 #: module/templates/policy/update.html:291
 #: module/templates/policy/update.html:428
 msgid "being"
-msgstr ""
+msgstr "sendo"
 
 #: module/templates/policy/create.html:140
 #: module/templates/policy/create.html:277
 #: module/templates/policy/update.html:295
 #: module/templates/policy/update.html:432
 msgid "or / blank"
-msgstr ""
+msgstr "ou / em branco"
 
 #: module/templates/policy/create.html:140
 #: module/templates/policy/create.html:277
 #: module/templates/policy/update.html:295
 #: module/templates/policy/update.html:432
 msgid "blank"
-msgstr ""
+msgstr "em branco"
 
 #: module/templates/policy/create.html:159
 #: module/templates/policy/create.html:202
@@ -723,20 +725,20 @@ msgstr ""
 #: module/templates/policy/update.html:357
 #: module/templates/policy/update.html:406
 msgid ")and / or / )) / )or("
-msgstr ""
+msgstr ")e / ou / )) / )ou("
 
 #: module/templates/policy/manage.html:55
 msgid "Select a Policy:"
-msgstr ""
+msgstr "Escolha uma Política:"
 
 #: module/templates/policy/manage.html:81
 msgid "in a Policy"
-msgstr ""
+msgstr "numa Política"
 
 #: module/templates/policy/update.html:105
 #: module/templates/policy/update.html:175
 msgid "Enter purpose"
-msgstr ""
+msgstr "Entre um motivo"
 
 #: module/templates/property_selection/create.html:30
 #: module/templates/property_selection/manage.html:30
@@ -745,121 +747,123 @@ msgid ""
 "A Selective Disclosure Statement tells the VC Holder which properties of "
 "the VC should be returned to the verifier"
 msgstr ""
+"Uma declaração de Divulgação Seletiva (SD) diz ao Portador de VC quais propriedades da"
+"VC devem ser retornadas ao verificador"
 
 #: module/templates/property_selection/create.html:38
 #: module/templates/property_selection/manage.html:38
 #: module/templates/property_selection/update.html:38
 msgid "Create new Sd Statement"
-msgstr ""
+msgstr "Criar nova Declaração SD"
 
 #: module/templates/property_selection/create.html:41
 #: module/templates/property_selection/manage.html:41
 #: module/templates/property_selection/update.html:41
 msgid "Manage existing Sd Statements"
-msgstr ""
+msgstr "Gerenciar declarações SD existentes"
 
 #: module/templates/property_selection/manage.html:55
 msgid "Select a Sd Statement:"
-msgstr ""
+msgstr "Selecionar uma Declaração SD:"
 
 #: module/templates/property_selection/manage.html:81
 msgid "in a Sd Statement"
-msgstr ""
+msgstr "em uma Declaração SD"
 
 #: module/templates/schema/upload.html:42
 msgid "Choose a json schema file:"
-msgstr ""
+msgstr "Escolha um arquivo de esquema json"
 
 #: module/templates/schema/upload.html:51
 msgid "Enter the url of the schema to fetch:"
-msgstr ""
+msgstr "Entre a url do esquema para recuperar:"
 
 #: module/templates/schema/upload.html:54
 msgid "url of the schema"
-msgstr ""
+msgstr "url do esquema"
 
 #: module/templates/schema/upload.html:57
 msgid "Extract nested properties:"
-msgstr ""
+msgstr "Extrair propriedades aninhadas"
 
 #~ msgid "Profile with name \"\" already exists."
-#~ msgstr ""
+#~ msgstr "Um perfil com o nome \"\" já existe."
 
 #~ msgid "<div style=\"margin-left: 40px\">• <br></div>"
-#~ msgstr ""
+#~ msgstr "<div style=\"margin-left: 40px\">• <br></div>"
 
 #~ msgid "Profile with name (%profile_name)s already exists."
-#~ msgstr ""
+#~ msgstr "Um perfil com o nome (%profile_name)s já existe."
 
 #~ msgid "Profile with name %(profile_name)s already exists."
-#~ msgstr ""
+#~ msgstr "Um perfil com o nome (%profile_name)s já existe."
 
 #~ msgid "<div style=\"margin-left: 40px\">• be issued by vcProfile<br></div>"
-#~ msgstr ""
+#~ msgstr "<div style=\"margin-left: 40px\">• ser emitido pelo Perfil VC<br></div>"
 
 #~ msgid "<div style=\"margin-left: 40px\">• be of type vcProfile<br></div>"
-#~ msgstr ""
+#~ msgstr "<div style=\"margin-left: 40px\">• ser do tipo de perfil VC<br></div>"
 
 #~ msgid "<div style=\"margin-left: 40px\">• be of type {issuer}<br></div>"
-#~ msgstr ""
+#~ msgstr "<div style=\"margin-left: 40px\">• ser do tipo {issuer}<br></div>"
 
 #~ msgid "A profileName credential must :<br>"
-#~ msgstr ""
+#~ msgstr "Uma credencial com nome de perfil deve:<br>"
 
 #~ msgid "Statement with name \"\" already exists."
-#~ msgstr ""
+#~ msgstr "Uma declaração com nome \"\" já existe."
 
 #~ msgid "Statement \"\" updated"
-#~ msgstr ""
+#~ msgstr "Declaração \"\" atualizada"
 
 #~ msgid "Error: Statement \"\" could not be updated"
-#~ msgstr ""
+#~ msgstr "Erro: Declaração \"\" não pode ser atualizada"
 
 #~ msgid "sdName requires :<br>"
-#~ msgstr ""
+#~ msgstr "sdName requer :<br>"
 
 #~ msgid "VC Profile with name  already exists"
-#~ msgstr ""
+#~ msgstr "Um perfil VC de nome  já existe"
 
 #~ msgid "VC Profile with name  doesn't exist"
-#~ msgstr ""
+#~ msgstr "Um perfil VC de nome  não existe"
 
 #~ msgid "VC Profile with id  doesn't exist"
-#~ msgstr ""
+#~ msgstr "Um perfil VC de id  não existe"
 
 #~ msgid "VC Profile with id  deleted"
-#~ msgstr ""
+#~ msgstr "Perfil VC de id  excluído"
 
 #~ msgid "Policy   doesn't exist"
-#~ msgstr ""
+#~ msgstr "Política   não existe"
 
 #~ msgid "Policy with PolicyMatchId doesn't exist"
-#~ msgstr ""
+#~ msgstr "Política com PolicyMatchId não existe"
 
 #~ msgid "Policy with id doesn't exist"
-#~ msgstr ""
+#~ msgstr "Política com id não existe"
 
 #~ msgid "Sd Statement with name  already exists"
-#~ msgstr ""
+#~ msgstr "Uma Declaração SD com nome  já existe"
 
 #~ msgid "Sd Statement with name  doesn't exist"
-#~ msgstr ""
+#~ msgstr "Não existem Declarações SD com nome  "
 
 #~ msgid "Sd Statement with id  doesn't exist"
-#~ msgstr ""
+#~ msgstr "Não existem Declarações SD com id  "
 
 #~ msgid "Sd Statement name  deleted"
-#~ msgstr ""
+#~ msgstr "Declaração SD de nome  excluída"
 
 #~ msgid "Sd Statement name  doesn't exist"
-#~ msgstr ""
+#~ msgstr "Não existem Declarações SD com nome  "
 
 #~ msgid "Sd Statement with id  deleted"
-#~ msgstr ""
+#~ msgstr "Declaração SD de id  excluída"
 
 #~ msgid "you must present for "
-#~ msgstr ""
+#~ msgstr "você deve apresentar para "
 
 #~ msgid ") and\""
-#~ msgstr ""
+#~ msgstr ") e\""
 
