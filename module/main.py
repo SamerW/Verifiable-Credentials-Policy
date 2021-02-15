@@ -67,4 +67,4 @@ if __name__ == '__main__':
     app.register_blueprint(module.core.bp)
     app.add_url_rule('/', endpoint='/credential_profile/create')
 
-    app.run(debug=False, port=5000)
+    app.run(debug=True, port=5000)
