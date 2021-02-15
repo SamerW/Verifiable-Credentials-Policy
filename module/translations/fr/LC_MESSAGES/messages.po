@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-12 14:03+0100\n"
+"POT-Creation-Date: 2021-02-15 13:04+0100\n"
 "PO-Revision-Date: 2020-12-27 15:28+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -330,9 +330,9 @@ msgid "Policy {action} {target} doesn't exist"
 msgstr "La politique {action} {target} n'existe pas"
 
 #: module/policy_api.py:269 module/policy_api.py:310 module/policy_api.py:341
-#: module/policy_api.py:436 module/profile_api.py:43 module/statement_api.py:29
-#: module/statement_api.py:45 module/statement_api.py:82
-#: module/statement_api.py:120
+#: module/policy_api.py:436 module/profile_api.py:43 module/statement_api.py:28
+#: module/statement_api.py:44 module/statement_api.py:81
+#: module/statement_api.py:119
 msgid "Required argument(s) missing"
 msgstr "Des paramètres requis sont manquants"
 
@@ -383,36 +383,50 @@ msgstr "Le profil avec l'identifiant {profile_id} n'existe pas"
 msgid "VC Profile with id {profile_id} deleted"
 msgstr "Le profil avec l'identifiant {profile_id} a été supprimé"
 
-#: module/statement_api.py:21
+#: module/schema_api.py:48 module/schema_api.py:104
+#, fuzzy
+msgid "Schema \"{type_name}\" already exist"
+msgstr "Le schéma \"{type_name}\" existe déjà."
+
+#: module/schema_api.py:50 module/schema_api.py:106
+#, fuzzy
+msgid "Schema \"{type_name}\" uploaded"
+msgstr "Le schéma \"{type_name}\" a été téléversé"
+
+#: module/schema_api.py:52 module/schema_api.py:108
+msgid "Schema not valid"
+msgstr "Schéma invalide"
+
+#: module/statement_api.py:20
 #, fuzzy
 msgid "Sd Statement with name {sd_name} already exists"
 msgstr "La déclaration avec le nom {sd_name} existe déjà "
 
-#: module/statement_api.py:27
+#: module/statement_api.py:26
 msgid "Sd Statement Created"
 msgstr "La déclaration a été créée"
 
-#: module/statement_api.py:43
+#: module/statement_api.py:42
 #, fuzzy
 msgid "Sd Statement with name {sd_name} doesn't exist"
 msgstr "La déclaration avec le nom {sd_name} n'existe pas"
 
-#: module/statement_api.py:56 module/statement_api.py:133
+#: module/statement_api.py:55 module/statement_api.py:132
 #, fuzzy
 msgid "Sd Statement with id {statement_id} doesn't exist"
 msgstr "La déclaration avec l'identifiant {statement_id} n'existe pas"
 
-#: module/statement_api.py:116
+#: module/statement_api.py:115
 #, fuzzy
 msgid "Sd Statement name {sd_name} deleted"
 msgstr "La déclaration avec le nom {sd_name} a été supprimée"
 
-#: module/statement_api.py:118
+#: module/statement_api.py:117
 #, fuzzy
 msgid "Sd Statement name {sd_name} doesn't exist"
 msgstr "La déclaration avec le nom {sd_name} n'existe pas"
 
-#: module/statement_api.py:131
+#: module/statement_api.py:130
 #, fuzzy
 msgid "Sd Statement with id {statement_id} deleted"
 msgstr "La déclaration avec l'identifiant {statement_id} a été supprimée"
@@ -819,4 +833,7 @@ msgstr "Extraire les propriétés imbriquées"
 
 #~ msgid ") and\""
 #~ msgstr "et"
+
+#~ msgid "Schema with type \"{type_name}\" already exist"
+#~ msgstr "L avec le nom \"{property_name}\" existe déjà."
 

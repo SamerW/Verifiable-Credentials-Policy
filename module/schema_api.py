@@ -1,10 +1,10 @@
-from flask import current_app as app
 from .models import db, \
     Property, \
     Issuer, \
     VcType
 import json
 import urllib
+from flask_babel import _
 from jsonschema import Draft7Validator, \
     SchemaError
 
@@ -36,14 +36,20 @@ def get_schema_by_url(url, extract_nested_properties):
             )
             db.session.add(new_issuer)
         vc_type_name = json_schema["credential_type"]
-        new_vc_type = VcType(
-            name=vc_type_name
-        )
-        db.session.add(new_vc_type)
+        vc_type = VcType.query.filter(
+            VcType.name == vc_type_name
+        ).first()
+        if not vc_type:
+            new_vc_type = VcType(
+                name=vc_type_name
+            )
+            db.session.add(new_vc_type)
+        else:
+            return _("Schema \"{type_name}\" already exist").format(type_name=vc_type_name)
         db.session.commit()
-        return "OK"
+        return _("Schema \"{type_name}\" uploaded").format(type_name=vc_type_name)
     else:
-        return "KO"
+        return _("Schema not valid")
 
 
 def get_nested_properties(json_data):
@@ -86,14 +92,20 @@ def get_schema_by_json_data(json_schema, extract_nested_properties):
             )
             db.session.add(new_issuer)
         vc_type_name = json_schema["credential_type"]
-        new_vc_type = VcType(
-            name=vc_type_name
-        )
-        db.session.add(new_vc_type)
+        vc_type = VcType.query.filter(
+            VcType.name == vc_type_name
+        ).first()
+        if not vc_type:
+            new_vc_type = VcType(
+                name=vc_type_name
+            )
+            db.session.add(new_vc_type)
+        else:
+            return _("Schema \"{type_name}\" already exist").format(type_name=vc_type_name)
         db.session.commit()
-        return "OK"
+        return _("Schema \"{type_name}\" uploaded").format(type_name=vc_type_name)
     else:
-        return "KO"
+        return _("Schema not valid")
 
 
 def validate_json_schema(schema):
@@ -103,34 +115,3 @@ def validate_json_schema(schema):
         print(schemaError)
         return False
     return True
-
-
-test_schema = """{
-    "$schema": "http://example.com/example3CreditCard",
-    "issuer": "https://bigbigbank.com/issuer/UK",
-    "credential_type": "ExampleCreditCard3",
-    "type": "object",
-    "properties": {
-        "creditCardNumber": {
-            "name": "credentialSubject.ex3credcard.number",
-            "type": "string",
-            "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$",
-            "example": "1111-2222-3333-4444"
-        },
-        "owner": {
-            "name": "credentialSubject.ex3credcard.owner",
-            "type": "string",
-            "maxLength": 64
-        },
-        "expiringDate": {
-            "name": "credentialSubject.ex3credcard.expiringDate",
-            "format": "date"
-        }
-    },
-    "required": [ "creditCardNumber", "owner", "expiringDate" ]
-}"""
-
-
-@app.route('/get_test_schema', methods=['GET'])
-def get_test_schema():
-    return test_schema
