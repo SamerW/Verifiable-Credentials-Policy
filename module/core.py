@@ -778,16 +778,19 @@ def render_dnf_policy(policy):
 @bp.route('/schema/upload', methods=['GET', 'POST'])
 def upload_schema():
     form_dict = request.form.to_dict()
+    message = ""
     if request.method == 'POST':
         extract_nested_properties = False
         if "nested_properties" in form_dict:
             extract_nested_properties = True
-        if request.files["file"] is not "":
+        if request.files["file"] is not '':
             json_file = request.files.get('file')
             json_file_data = json_file.read()
-            json_schema = json.loads(json_file_data)
-            get_schema_by_json_data(json_schema, extract_nested_properties)
+            if json_file_data is not b'':
+                json_schema = json.loads(json_file_data)
+                message = get_schema_by_json_data(json_schema, extract_nested_properties)
         if "schema_url" in form_dict.keys():
             if form_dict["schema_url"] is not '':
-                get_schema_by_url(form_dict["schema_url"], extract_nested_properties)
-    return render_template('schema/upload.html')
+                message = get_schema_by_url(form_dict["schema_url"], extract_nested_properties)
+    return render_template('schema/upload.html',
+                           message=message)
