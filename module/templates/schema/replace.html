@@ -31,17 +31,17 @@
 </nav>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h2 class="display-5">{{ _('Upload Schema') }}</h2>
+    <h2 class="display-5">{{ _('Replace Schema') }}</h2>
   </div>
 </div>
 <div class="bg-dark text-white">
     <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
         <div class="navbar-collapse collapse w-100" id="collapsingNavbar32">
             <ul class="navbar-nav w-100 justify-content-center">
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="/schema/upload">{{ _('Upload new Schema') }}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/schema/manage">{{ _('Manage existing Schemas') }}</a>
                 </li>
             </ul>
@@ -49,7 +49,7 @@
     </nav>
     <hr>
     <div class="container" id="form_container">
-        <form method="post" action="{{ url_for('core.upload_schema') }}" enctype=multipart/form-data>
+        <form method="post" action="{{ url_for('core.replace_schema') }}" enctype=multipart/form-data>
             <div>
                 <label>{{ _('Choose a json schema file:') }}</label>
             </div>
@@ -70,7 +70,7 @@
                 <input type="checkbox" id="nested_properties" name="nested_properties" checked>
             </div>
             <div>
-                <input class="btn btn-primary" id="final_submit" name="final_submit" type="submit" value="{{ _('Submit') }}">
+                <input class="btn btn-primary" id="replace_{{schema_id | safe}}" name="replace_{{schema_id | safe}}" type="submit" value="{{ _('Submit') }}">
             </div>
         </form>
     </div>

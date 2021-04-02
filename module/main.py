@@ -54,11 +54,20 @@ if __name__ == '__main__':
         self_issuer = module.models.Issuer.query.filter(
             module.models.Issuer.name == "self"
         ).first()
+        all_prop = module.models.Property.query.filter(
+            module.models.Property.name == "all"
+        ).first()
         if not self_issuer:
             new_issuer = module.models.Issuer(
                 name="self"
             )
             db.session.add(new_issuer)
+            db.session.commit()
+        if not all_prop:
+            new_all_prop = module.models.Property(
+                name="all"
+            )
+            db.session.add(new_all_prop)
             db.session.commit()
 
 
@@ -67,4 +76,4 @@ if __name__ == '__main__':
     app.register_blueprint(module.core.bp)
     app.add_url_rule('/', endpoint='/credential_profile/create')
 
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)

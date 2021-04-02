@@ -27,6 +27,9 @@ I18N:
         $ pybabel update -i messages.pot -d module/translations
 
     To compile new translations, use the following command:
-        $ pybabel compile -d module/translations
+        $ pybabel compile -f -d module/translations
 
+Create an executable version:
+    1) go to the folder "module"
+    2) create the executable with the command "pyinstaller -w -F main.spec"
 

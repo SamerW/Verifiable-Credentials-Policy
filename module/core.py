@@ -26,10 +26,17 @@ from .policy_api import create_dnf_policy_from_json, \
     search_policies_by_arg, \
     delete_policy_by_policy_match_id, \
     update_policy_by_id
-from .schema_api import get_schema_by_json_data, get_schema_by_url
+from .schema_api import get_schema_by_json_data, \
+    get_schema_by_url, \
+    read_schema_by_id, \
+    search_schema_by_arg, \
+    delete_schema_by_schema_id, \
+    check_if_schema_is_used, \
+    replace_schema_by_json_data
 from .forms import ListPolicyForm, \
     ListPropertySelectionForm, \
-    ListProfileForm
+    ListProfileForm, \
+    ListSchemaForm
 import json
 
 bp = Blueprint('core', __name__)
@@ -79,6 +86,7 @@ def create_credential_profile():
             except exc.SQLAlchemyError as error:
                 if error.__str__().__contains__("UNIQUE constraint failed"):
                     message = _("Profile with name {profile_name} already exists.").format(profile_name=profile_name)
+                    db.session.rollback()
                 else:
                     message = _("Unknown Error")
                 return render_template(
@@ -122,9 +130,12 @@ def update_credential_profile():
             vc_types = VcType.query.all()
             for vc_type in vc_types:
                 vc_types_options.append(vc_type.name)
+            print(profile)
             return render_template(
                 '/credential_profile/update.html',
                 profile_name=profile_name,
+                selected_issuer=profile["vcProfile"]["issuer"],
+                selected_type=profile["vcProfile"]["type"],
                 issuers_options=issuers_options,
                 vc_types_options=vc_types_options,
                 prof_id=prof_id)
@@ -133,6 +144,17 @@ def update_credential_profile():
             if "prof_id" in key:
                 prof_id = int(key.replace("prof_id_", ""))
                 profile_name = form_dict["crendential_profile_name"]
+                existing_profile = VcProfile.query.filter(
+                    VcProfile.name == profile_name,
+                    VcProfile.id != prof_id
+                ).first()
+                if existing_profile:
+                    message = _("Profile not updated: A profile with this name already exists")
+                    form = ListProfileForm()
+                    return render_template(
+                        '/credential_profile/manage.html',
+                        form=form,
+                        message=message)
                 issuer = form_dict["input_issuer"]
                 profile_type = form_dict["input_vc_type"]
                 message = _("Could not update profile")
@@ -188,8 +210,11 @@ def manage_credential_profile():
             for key in form_dict.keys():
                 if "delete" in key:
                     prof_id = int(key.replace("delete_", ""))
-                    if delete_vc_profile_by_id(prof_id):
-                        message = _("Profile deleted")
+                    if check_if_profile_in_policy(prof_id):
+                        message = "This profile is used in at least one policy, you can't delete it"
+                    else:
+                        if delete_vc_profile_by_id(prof_id):
+                            message = _("Profile deleted")
             form = ListProfileForm()
             return render_template(
                 '/credential_profile/manage.html',
@@ -199,6 +224,26 @@ def manage_credential_profile():
             return render_template(
                 '/credential_profile/manage.html',
                 form=form)
+
+
+def check_if_profile_in_policy(prof_id):
+    policies = Policies.query.all()
+    for policy in policies:
+        cnl_policy = policy.cnl_policy
+        if cnl_policy.cnf:
+            for and_node in cnl_policy.cnf.and_nodes:
+                for pol in and_node.or_node.policies:
+                    if pol.profile.id == prof_id:
+                        return True
+        if cnl_policy.dnf:
+            cnfs = cnl_policy.dnf.cnf_policies
+            for cnf_policy in cnfs:
+                for and_node in cnf_policy.and_nodes:
+                    for pol in and_node.or_node.policies:
+                        if pol.profile.id == prof_id:
+                            return True
+    return False
+
 
 
 def render_profile(profile):
@@ -215,8 +260,10 @@ def render_profile(profile):
 def create_property_selection():
     properties = Property.query.all()
     properties_options = []
+    properties_options.append("none")
     for prop in properties:
-        properties_options.append(prop.name)
+        if prop.name not in properties_options:
+            properties_options.append(prop.name)
     if request.method == 'GET':
         return render_template(
             '/property_selection/create.html',
@@ -238,9 +285,12 @@ def create_property_selection():
             properties = Property.query.all()
             statement_properties = []
             for prop in properties_list:
-                for p in properties:
-                    if p.name == prop:
-                        statement_properties.append(p)
+                if prop == "none":
+                    pass
+                else:
+                    for p in properties:
+                        if p.name == prop:
+                            statement_properties.append(p)
             new_statement = SdStatement(
                 name=property_name,
                 properties=statement_properties
@@ -251,6 +301,7 @@ def create_property_selection():
             except exc.SQLAlchemyError as error:
                 if error.__str__().__contains__("UNIQUE constraint failed"):
                     message = _("Statement with name \"{property_name}\" already exists.").format(property_name=property_name)
+                    db.session.rollback()
                 else:
                     message = _("Unknown Error")
                 return render_template(
@@ -280,11 +331,16 @@ def update_property_selection():
             statement_name = statement["sdName"]
             properties = Property.query.all()
             properties_options = []
+            properties_options.append("none")
             requires = []
             for prop in properties:
                 properties_options.append(prop.name)
             for prop in statement["requires"]:
-                requires.append(prop)
+                if(prop == ''):
+                    pass
+                    #requires.append("all")
+                else:
+                    requires.append(prop)
             return render_template(
                 '/property_selection/update.html',
                 requires=requires,
@@ -295,13 +351,24 @@ def update_property_selection():
         statement_name = None
         statement_id = None
         requires = []
+        print(form_dict)
         for key in form_dict.keys():
+            statement_id = int(form_dict["line-1[statement_id]"])
             if "property_name" in key:
                 statement_name = form_dict[key]
+                existing_statement = SdStatement.query.filter(
+                    SdStatement.name == statement_name,
+                    SdStatement.id != statement_id
+                ).first()
+                if existing_statement:
+                    message = _("Statement not updated: A statement with this name already exists")
+                    form = ListPropertySelectionForm()
+                    return render_template(
+                        '/property_selection/manage.html',
+                        form=form,
+                        message=message)
             if "property_select" in key:
                 requires.append(form_dict[key])
-            if "statement_id" in key:
-                statement_id = int(form_dict[key])
         if statement_name and statement_id and len(requires) > 0:
             if update_sd_statement_by_id(statement_name, requires, statement_id):
                 message = _("Statement \"{statement_name}\" updated").format(statement_name=statement_name)
@@ -361,8 +428,11 @@ def manage_property_selection():
             for key in form_dict.keys():
                 if "delete" in key:
                     stat_id = int(key.replace("delete_", ""))
-                    if delete_sd_statement_by_id(stat_id):
-                        message = _("Statement deleted")
+                    if check_if_statement_in_policy(stat_id):
+                        message = "This statement is used in at least one policy, you can't delete it"
+                    else:
+                        if delete_sd_statement_by_id(stat_id):
+                            message = _("Statement deleted")
             form = ListPropertySelectionForm()
             return render_template(
                 '/property_selection/manage.html',
@@ -370,10 +440,35 @@ def manage_property_selection():
                 message=message)
 
 
+def check_if_statement_in_policy(stat_id):
+    policies = Policies.query.all()
+    for policy in policies:
+        cnl_policy = policy.cnl_policy
+        if cnl_policy.cnf:
+            for and_node in cnl_policy.cnf.and_nodes:
+                for pol in and_node.or_node.policies:
+                    if pol.statement.id == stat_id:
+                        return True
+        if cnl_policy.dnf:
+            cnfs = cnl_policy.dnf.cnf_policies
+            for cnf_policy in cnfs:
+                for and_node in cnf_policy.and_nodes:
+                    for pol in and_node.or_node.policies:
+                        if pol.statement.id == stat_id:
+                            return True
+    return False
+
 def render_statement(statement):
     statement_str = _("{sdName} requires :<br>").format(sdName=statement["sdName"])
-    for item in statement["requires"]:
-        statement_str += '<div style="margin-left: 40px">• ' + item + '<br></div>'
+    print(statement)
+    if statement["requires"] == None:
+        statement_str += '<div style="margin-left: 40px">• None<br></div>'
+    else:
+        for item in statement["requires"]:
+            if item == '*':
+                statement_str += '<div style="margin-left: 40px">• All<br></div>'
+            else:
+                statement_str += '<div style="margin-left: 40px">• ' + item + '<br></div>'
     return statement_str
 
 
@@ -508,13 +603,16 @@ def manage_policy():
             form=form)
     if request.method == 'POST':
         form_dict = request.form.to_dict()
-        print(form_dict)
         if _("Get Policy in Json") in form_dict.values():
             for key in form_dict.keys():
                 if "get_json" in key:
                     policy_match_id = int(key.replace("get_json_", ""))
-                    json_policy = json.dumps(
-                        read_policy_by_policy_match_id(policy_match_id).asdict(),
+                    policy = read_policy_by_policy_match_id(policy_match_id).asdict()
+                    profiles = get_profiles_for_policy(policy_match_id)
+                    statements = get_statements_for_policy(policy_match_id)
+                    policy["vcProfiles"] = profiles
+                    policy["sdStatements"] = statements
+                    json_policy = json.dumps(policy,
                         sort_keys=False,
                         indent=2)
                     return render_template(
@@ -527,9 +625,17 @@ def manage_policy():
                 policy_dict = {}
                 policy = read_policy_by_policy_match_id(form_dict["policy"])
                 if "dnf" in policy.asdict()["cNLpolicy"]:
-                    policy_dict["str"] = render_dnf_policy(policy.asdict())
+                    try:
+                        policy_dict["str"] = render_dnf_policy(policy.asdict())
+                    except Exception as e:
+                        print(e)
+                        policy_dict["str"] = "Error rendering policy"
                 else:
-                    policy_dict["str"] = render_cnf_policy(policy.asdict())
+                    try:
+                        policy_dict["str"] = render_cnf_policy(policy.asdict())
+                    except Exception as e:
+                        print(e)
+                        policy_dict["str"] = "Error rendering policy"
                 policy_dict["id"] = policy.id
                 policies.append(policy_dict)
                 return render_template(
@@ -547,9 +653,17 @@ def manage_policy():
             for policy in pols:
                 policy_dict = {}
                 if "dnf" in policy.asdict()["cNLpolicy"]:
-                    policy_dict["str"] = render_dnf_policy(policy.asdict())
+                    try:
+                        policy_dict["str"] = render_dnf_policy(policy.asdict())
+                    except Exception as e:
+                        print(e)
+                        policy_dict["str"] = "Error rendering policy"
                 else:
-                    policy_dict["str"] = render_cnf_policy(policy.asdict())
+                    try:
+                        policy_dict["str"] = render_cnf_policy(policy.asdict())
+                    except Exception as e:
+                        print(e)
+                        policy_dict["str"] = "Error rendering policy"
                 policy_dict["id"] = policy.id
                 policies.append(policy_dict)
             return render_template(
@@ -573,6 +687,58 @@ def manage_policy():
                 '/policy/manage.html',
                 form=form)
 
+
+def get_profiles_for_policy(policy_match_id):
+    profiles = []
+    policy = Policies.query.filter(
+        Policies.policy_match_id == policy_match_id
+    ).first()
+    cnl_policy = policy.cnl_policy
+    if cnl_policy.cnf:
+        for and_node in cnl_policy.cnf.and_nodes:
+            for pol in and_node.or_node.policies:
+                profiles.append(pol.profile)
+    if cnl_policy.dnf:
+        cnfs = cnl_policy.dnf.cnf_policies
+        for cnf_policy in cnfs:
+            for and_node in cnf_policy.and_nodes:
+                for pol in and_node.or_node.policies:
+                    profiles.append(pol.profile)
+    result = []
+    for profile in profiles:
+        is_prof_in_result = False
+        for prof in result:
+            if prof["profileName"] == profile.name:
+                is_prof_in_result = True
+        if not is_prof_in_result:
+            result.append(profile.asdict())
+    return result
+
+def get_statements_for_policy(policy_match_id):
+    statements = []
+    policy = Policies.query.filter(
+        Policies.policy_match_id == policy_match_id
+    ).first()
+    cnl_policy = policy.cnl_policy
+    if cnl_policy.cnf:
+        for and_node in cnl_policy.cnf.and_nodes:
+            for pol in and_node.or_node.policies:
+                statements.append(pol.statement)
+    if cnl_policy.dnf:
+        cnfs = cnl_policy.dnf.cnf_policies
+        for cnf_policy in cnfs:
+            for and_node in cnf_policy.and_nodes:
+                for pol in and_node.or_node.policies:
+                    statements.append(pol.statement)
+    result = []
+    for statement in statements:
+        is_stat_in_result = False
+        for stat in result:
+            if stat["sdName"] == statement.name:
+                is_stat_in_result = True
+        if not is_stat_in_result:
+            result.append(statement.asdict())
+    return result
 
 @bp.route('/policy/update', methods=['GET', 'POST'])
 def update_policy():
@@ -778,6 +944,7 @@ def render_dnf_policy(policy):
 @bp.route('/schema/upload', methods=['GET', 'POST'])
 def upload_schema():
     form_dict = request.form.to_dict()
+    print(form_dict)
     message = ""
     if request.method == 'POST':
         extract_nested_properties = False
@@ -794,3 +961,99 @@ def upload_schema():
                 message = get_schema_by_url(form_dict["schema_url"], extract_nested_properties)
     return render_template('schema/upload.html',
                            message=message)
+
+
+@bp.route('/schema/manage', methods=['GET', 'POST'])
+def manage_schema():
+    form = ListSchemaForm()
+    if request.method == 'GET':
+        return render_template('schema/manage.html',
+                               form=form)
+    if request.method == 'POST':
+        form_dict = request.form.to_dict()
+        print(form_dict)
+        if "schema" in form_dict:
+            if form_dict["schema"] is not '':
+                schemas = []
+                schema_dict = {}
+                schema = read_schema_by_id(form_dict["schema"])
+                schema_dict["str"] = render_schema(schema)
+                schema_dict["id"] = form_dict["schema"]
+                schemas.append(schema_dict)
+                return render_template(
+                    '/schema/manage.html',
+                    form=form,
+                    schemas=schemas)
+            else:
+                return render_template(
+                    '/schema/manage.html',
+                    form=form)
+        elif "input_search_schema" in form_dict:
+            input_str = form_dict["input_search_schema"]
+            return_schemas = []
+            schemas = search_schema_by_arg(input_str)
+            for schema in schemas:
+                schema_dict = dict()
+                schema_dict["str"] = render_schema(schema)
+                schema_dict["id"] = schema.id
+                return_schemas.append(schema_dict)
+            return render_template(
+                '/schema/manage.html',
+                form=form,
+                schemas=return_schemas)
+        elif _("Delete") in form_dict.values():
+            message = _("Error - Schema can't be deleted")
+            for key in form_dict.keys():
+                if "delete" in key:
+                    schema_id = int(key.replace("delete_", ""))
+                    if check_if_schema_is_used(schema_id):
+                        message = _("Schema is used in Profile(s) or Statement(s), it can't be deleted")
+                    else:
+                        delete_schema_by_schema_id(schema_id)
+                        message = _("Schema deleted")
+            form = ListSchemaForm()
+            return render_template(
+                '/schema/manage.html',
+                form=form,
+                message=message)
+        elif _("Replace") in form_dict.values():
+            for key in form_dict.keys():
+                if "replace" in key:
+                    schema_id = int(key.replace("replace_", ""))
+                    return render_template(
+                        '/schema/replace.html',
+                        schema_id=schema_id
+                    )
+
+
+@bp.route('/schema/replace', methods=['GET', 'POST'])
+def replace_schema():
+    form_dict = request.form.to_dict()
+    print(form_dict)
+    schema_id = -1
+    for key in form_dict.keys():
+        if "replace" in key:
+            schema_id = int(key.replace("replace_", ""))
+    if request.files["file"] is not '':
+        json_file = request.files.get('file')
+        json_file_data = json_file.read()
+        if json_file_data is not b'':
+            json_schema = json.loads(json_file_data)
+            message = replace_schema_by_json_data(json_schema, schema_id)
+            print(message)
+    if "schema_url" in form_dict.keys():
+        if form_dict["schema_url"] is not '':
+            replace_schema_by_json_data(form_dict["schema_url"], schema_id)
+    form = ListSchemaForm()
+    return render_template('schema/manage.html',
+                           form=form,
+                           message=message)
+
+def render_schema(schema):
+    schema_str = _("Schema's name:  \"{schema_name}\"<br>").format(schema_name=schema.name)
+    schema_str += _("Schema's issuer:  \"{schema_issuer}\"<br>").format(schema_issuer=schema.issuer.name)
+    schema_str += _("Schema's type:  \"{schema_type}\"<br>").format(schema_type=schema.type.name)
+    schema_str += _("Schema's properties:<br>")
+    for prop in schema.properties:
+        schema_str += '<div style="margin-left: 40px">• ' + prop.name + '<br></div>'
+    return schema_str

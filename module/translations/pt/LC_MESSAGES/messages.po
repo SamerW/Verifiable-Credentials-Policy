@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-15 13:04+0100\n"
+"POT-Creation-Date: 2021-04-02 14:46+0200\n"
 "PO-Revision-Date: 2021-02-05 12:08+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pt\n"
@@ -18,204 +18,249 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: module/core.py:81
+#: module/core.py:88
 msgid "Profile with name {profile_name} already exists."
 msgstr "Um perfil com o nome {profile_name} já existe."
 
-#: module/core.py:83 module/core.py:255
+#: module/core.py:91 module/core.py:306
 msgid "Unknown Error"
 msgstr "Erro Desconhecido"
 
-#: module/core.py:89
+#: module/core.py:97
 msgid "Profile created"
 msgstr "Perfil criado"
 
-#: module/core.py:96 module/core.py:266
+#: module/core.py:104 module/core.py:317
 msgid "Please fill all parameters"
 msgstr "Por favor, preencha todos os parâmetros"
 
-#: module/core.py:138
+#: module/core.py:152
+msgid "Profile not updated: A profile with this name already exists"
+msgstr ""
+
+#: module/core.py:160
 msgid "Could not update profile"
 msgstr "Não foi possível atualizar o perfil"
 
-#: module/core.py:140
+#: module/core.py:162
 msgid "Profile updated"
 msgstr "Perfil atualizado"
 
-#: module/core.py:186 module/core.py:359 module/core.py:559
+#: module/core.py:208 module/core.py:426 module/core.py:673 module/core.py:1004
 #: module/templates/credential_profile/manage.html:107
-#: module/templates/policy/manage.html:105
+#: module/templates/policy/manage.html:109
 #: module/templates/property_selection/manage.html:105
+#: module/templates/schema/manage.html:102
 msgid "Delete"
 msgstr "Excluir"
 
-#: module/core.py:187 module/core.py:360
+#: module/core.py:209 module/core.py:427
 msgid "Error - Profile can't be deleted"
 msgstr "Erro - O perfil não pode ser excluído"
 
-#: module/core.py:192
+#: module/core.py:217
 msgid "Profile deleted"
 msgstr "Perfil excluído"
 
-#: module/core.py:205
+#: module/core.py:250
 msgid "A {name} credential must :<br>"
 msgstr "Uma credencial {name} deve :<br>"
 
-#: module/core.py:208
+#: module/core.py:253
 msgid "<div style=\"margin-left: 40px\">• be issued by {issuer}<br></div>"
 msgstr "<div style=\"margin-left: 40px\">• ser emitida por {issuer}<br></div>"
 
-#: module/core.py:210
+#: module/core.py:255
 msgid "<div style=\"margin-left: 40px\">• be of type {type}<br></div>"
 msgstr "<div style=\"margin-left: 40px\">• ser do tipo {type}<br>"
 
-#: module/core.py:253
+#: module/core.py:303
 msgid "Statement with name \"{property_name}\" already exists."
 msgstr "Já existe uma declaração com o nome \"{property_name}\"."
 
-#: module/core.py:260
+#: module/core.py:311
 msgid "Selective Disclosure Statement created"
 msgstr "Uma declaração do tipo Divulgação Seletiva (SD) foi criada"
 
-#: module/core.py:307
+#: module/core.py:364
+#, fuzzy
+msgid "Statement not updated: A statement with this name already exists"
+msgstr "Já existe uma declaração SD com o nome {sd_name}"
+
+#: module/core.py:374
 msgid "Statement \"{statement_name}\" updated"
 msgstr "Declaração \"{statement_name}\" atualizada"
 
-#: module/core.py:313
+#: module/core.py:380
 msgid "Error: Statement \"{statement_name}\" could not be updated"
 msgstr "Erro: A declaração \"{statement_name}\" não pode ser atualizada"
 
-#: module/core.py:365
+#: module/core.py:435
 msgid "Statement deleted"
 msgstr "Declaração excluída"
 
-#: module/core.py:374
+#: module/core.py:462
 msgid "{sdName} requires :<br>"
 msgstr "{sdName} requer :<br>"
 
-#: module/core.py:399 module/core.py:400 module/core.py:672
-#: module/templates/policy/create.html:72
-#: module/templates/policy/create.html:92
-#: module/templates/policy/update.html:75
+#: module/core.py:494 module/core.py:495 module/core.py:838
+#: module/templates/policy/create.html:75
+#: module/templates/policy/create.html:95
 #: module/templates/policy/update.html:79
-#: module/templates/policy/update.html:247
+#: module/templates/policy/update.html:83
+#: module/templates/policy/update.html:251
 msgid "either"
 msgstr "ou"
 
-#: module/core.py:512 module/templates/policy/manage.html:108
+#: module/core.py:606 module/templates/policy/manage.html:112
 msgid "Get Policy in Json"
 msgstr "Pegar Política no formato Json"
 
-#: module/core.py:560
+#: module/core.py:674
 msgid "Error - Policy can't be deleted"
 msgstr "Erro - A política não pode ser excluída"
 
-#: module/core.py:565
+#: module/core.py:679
 msgid "Policy deleted"
 msgstr "Política excluída"
 
-#: module/core.py:600 module/core.py:632 module/forms.py:48
-#: module/templates/policy/create.html:114
-#: module/templates/policy/create.html:140
-#: module/templates/policy/create.html:159
-#: module/templates/policy/create.html:182
-#: module/templates/policy/create.html:202
-#: module/templates/policy/create.html:225
-#: module/templates/policy/create.html:251
-#: module/templates/policy/create.html:277
-#: module/templates/policy/create.html:295
-#: module/templates/policy/create.html:306
-#: module/templates/policy/create.html:318
-#: module/templates/policy/update.html:269
-#: module/templates/policy/update.html:295
-#: module/templates/policy/update.html:314
-#: module/templates/policy/update.html:337
-#: module/templates/policy/update.html:357
-#: module/templates/policy/update.html:380
-#: module/templates/policy/update.html:406
-#: module/templates/policy/update.html:432
-#: module/templates/policy/update.html:450
-#: module/templates/policy/update.html:461
-#: module/templates/policy/update.html:473
+#: module/core.py:766 module/core.py:798 module/forms.py:48
+#: module/templates/policy/create.html:117
+#: module/templates/policy/create.html:143
+#: module/templates/policy/create.html:162
+#: module/templates/policy/create.html:185
+#: module/templates/policy/create.html:205
+#: module/templates/policy/create.html:228
+#: module/templates/policy/create.html:254
+#: module/templates/policy/create.html:280
+#: module/templates/policy/create.html:298
+#: module/templates/policy/create.html:309
+#: module/templates/policy/create.html:321
+#: module/templates/policy/update.html:273
+#: module/templates/policy/update.html:299
+#: module/templates/policy/update.html:318
+#: module/templates/policy/update.html:341
+#: module/templates/policy/update.html:361
+#: module/templates/policy/update.html:384
+#: module/templates/policy/update.html:410
+#: module/templates/policy/update.html:436
+#: module/templates/policy/update.html:454
+#: module/templates/policy/update.html:465
+#: module/templates/policy/update.html:477
 msgid "or"
 msgstr "ou"
 
-#: module/core.py:600 module/core.py:632
-#: module/templates/policy/create.html:114
-#: module/templates/policy/create.html:159
-#: module/templates/policy/create.html:182
-#: module/templates/policy/create.html:202
-#: module/templates/policy/create.html:225
-#: module/templates/policy/create.html:251
-#: module/templates/policy/create.html:307
-#: module/templates/policy/create.html:319
-#: module/templates/policy/update.html:269
-#: module/templates/policy/update.html:314
-#: module/templates/policy/update.html:337
-#: module/templates/policy/update.html:357
-#: module/templates/policy/update.html:380
-#: module/templates/policy/update.html:406
-#: module/templates/policy/update.html:462
-#: module/templates/policy/update.html:474
+#: module/core.py:766 module/core.py:798
+#: module/templates/policy/create.html:117
+#: module/templates/policy/create.html:162
+#: module/templates/policy/create.html:185
+#: module/templates/policy/create.html:205
+#: module/templates/policy/create.html:228
+#: module/templates/policy/create.html:254
+#: module/templates/policy/create.html:310
+#: module/templates/policy/create.html:322
+#: module/templates/policy/update.html:273
+#: module/templates/policy/update.html:318
+#: module/templates/policy/update.html:341
+#: module/templates/policy/update.html:361
+#: module/templates/policy/update.html:384
+#: module/templates/policy/update.html:410
+#: module/templates/policy/update.html:466
+#: module/templates/policy/update.html:478
 msgid ") and"
 msgstr ") e"
 
-#: module/core.py:632 module/templates/policy/create.html:159
-#: module/templates/policy/create.html:202
-#: module/templates/policy/create.html:251
-#: module/templates/policy/create.html:320
-#: module/templates/policy/update.html:314
-#: module/templates/policy/update.html:357
-#: module/templates/policy/update.html:406
-#: module/templates/policy/update.html:475
+#: module/core.py:798 module/templates/policy/create.html:162
+#: module/templates/policy/create.html:205
+#: module/templates/policy/create.html:254
+#: module/templates/policy/create.html:323
+#: module/templates/policy/update.html:318
+#: module/templates/policy/update.html:361
+#: module/templates/policy/update.html:410
+#: module/templates/policy/update.html:479
 msgid ")or("
 msgstr ")ou("
 
-#: module/core.py:704
+#: module/core.py:870
 msgid "Policy updated"
 msgstr "Política atualizada"
 
-#: module/core.py:712 module/core.py:741
+#: module/core.py:878 module/core.py:907
 msgid "In order to "
 msgstr "Para "
 
-#: module/core.py:715
+#: module/core.py:881
 msgid "you must present "
 msgstr "você deve apresentar "
 
-#: module/core.py:720
+#: module/core.py:886
 msgid " for "
 msgstr " para "
 
-#: module/core.py:727 module/core.py:762
+#: module/core.py:893 module/core.py:928
 msgid "from a "
 msgstr "de um "
 
-#: module/core.py:730 module/core.py:765
+#: module/core.py:896 module/core.py:931
 msgid "or "
 msgstr "ou "
 
-#: module/core.py:735
+#: module/core.py:901
 msgid "and "
 msgstr "e "
 
-#: module/core.py:744
+#: module/core.py:910
 msgid "you must present either ("
 msgstr "você deve apresentar ou ("
 
-#: module/core.py:751
+#: module/core.py:917
 msgid "being "
 msgstr "sendo "
 
-#: module/core.py:769
+#: module/core.py:935
 msgid "and for "
 msgstr "e para "
 
-#: module/core.py:772
+#: module/core.py:938
 msgid ") or ("
 msgstr ") ou ("
 
-#: module/forms.py:13 module/forms.py:75 module/forms.py:86
+#: module/core.py:1005
+#, fuzzy
+msgid "Error - Schema can't be deleted"
+msgstr "Erro - A política não pode ser excluída"
+
+#: module/core.py:1010
+msgid "Schema is used in Profile(s) or Statement(s), it can't be deleted"
+msgstr ""
+
+#: module/core.py:1013
+#, fuzzy
+msgid "Schema deleted"
+msgstr "Declaração excluída"
+
+#: module/core.py:1019 module/templates/schema/manage.html:100
+msgid "Replace"
+msgstr ""
+
+#: module/core.py:1053
+#, fuzzy
+msgid "Schema's name:  \"{schema_name}\"<br>"
+msgstr "Já existe uma declaração com o nome \"{property_name}\"."
+
+#: module/core.py:1054
+msgid "Schema's issuer:  \"{schema_issuer}\"<br>"
+msgstr ""
+
+#: module/core.py:1055
+msgid "Schema's type:  \"{schema_type}\"<br>"
+msgstr ""
+
+#: module/core.py:1056
+msgid "Schema's properties:<br>"
+msgstr ""
+
+#: module/forms.py:13 module/forms.py:75 module/forms.py:86 module/forms.py:97
 msgid "please select an option"
 msgstr "por favor, escolha uma opção"
 
@@ -242,42 +287,42 @@ msgstr "requer"
 msgid "List of properties"
 msgstr "Lista de propriedades"
 
-#: module/forms.py:40 module/templates/policy/create.html:110
-#: module/templates/policy/create.html:134
-#: module/templates/policy/create.html:155
-#: module/templates/policy/create.html:221
-#: module/templates/policy/create.html:247
-#: module/templates/policy/create.html:271
-#: module/templates/policy/update.html:90
-#: module/templates/policy/update.html:108
-#: module/templates/policy/update.html:178
-#: module/templates/policy/update.html:265
-#: module/templates/policy/update.html:289
-#: module/templates/policy/update.html:310
-#: module/templates/policy/update.html:376
-#: module/templates/policy/update.html:402
-#: module/templates/policy/update.html:426
+#: module/forms.py:40 module/templates/policy/create.html:113
+#: module/templates/policy/create.html:137
+#: module/templates/policy/create.html:158
+#: module/templates/policy/create.html:224
+#: module/templates/policy/create.html:250
+#: module/templates/policy/create.html:274
+#: module/templates/policy/update.html:94
+#: module/templates/policy/update.html:112
+#: module/templates/policy/update.html:182
+#: module/templates/policy/update.html:269
+#: module/templates/policy/update.html:293
+#: module/templates/policy/update.html:314
+#: module/templates/policy/update.html:380
+#: module/templates/policy/update.html:406
+#: module/templates/policy/update.html:430
 msgid "("
 msgstr "("
 
-#: module/forms.py:41 module/templates/policy/create.html:112
-#: module/templates/policy/create.html:138
-#: module/templates/policy/create.html:157
-#: module/templates/policy/create.html:180
-#: module/templates/policy/create.html:200
-#: module/templates/policy/create.html:223
-#: module/templates/policy/create.html:249
-#: module/templates/policy/create.html:275
-#: module/templates/policy/update.html:128
-#: module/templates/policy/update.html:198
-#: module/templates/policy/update.html:267
-#: module/templates/policy/update.html:293
-#: module/templates/policy/update.html:312
-#: module/templates/policy/update.html:335
-#: module/templates/policy/update.html:355
-#: module/templates/policy/update.html:378
-#: module/templates/policy/update.html:404
-#: module/templates/policy/update.html:430
+#: module/forms.py:41 module/templates/policy/create.html:115
+#: module/templates/policy/create.html:141
+#: module/templates/policy/create.html:160
+#: module/templates/policy/create.html:183
+#: module/templates/policy/create.html:203
+#: module/templates/policy/create.html:226
+#: module/templates/policy/create.html:252
+#: module/templates/policy/create.html:278
+#: module/templates/policy/update.html:132
+#: module/templates/policy/update.html:202
+#: module/templates/policy/update.html:271
+#: module/templates/policy/update.html:297
+#: module/templates/policy/update.html:316
+#: module/templates/policy/update.html:339
+#: module/templates/policy/update.html:359
+#: module/templates/policy/update.html:382
+#: module/templates/policy/update.html:408
+#: module/templates/policy/update.html:434
 msgid "from a"
 msgstr "de um"
 
@@ -298,108 +343,98 @@ msgstr "e"
 msgid ")"
 msgstr ")"
 
-#: module/policy_api.py:112 module/policy_api.py:190 module/policy_api.py:242
+#: module/policy_api.py:62 module/policy_api.py:104 module/policy_api.py:201
+#: module/policy_api.py:324
 msgid "Policy already exists"
 msgstr "A política já existe"
 
-#: module/policy_api.py:193 module/policy_api.py:245
+#: module/policy_api.py:327
 msgid "Json Error"
 msgstr "Erro no Json"
 
-#: module/policy_api.py:265 module/policy_api.py:267 module/policy_api.py:306
-#: module/policy_api.py:308
-msgid "Policy {action} {target} doesn't exist"
-msgstr "A política {action} {target} não foi encontrada"
-
-#: module/policy_api.py:269 module/policy_api.py:310 module/policy_api.py:341
-#: module/policy_api.py:436 module/profile_api.py:43 module/statement_api.py:28
-#: module/statement_api.py:44 module/statement_api.py:81
-#: module/statement_api.py:119
-msgid "Required argument(s) missing"
-msgstr "Um ou mais argumentos necessários estão faltando"
-
-#: module/policy_api.py:283 module/policy_api.py:285
+#: module/policy_api.py:368 module/policy_api.py:370
 msgid "Policy with PolicyMatchId {policy_match_id} doesn't exist"
 msgstr "A política com o PolicyMatchId {policy_match_id} não foi encontrada"
 
-#: module/policy_api.py:325
+#: module/policy_api.py:422
 msgid "Policy with id {policy_id} doesn't exist"
 msgstr "A política com id {policy_id} não foi encontrada"
 
-#: module/profile_api.py:23
-msgid "VC Profile with name {profile_name} already exists"
-msgstr "Já existe um perfil de VC com o nome {profile_name}"
-
-#: module/profile_api.py:31
-msgid "Issuer is not recognized"
-msgstr "O emissor não é reconhecido"
-
-#: module/profile_api.py:33
-msgid "Vc Type is not recognized"
-msgstr "O tipo da VC não é reconhecido"
-
-#: module/profile_api.py:41
-msgid "VC Profile Created"
-msgstr "Perfil de VC Criado"
-
-#: module/profile_api.py:57 module/profile_api.py:91
-msgid "VC Profile with name {profile_name} doesn't exist"
-msgstr "Perfil de VC com o nome {profile_name} não encontrado"
-
-#: module/profile_api.py:59 module/profile_api.py:93 module/profile_api.py:137
-#: module/profile_api.py:169
-msgid "Required argument missing"
-msgstr "Um argumento necessário está faltando"
-
-#: module/profile_api.py:70 module/profile_api.py:182
+#: module/profile_api.py:73 module/profile_api.py:217
 msgid "VC Profile with id {profile_id} doesn't exist"
 msgstr "O perfil de VC com id {profile_id} não foi encontrado"
 
-#: module/profile_api.py:180
+#: module/profile_api.py:215
 msgid "VC Profile with id {profile_id} deleted"
 msgstr "O perfil de VC com id {profile_id} foi excluído"
 
-#: module/schema_api.py:48 module/schema_api.py:104
+#: module/schema_api.py:30 module/schema_api.py:102
+#, fuzzy
+msgid "Schema \"{schema_name}\" already exist"
+msgstr "Já existe uma declaração com o nome \"{property_name}\"."
+
+#: module/schema_api.py:49 module/schema_api.py:121
 #, fuzzy
 msgid "Schema \"{type_name}\" already exist"
 msgstr "Já existe uma declaração com o nome \"{property_name}\"."
 
-#: module/schema_api.py:50 module/schema_api.py:106
+#: module/schema_api.py:67 module/schema_api.py:139
 #, fuzzy
 msgid "Schema \"{type_name}\" uploaded"
 msgstr "Declaração \"{statement_name}\" atualizada"
 
-#: module/schema_api.py:52 module/schema_api.py:108
+#: module/schema_api.py:69 module/schema_api.py:141 module/schema_api.py:218
+#: module/schema_api.py:323
 msgid "Schema not valid"
 msgstr ""
 
-#: module/statement_api.py:20
-msgid "Sd Statement with name {sd_name} already exists"
-msgstr "Já existe uma declaração SD com o nome {sd_name}"
+#: module/schema_api.py:155 module/schema_api.py:260
+#, fuzzy
+msgid "Can't replace schema: schema \"{type_name}\" doesn't exist"
+msgstr "Já existe uma declaração com o nome \"{property_name}\"."
 
-#: module/statement_api.py:26
-msgid "Sd Statement Created"
-msgstr "Declaração SD Criada"
+#: module/schema_api.py:181 module/schema_api.py:286
+msgid ""
+"Can't replace schema: Some properties you want to replace are used in "
+"profiles or statements"
+msgstr ""
 
-#: module/statement_api.py:42
-msgid "Sd Statement with name {sd_name} doesn't exist"
-msgstr "A declaração SD com nome {sd_name} não foi encontrada"
+#: module/schema_api.py:194 module/schema_api.py:299
+msgid ""
+"Can't replace schema: The issuer in the old schema is used in some "
+"profiles"
+msgstr ""
 
-#: module/statement_api.py:55 module/statement_api.py:132
+#: module/schema_api.py:216 module/schema_api.py:321
+#, fuzzy
+msgid "Schema \"{type_name}\" replaced"
+msgstr "Declaração \"{statement_name}\" atualizada"
+
+#: module/schema_api.py:241
+#, fuzzy
+msgid "Schema with id {schema_id} deleted"
+msgstr "A declaração SD com id {statement_id} não foi encontrada"
+
+#: module/schema_api.py:243
+#, fuzzy
+msgid "Schema with id {schema_id} doesn't exist"
+msgstr "A política com id {policy_id} não foi encontrada"
+
+#: module/statement_api.py:79 module/statement_api.py:161
 msgid "Sd Statement with id {statement_id} doesn't exist"
 msgstr "A declaração SD com id {statement_id} não foi encontrada"
 
-#: module/statement_api.py:115
-msgid "Sd Statement name {sd_name} deleted"
-msgstr "A declaração SD com nome {sd_name} foi excluída"
-
-#: module/statement_api.py:117
-msgid "Sd Statement name {sd_name} doesn't exist"
-msgstr "A declaração SD com nome {sd_name} não foi encontrada"
-
-#: module/statement_api.py:130
+#: module/statement_api.py:159
 msgid "Sd Statement with id {statement_id} deleted"
 msgstr "A declaração SD com id {statement_id} não foi encontrada"
+
+#: module/templates/api.html:4
+msgid "Home"
+msgstr "Menu Principal"
+
+#: module/templates/api.html:8
+msgid "CRUD API"
+msgstr ""
 
 #: module/templates/base.html:11
 msgid "CNL"
@@ -413,9 +448,10 @@ msgstr "CNL"
 #: module/templates/property_selection/create.html:4
 #: module/templates/property_selection/manage.html:4
 #: module/templates/property_selection/update.html:4
+#: module/templates/schema/manage.html:4 module/templates/schema/replace.html:9
 #: module/templates/schema/upload.html:9
-msgid "Home"
-msgstr "Menu Principal"
+msgid "Validation Policy Manager v1.5"
+msgstr ""
 
 #: module/templates/credential_profile/create.html:12
 #: module/templates/credential_profile/create.html:30
@@ -429,6 +465,8 @@ msgstr "Menu Principal"
 #: module/templates/property_selection/create.html:11
 #: module/templates/property_selection/manage.html:11
 #: module/templates/property_selection/update.html:11
+#: module/templates/schema/manage.html:11
+#: module/templates/schema/replace.html:16
 #: module/templates/schema/upload.html:16
 msgid "Credential Profile"
 msgstr "Perfil de Credencial"
@@ -445,6 +483,8 @@ msgstr "Perfil de Credencial"
 #: module/templates/property_selection/manage.html:29
 #: module/templates/property_selection/update.html:14
 #: module/templates/property_selection/update.html:29
+#: module/templates/schema/manage.html:14
+#: module/templates/schema/replace.html:19
 #: module/templates/schema/upload.html:19
 msgid "Property Selection"
 msgstr "Escolha de Propriedades"
@@ -461,6 +501,8 @@ msgstr "Escolha de Propriedades"
 #: module/templates/property_selection/create.html:17
 #: module/templates/property_selection/manage.html:17
 #: module/templates/property_selection/update.html:17
+#: module/templates/schema/manage.html:17
+#: module/templates/schema/replace.html:22
 #: module/templates/schema/upload.html:22
 msgid "Policy"
 msgstr "Política"
@@ -474,6 +516,9 @@ msgstr "Política"
 #: module/templates/property_selection/create.html:22
 #: module/templates/property_selection/manage.html:22
 #: module/templates/property_selection/update.html:22
+#: module/templates/schema/manage.html:22
+#: module/templates/schema/manage.html:29
+#: module/templates/schema/replace.html:27
 #: module/templates/schema/upload.html:27
 #: module/templates/schema/upload.html:34
 msgid "Upload Schema"
@@ -536,19 +581,22 @@ msgstr "Lista de tipos de credenciais"
 
 #: module/templates/credential_profile/create.html:92
 #: module/templates/credential_profile/manage.html:85
-#: module/templates/policy/create.html:78
-#: module/templates/policy/manage.html:83
-#: module/templates/policy/update.html:233
+#: module/templates/policy/create.html:81
+#: module/templates/policy/manage.html:87
+#: module/templates/policy/update.html:237
 #: module/templates/property_selection/create.html:79
 #: module/templates/property_selection/manage.html:83
 #: module/templates/property_selection/update.html:116
-#: module/templates/schema/upload.html:61
+#: module/templates/schema/manage.html:82
+#: module/templates/schema/replace.html:73
+#: module/templates/schema/upload.html:73
 msgid "Submit"
 msgstr "Submeter"
 
 #: module/templates/credential_profile/manage.html:51
-#: module/templates/policy/manage.html:49
+#: module/templates/policy/manage.html:53
 #: module/templates/property_selection/manage.html:49
+#: module/templates/schema/manage.html:48
 msgid "OR"
 msgstr "OU"
 
@@ -557,8 +605,9 @@ msgid "Select a profile:"
 msgstr "Selecionar um perfil:"
 
 #: module/templates/credential_profile/manage.html:77
-#: module/templates/policy/manage.html:75
+#: module/templates/policy/manage.html:79
 #: module/templates/property_selection/manage.html:75
+#: module/templates/schema/manage.html:74
 msgid "Search for"
 msgstr "Buscar por"
 
@@ -567,7 +616,7 @@ msgid "in a profile"
 msgstr "em um perfil"
 
 #: module/templates/credential_profile/manage.html:103
-#: module/templates/policy/manage.html:102
+#: module/templates/policy/manage.html:106
 #: module/templates/property_selection/manage.html:101
 msgid "Modify"
 msgstr "Modificar"
@@ -579,178 +628,218 @@ msgstr "Atualizar"
 #: module/templates/policy/create.html:35
 #: module/templates/policy/manage.html:30
 #: module/templates/policy/update.html:35
-msgid "Policy's page description"
-msgstr "Descrição da página de Política"
+msgid ""
+"A policy says which properties you want from a user's credentials in "
+"order for the user to perform a particular task (i.e. action on a "
+"resource).)"
+msgstr ""
 
-#: module/templates/policy/create.html:44
-#: module/templates/policy/manage.html:38
-#: module/templates/policy/update.html:43
+#: module/templates/policy/create.html:36
+#: module/templates/policy/manage.html:31
+#: module/templates/policy/update.html:36
+msgid ""
+"The policy is built by combining a series of And and Or statements, using"
+" the Profiles and SD Statements you have already created. If the user can"
+" submit alternative sets of credentials, start with 'either'. If the user"
+" must submit a single set of credentials start with 'blank'.)"
+msgstr ""
+
+#: module/templates/policy/create.html:37
+#: module/templates/policy/manage.html:32
+#: module/templates/policy/update.html:37
+msgid ""
+"For each credential in a set, the user can choose between alternative "
+"sources e.g. a credit card number from a visa card or a mastercard, or "
+"their name and address from a gas bill or an electricity bill.)"
+msgstr ""
+
+#: module/templates/policy/create.html:38
+#: module/templates/policy/manage.html:33
+#: module/templates/policy/update.html:38
+msgid "An example policy comprising a single set of credentials is:)"
+msgstr ""
+
+#: module/templates/policy/create.html:39
+#: module/templates/policy/manage.html:34
+#: module/templates/policy/update.html:39
+msgid ""
+"In order to purchase car parking permit you must present for Credit card "
+"number ( Visa number from a Visa card or Mastercard number from a "
+"Mastercard or Amex number from a Amex card ) and for Car details ( car "
+"registration number from a car ownership ) and for Name and address ( "
+"name and address from a gas bill or name and address from a electricity "
+"bill )"
+msgstr ""
+
+#: module/templates/policy/create.html:47
+#: module/templates/policy/manage.html:42
+#: module/templates/policy/update.html:47
 msgid "Create new Policy"
 msgstr "Criar nova Política"
 
-#: module/templates/policy/create.html:47
-#: module/templates/policy/manage.html:41
-#: module/templates/policy/update.html:46
+#: module/templates/policy/create.html:50
+#: module/templates/policy/manage.html:45
+#: module/templates/policy/update.html:50
 msgid "Manage existing Policies"
 msgstr "Gerenciar Políticas existentes"
 
-#: module/templates/policy/create.html:58
-#: module/templates/policy/update.html:60
+#: module/templates/policy/create.html:61
+#: module/templates/policy/update.html:64
 msgid "In order to"
 msgstr "Para"
 
-#: module/templates/policy/create.html:61
-#: module/templates/policy/update.html:63
+#: module/templates/policy/create.html:64
+#: module/templates/policy/update.html:67
 msgid "perform this action"
 msgstr "realizar esta ação"
 
-#: module/templates/policy/create.html:64
-#: module/templates/policy/update.html:66
+#: module/templates/policy/create.html:67
+#: module/templates/policy/update.html:70
 msgid "on this resource"
 msgstr "neste recurso"
 
-#: module/templates/policy/create.html:67
-#: module/templates/policy/update.html:69
+#: module/templates/policy/create.html:70
+#: module/templates/policy/update.html:73
 msgid "users must present"
 msgstr "usuários devem apresentar"
 
-#: module/templates/policy/create.html:71
-#: module/templates/policy/update.html:73
+#: module/templates/policy/create.html:74
+#: module/templates/policy/update.html:77
 msgid "either or blank"
 msgstr "ou em branco"
 
-#: module/templates/policy/create.html:73
-#: module/templates/policy/update.html:76
+#: module/templates/policy/create.html:76
 #: module/templates/policy/update.html:80
+#: module/templates/policy/update.html:84
 msgid "(blank)"
 msgstr "(em branco)"
 
-#: module/templates/policy/create.html:108
-#: module/templates/policy/create.html:153
-#: module/templates/policy/create.html:219
-#: module/templates/policy/create.html:245
-#: module/templates/policy/update.html:102
-#: module/templates/policy/update.html:172
-#: module/templates/policy/update.html:263
-#: module/templates/policy/update.html:308
-#: module/templates/policy/update.html:374
-#: module/templates/policy/update.html:400
+#: module/templates/policy/create.html:111
+#: module/templates/policy/create.html:156
+#: module/templates/policy/create.html:222
+#: module/templates/policy/create.html:248
+#: module/templates/policy/update.html:106
+#: module/templates/policy/update.html:176
+#: module/templates/policy/update.html:267
+#: module/templates/policy/update.html:312
+#: module/templates/policy/update.html:378
+#: module/templates/policy/update.html:404
 msgid "for"
 msgstr "para"
 
-#: module/templates/policy/create.html:109
-#: module/templates/policy/create.html:154
-#: module/templates/policy/create.html:220
-#: module/templates/policy/create.html:246
-#: module/templates/policy/update.html:264
-#: module/templates/policy/update.html:309
-#: module/templates/policy/update.html:375
-#: module/templates/policy/update.html:401
+#: module/templates/policy/create.html:112
+#: module/templates/policy/create.html:157
+#: module/templates/policy/create.html:223
+#: module/templates/policy/create.html:249
+#: module/templates/policy/update.html:268
+#: module/templates/policy/update.html:313
+#: module/templates/policy/update.html:379
+#: module/templates/policy/update.html:405
 msgid "Purpose of this specific credential"
 msgstr "Motivo desta credencial específica"
 
-#: module/templates/policy/create.html:111
-#: module/templates/policy/create.html:137
-#: module/templates/policy/create.html:156
-#: module/templates/policy/create.html:179
-#: module/templates/policy/create.html:199
-#: module/templates/policy/create.html:222
-#: module/templates/policy/create.html:248
-#: module/templates/policy/create.html:274
-#: module/templates/policy/update.html:117
-#: module/templates/policy/update.html:187
-#: module/templates/policy/update.html:266
-#: module/templates/policy/update.html:292
-#: module/templates/policy/update.html:311
-#: module/templates/policy/update.html:334
-#: module/templates/policy/update.html:354
-#: module/templates/policy/update.html:377
-#: module/templates/policy/update.html:403
-#: module/templates/policy/update.html:429
+#: module/templates/policy/create.html:114
+#: module/templates/policy/create.html:140
+#: module/templates/policy/create.html:159
+#: module/templates/policy/create.html:182
+#: module/templates/policy/create.html:202
+#: module/templates/policy/create.html:225
+#: module/templates/policy/create.html:251
+#: module/templates/policy/create.html:277
+#: module/templates/policy/update.html:121
+#: module/templates/policy/update.html:191
+#: module/templates/policy/update.html:270
+#: module/templates/policy/update.html:296
+#: module/templates/policy/update.html:315
+#: module/templates/policy/update.html:338
+#: module/templates/policy/update.html:358
+#: module/templates/policy/update.html:381
+#: module/templates/policy/update.html:407
+#: module/templates/policy/update.html:433
 msgid "List of statements"
 msgstr "Lista de declarações"
 
-#: module/templates/policy/create.html:113
-#: module/templates/policy/create.html:139
-#: module/templates/policy/create.html:158
-#: module/templates/policy/create.html:181
-#: module/templates/policy/create.html:201
-#: module/templates/policy/create.html:224
-#: module/templates/policy/create.html:250
-#: module/templates/policy/create.html:276
-#: module/templates/policy/update.html:132
-#: module/templates/policy/update.html:202
-#: module/templates/policy/update.html:268
-#: module/templates/policy/update.html:294
-#: module/templates/policy/update.html:313
-#: module/templates/policy/update.html:336
-#: module/templates/policy/update.html:356
-#: module/templates/policy/update.html:379
-#: module/templates/policy/update.html:405
-#: module/templates/policy/update.html:431
+#: module/templates/policy/create.html:116
+#: module/templates/policy/create.html:142
+#: module/templates/policy/create.html:161
+#: module/templates/policy/create.html:184
+#: module/templates/policy/create.html:204
+#: module/templates/policy/create.html:227
+#: module/templates/policy/create.html:253
+#: module/templates/policy/create.html:279
+#: module/templates/policy/update.html:136
+#: module/templates/policy/update.html:206
+#: module/templates/policy/update.html:272
+#: module/templates/policy/update.html:298
+#: module/templates/policy/update.html:317
+#: module/templates/policy/update.html:340
+#: module/templates/policy/update.html:360
+#: module/templates/policy/update.html:383
+#: module/templates/policy/update.html:409
+#: module/templates/policy/update.html:435
 msgid "List of profiles"
 msgstr "Lista de perfis"
 
-#: module/templates/policy/create.html:114
-#: module/templates/policy/create.html:182
-#: module/templates/policy/create.html:225
-#: module/templates/policy/update.html:269
-#: module/templates/policy/update.html:337
-#: module/templates/policy/update.html:380
+#: module/templates/policy/create.html:117
+#: module/templates/policy/create.html:185
+#: module/templates/policy/create.html:228
+#: module/templates/policy/update.html:273
+#: module/templates/policy/update.html:341
+#: module/templates/policy/update.html:384
 msgid ")and / or / )"
 msgstr ")e / ou / )"
 
-#: module/templates/policy/create.html:135
-#: module/templates/policy/create.html:272
-#: module/templates/policy/update.html:93
-#: module/templates/policy/update.html:290
-#: module/templates/policy/update.html:427
+#: module/templates/policy/create.html:138
+#: module/templates/policy/create.html:275
+#: module/templates/policy/update.html:97
+#: module/templates/policy/update.html:294
+#: module/templates/policy/update.html:431
 msgid "Enter description"
 msgstr "Entre uma descrição"
 
-#: module/templates/policy/create.html:136
-#: module/templates/policy/create.html:273
-#: module/templates/policy/update.html:96
-#: module/templates/policy/update.html:291
-#: module/templates/policy/update.html:428
+#: module/templates/policy/create.html:139
+#: module/templates/policy/create.html:276
+#: module/templates/policy/update.html:100
+#: module/templates/policy/update.html:295
+#: module/templates/policy/update.html:432
 msgid "being"
 msgstr "sendo"
 
-#: module/templates/policy/create.html:140
-#: module/templates/policy/create.html:277
-#: module/templates/policy/update.html:295
-#: module/templates/policy/update.html:432
+#: module/templates/policy/create.html:143
+#: module/templates/policy/create.html:280
+#: module/templates/policy/update.html:299
+#: module/templates/policy/update.html:436
 msgid "or / blank"
 msgstr "ou / em branco"
 
-#: module/templates/policy/create.html:140
-#: module/templates/policy/create.html:277
-#: module/templates/policy/update.html:295
-#: module/templates/policy/update.html:432
+#: module/templates/policy/create.html:143
+#: module/templates/policy/create.html:280
+#: module/templates/policy/update.html:299
+#: module/templates/policy/update.html:436
 msgid "blank"
 msgstr "em branco"
 
-#: module/templates/policy/create.html:159
-#: module/templates/policy/create.html:202
-#: module/templates/policy/create.html:251
-#: module/templates/policy/update.html:144
-#: module/templates/policy/update.html:214
-#: module/templates/policy/update.html:314
-#: module/templates/policy/update.html:357
-#: module/templates/policy/update.html:406
+#: module/templates/policy/create.html:162
+#: module/templates/policy/create.html:205
+#: module/templates/policy/create.html:254
+#: module/templates/policy/update.html:148
+#: module/templates/policy/update.html:218
+#: module/templates/policy/update.html:318
+#: module/templates/policy/update.html:361
+#: module/templates/policy/update.html:410
 msgid ")and / or / )) / )or("
 msgstr ")e / ou / )) / )ou("
 
-#: module/templates/policy/manage.html:55
+#: module/templates/policy/manage.html:59
 msgid "Select a Policy:"
 msgstr "Escolha uma Política:"
 
-#: module/templates/policy/manage.html:81
+#: module/templates/policy/manage.html:85
 msgid "in a Policy"
 msgstr "numa Política"
 
-#: module/templates/policy/update.html:105
-#: module/templates/policy/update.html:175
+#: module/templates/policy/update.html:109
+#: module/templates/policy/update.html:179
 msgid "Enter purpose"
 msgstr "Entre um motivo"
 
@@ -784,19 +873,51 @@ msgstr "Selecionar uma Declaração SD:"
 msgid "in a Sd Statement"
 msgstr "em uma Declaração SD"
 
+#: module/templates/schema/manage.html:37
+#: module/templates/schema/replace.html:42
 #: module/templates/schema/upload.html:42
+#, fuzzy
+msgid "Upload new Schema"
+msgstr "Enviar Esquema"
+
+#: module/templates/schema/manage.html:40
+#: module/templates/schema/replace.html:45
+#: module/templates/schema/upload.html:45
+#, fuzzy
+msgid "Manage existing Schemas"
+msgstr "Gerenciar Políticas existentes"
+
+#: module/templates/schema/manage.html:54
+#, fuzzy
+msgid "Select a Schema:"
+msgstr "Escolha uma Política:"
+
+#: module/templates/schema/manage.html:80
+msgid "in a Schema"
+msgstr ""
+
+#: module/templates/schema/replace.html:34
+#, fuzzy
+msgid "Replace Schema"
+msgstr "Enviar Esquema"
+
+#: module/templates/schema/replace.html:54
+#: module/templates/schema/upload.html:54
 msgid "Choose a json schema file:"
 msgstr "Escolha um arquivo de esquema json"
 
-#: module/templates/schema/upload.html:51
+#: module/templates/schema/replace.html:63
+#: module/templates/schema/upload.html:63
 msgid "Enter the url of the schema to fetch:"
 msgstr "Entre a url do esquema para recuperar:"
 
-#: module/templates/schema/upload.html:54
+#: module/templates/schema/replace.html:66
+#: module/templates/schema/upload.html:66
 msgid "url of the schema"
 msgstr "url do esquema"
 
-#: module/templates/schema/upload.html:57
+#: module/templates/schema/replace.html:69
+#: module/templates/schema/upload.html:69
 msgid "Extract nested properties:"
 msgstr "Extrair propriedades aninhadas"
 
@@ -881,6 +1002,57 @@ msgstr "Extrair propriedades aninhadas"
 #~ msgid ") and\""
 #~ msgstr ") e\""
 
+#~ msgid "Policy's page description"
+#~ msgstr "Descrição da página de Política"
+
+#~ msgid "Policy {action} {target} doesn't exist"
+#~ msgstr "A política {action} {target} não foi encontrada"
+
+#~ msgid "Required argument(s) missing"
+#~ msgstr "Um ou mais argumentos necessários estão faltando"
+
+#~ msgid "VC Profile with name {profile_name} already exists"
+#~ msgstr "Já existe um perfil de VC com o nome {profile_name}"
+
+#~ msgid "Issuer is not recognized"
+#~ msgstr "O emissor não é reconhecido"
+
+#~ msgid "Vc Type is not recognized"
+#~ msgstr "O tipo da VC não é reconhecido"
+
+#~ msgid "VC Profile Created"
+#~ msgstr "Perfil de VC Criado"
+
+#~ msgid "VC Profile with name {profile_name} doesn't exist"
+#~ msgstr "Perfil de VC com o nome {profile_name} não encontrado"
+
+#~ msgid "Required argument missing"
+#~ msgstr "Um argumento necessário está faltando"
+
 #~ msgid "Schema with type \"{type_name}\" already exist"
 #~ msgstr "Já existe uma declaração com o nome \"{property_name}\"."
+
+#~ msgid "Sd Statement with name {sd_name} already exists"
+#~ msgstr "Já existe uma declaração SD com o nome {sd_name}"
+
+#~ msgid "Sd Statement Created"
+#~ msgstr "Declaração SD Criada"
+
+#~ msgid "Sd Statement with name {sd_name} doesn't exist"
+#~ msgstr "A declaração SD com nome {sd_name} não foi encontrada"
+
+#~ msgid "Sd Statement name {sd_name} deleted"
+#~ msgstr "A declaração SD com nome {sd_name} foi excluída"
+
+#~ msgid "Sd Statement name {sd_name} doesn't exist"
+#~ msgstr "A declaração SD com nome {sd_name} não foi encontrada"
+
+#~ msgid "Validation Policy Manager v1.3"
+#~ msgstr ""
+
+#~ msgid "Validation Policy Manager v1.2"
+#~ msgstr ""
+
+#~ msgid "Validation Policy Manager v1.4"
+#~ msgstr ""
 

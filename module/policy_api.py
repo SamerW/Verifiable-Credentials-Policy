@@ -1,4 +1,4 @@
-from flask import request, make_response
+from flask import request, make_response, Response
 from flask import current_app as app
 from sqlalchemy import func
 from .models import db, \
@@ -18,7 +18,96 @@ from .profile_api import get_vc_profile
 from .statement_api import get_sd_statement
 
 
-@app.route('/create_cnf_policy', methods=['GET'])
+
+@app.route('/v1/cnlpolicy/create', methods=['GET'])
+def create_policy():
+    """Create a policy via query string parameters."""
+    policy_match = request.args.get('policyMatch')
+    json_policy_match = json.loads(policy_match)
+    cnl_policy = request.args.get('cNLpolicy')
+    json_cnl_policy = json.loads(cnl_policy)
+    json_data = {}
+    json_data["policyMatch"] = json_policy_match
+    json_data["cNLpolicy"] = json_cnl_policy
+    if "cNLpolicy" in json_data:
+        json_cnl_policy = json_data["cNLpolicy"]
+        if "cnf" in json_cnl_policy:
+            json_cnf_policy = json_cnl_policy["cnf"]
+            and_nodes = []
+            for json_and_node in json_cnf_policy:
+                if "or" in json_and_node:
+                    json_or_nodes = json_and_node["or"]
+                    policies = []
+                    for json_or_node in json_or_nodes:
+                        sd_name = json_or_node["sdName"]
+                        profile_name = json_or_node["profileName"]
+                        policy = Policy()
+                        policy.profile = get_vc_profile(profile_name)
+                        policy.statement = get_sd_statement(sd_name)
+                        policies.append(policy)
+                    or_node = OrNode(policies=policies)
+                    purpose = None
+                    if "purpose" in json_and_node:
+                        purpose = json_and_node["purpose"]
+                    and_node = AndNode(purpose=purpose, or_node=or_node)
+                    and_nodes.append(and_node)
+            cnf = Cnf(and_nodes=and_nodes)
+            cnl_policy = CnlPolicy(cnf=cnf)
+            action = json_data["policyMatch"]["action"]
+            target = json_data["policyMatch"]["target"]
+            policy_match = PolicyMatch(action=action, target=target)
+            final_policy = policy_match.asdict()
+            final_policy.update(cnl_policy.asdict())
+            policy_result = create_cnf_policy_from_json(final_policy)
+            if policy_result == _("Policy already exists"):
+                return Response(status=409)
+            elif policy_result == True:
+                return Response(status=200)
+        if "dnf" in json_cnl_policy:
+            json_dnf_policy = json_cnl_policy["dnf"]
+            cnf_policies = []
+            descriptions = []
+            for json_dnf_or_node in json_dnf_policy:
+                if "cnf" in json_dnf_or_node:
+                    json_cnf_policy = json_dnf_or_node["cnf"]
+                    and_nodes = []
+                    for json_and_node in json_cnf_policy:
+                        if "or" in json_and_node:
+                            json_or_nodes = json_and_node["or"]
+                            policies = []
+                            for json_or_node in json_or_nodes:
+                                sd_name = json_or_node["sdName"]
+                                profile_name = json_or_node["profileName"]
+                                policy = Policy()
+                                policy.profile = get_vc_profile(profile_name)
+                                policy.statement = get_sd_statement(sd_name)
+                                policies.append(policy)
+                            or_node = OrNode(policies=policies)
+                            if "purpose" in json_and_node:
+                                purpose = json_and_node["purpose"]
+                                and_node = AndNode(purpose=purpose, or_node=or_node)
+                                and_nodes.append(and_node)
+                            else:
+                                and_node = AndNode(or_node=or_node)
+                                and_nodes.append(and_node)
+                    cnf = Cnf(and_nodes=and_nodes)
+                    cnf_policies.append(cnf)
+                    description = Description(description=json_dnf_or_node["description"])
+                    descriptions.append(description)
+            dnf = Dnf(cnf_policies=cnf_policies, descriptions=descriptions)
+            cnl_policy = CnlPolicy(dnf=dnf)
+            action = json_data["policyMatch"]["action"]
+            target = json_data["policyMatch"]["target"]
+            policy_match = PolicyMatch(action=action, target=target)
+            final_policy = Policies(policy_match=policy_match, cnl_policy=cnl_policy)
+            policy_result = create_dnf_policy_from_json(final_policy)
+            if policy_result == _("Policy already exists"):
+                return Response(status=409)
+            elif policy_result == True:
+                return Response(status=200)
+    return Response(status=400)
+
+
 def create_cnf_policy():
     """Create a policy via query string parameters."""
     json_str = """
@@ -110,9 +199,9 @@ def create_cnf_policy_from_json(json_data):
             except IntegrityError:
                 db.session.rollback()
                 return _("Policy already exists")
+            return True
 
 
-@app.route('/create_dnf_policy', methods=['GET'])
 def create_dnf_policy():
     """Create a policy via query string parameters."""
     json_str = """
@@ -182,15 +271,8 @@ def create_dnf_policy():
             target = json_data["policyMatch"]["target"]
             policy_match = PolicyMatch(action=action, target=target)
             final_policy = Policies(policy_match=policy_match, cnl_policy=cnl_policy)
-            try:
-                db.session.add(final_policy)
-                db.session.commit()
-            except IntegrityError:
-                db.session.rollback()
-                return _("Policy already exists")
-
-            return make_response(final_policy.asdict())
-    return _("Json Error")
+            return json.dumps(final_policy, indent=4)
+    return json_data
 
 
 def create_dnf_policy_from_json(json_data):
@@ -240,12 +322,12 @@ def create_dnf_policy_from_json(json_data):
             except IntegrityError:
                 db.session.rollback()
                 return _("Policy already exists")
-
-            return make_response(final_policy.asdict())
+            return True
+            #return make_response(final_policy.asdict())
     return _("Json Error")
 
 
-@app.route('/read_policy', methods=['GET'])
+@app.route('/v1/cnlpolicy/read', methods=['GET'])
 def read_policy():
     """Read a policy via query string parameters."""
     target = request.args.get('target')
@@ -260,13 +342,16 @@ def read_policy():
                 Policies.policy_match_id == existing_policy_match.id
             ).first()
             if existing_policy:
-                return make_response(existing_policy.asdict())
+                res = json.dumps(existing_policy.asdict(),
+                                 sort_keys=False,
+                                 indent=2)
+                return res, 200
             else:
-                return make_response(_("Policy {action} {target} doesn't exist").format(action=action, target=target))
+                return Response(status=404)
         else:
-            return make_response(_("Policy {action} {target} doesn't exist"))
+            return Response(status=404)
     else:
-        return make_response(_("Required argument(s) missing"))
+        return Response(status=404)
 
 
 def read_policy_by_policy_match_id(policy_match_id):
@@ -285,29 +370,41 @@ def read_policy_by_policy_match_id(policy_match_id):
         return make_response(_("Policy with PolicyMatchId {policy_match_id} doesn't exist").format(policy_match_id=str(policy_match_id)))
 
 
-@app.route('/update_policy', methods=['GET'])
+@app.route('/v1/cnlpolicy/update', methods=['GET'])
 def update_policy():
     """update a policy via query string parameters."""
-    target = request.args.get('target')
-    action = request.args.get('action')
-    if target and action:
+    policy_match = request.args.get('policyMatch')
+    json_policy_match = json.loads(policy_match)
+    cnl_policy = request.args.get('cNLpolicy')
+    json_cnl_policy = json.loads(cnl_policy)
+    json_data = {}
+    json_data["policyMatch"] = json_policy_match
+    json_data["cNLpolicy"] = json_cnl_policy
+    if json_policy_match and json_cnl_policy:
         existing_policy_match = PolicyMatch.query.filter(
-            PolicyMatch.target == target,
-            PolicyMatch.action == action
+            PolicyMatch.target == json_policy_match["target"],
+            PolicyMatch.action == json_policy_match["action"]
         ).first()
         if existing_policy_match:
             existing_policy = Policies.query.filter(
-                Policies.policy_match.id == existing_policy_match.id
+                Policies.policy_match_id == existing_policy_match.id
             ).first()
             if existing_policy:
-                print(existing_policy.cnl_policy.dnf.descriptions[0].description)
-                return make_response(existing_policy.asdict())
+                update_policy_by_id(existing_policy.id, json_data)
+                return Response(status=200)
             else:
-                return make_response(_("Policy {action} {target} doesn't exist").format(action=action, target=target))
+                return Response(status=400)
         else:
-            return make_response(_("Policy {action} {target} doesn't exist").format(action=action, target=target))
+            if "cnf" in json_cnl_policy:
+                create_cnf_policy_from_json(json_data)
+                return Response(status=200)
+            elif "dnf" in json_cnl_policy:
+                create_dnf_policy_from_json(json_data)
+                return Response(status=200)
+            else:
+                return Response(status=400)
     else:
-        return make_response(_("Required argument(s) missing"))
+        return Response(status=400)
 
 
 def update_policy_by_id(policy_id, policy):
@@ -325,7 +422,7 @@ def update_policy_by_id(policy_id, policy):
         return make_response(_("Policy with id {policy_id} doesn't exist").format(policy_id=policy_id))
 
 
-@app.route('/delete_policy', methods=['GET'])
+@app.route('/v1/cnlpolicy/delete', methods=['GET'])
 def delete_policy():
     """delete a policy via query string parameters."""
     target = request.args.get('target')
@@ -337,8 +434,11 @@ def delete_policy():
         ).first()
         if existing_policy_match:
             delete_policy_by_policy_match_id(existing_policy_match.id)
+            return Response(status=200)
+        else:
+            return Response(status=400)
     else:
-        return make_response(_("Required argument(s) missing"))
+        return Response(status=400)
 
 
 def delete_policy_by_policy_match_id(policy_match_id):
@@ -371,7 +471,7 @@ def delete_policy_by_policy_match_id(policy_match_id):
     db.session.commit()
 
 
-@app.route('/search_policy', methods=['GET'])
+@app.route('/v1/cnlpolicy/search', methods=['GET'])
 def search_policy():
     """search a policy via query string parameters."""
     policy_match_str = request.args.get('policyMatch')
@@ -401,7 +501,7 @@ def search_policy():
             if is_contained:
                 policies.append(policy.asdict())
         response = {"policies": policies}
-        return make_response(response)
+        return response, 200
     elif policy_match_str:
         policies = []
         existing_policy_match = PolicyMatch.query.filter(
@@ -416,7 +516,7 @@ def search_policy():
                 if existing_policy:
                     policies.append(existing_policy.asdict())
         response = {"policies": policies}
-        return make_response(response)
+        return response, 200
     elif cnl_policy_str:
         policies = []
         all_policies = Policies.query.all()
@@ -431,9 +531,9 @@ def search_policy():
             if is_contained:
                 policies.append(policy.asdict())
         response = {"policies": policies}
-        return make_response(response)
+        return response, 200
     else:
-        return make_response(_("Required argument(s) missing"))
+        return Response(status=400)
 
 
 def search_policies_by_arg(pol_str):

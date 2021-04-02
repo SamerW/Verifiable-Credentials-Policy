@@ -6,7 +6,7 @@
 
 {% block nav %}
 <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
-    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Validation Policy Manager v1.5') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,8 +32,11 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h2 class="display-5">{{ _('Policy') }}</h2>
-    <p class="lead">{{ _("Policy's page description") }}</p>
-
+    <p>{{ _("A policy says which properties you want from a user's credentials in order for the user to perform a particular task (i.e. action on a resource).)") }}</p>
+    <p>{{ _("The policy is built by combining a series of And and Or statements, using the Profiles and SD Statements you have already created. If the user can submit alternative sets of credentials, start with 'either'. If the user must submit a single set of credentials start with 'blank'.)") }}</p>
+    <p>{{ _("For each credential in a set, the user can choose between alternative sources e.g. a credit card number from a visa card or a mastercard, or their name and address from a gas bill or an electricity bill.)") }}</p>
+    <p>{{ _("An example policy comprising a single set of credentials is:)") }}</p>
+    <p>{{ _("In order to purchase car parking permit you must present for Credit card number ( Visa number from a Visa card or Mastercard number from a Mastercard or Amex number from a Amex card ) and for Car details ( car registration number from a car ownership ) and for Name and address ( name and address from a gas bill or name and address from a electricity bill )") }}</p>
   </div>
 </div>
 <div class="bg-dark text-white">

@@ -1,8 +1,30 @@
 """Data models."""
-from .main import db
+from . import db
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
+
+
+class Schema(db.Model):
+    """Data  model for schemas."""
+
+    __tablename__ = 'schema'
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
+    name = db.Column(
+        db.String(64),
+        index=False,
+        unique=True,
+        nullable=False
+    )
+    type_id = db.Column(db.Integer, db.ForeignKey('vc_type.id'))
+    type = db.relationship("VcType", back_populates="schemas")
+    issuer_id = db.Column(db.Integer, db.ForeignKey('issuer.id'))
+    issuer = db.relationship("Issuer", back_populates="schemas")
+
+    properties = db.relationship("Property", back_populates="schema")
 
 
 class VcProfile(db.Model):
@@ -53,6 +75,7 @@ class Issuer(db.Model):
         nullable=False
     )
     profiles = db.relationship("VcProfile", back_populates="issuer")
+    schemas = db.relationship("Schema", back_populates="issuer")
 
     def __repr__(self):
         return '<Issuer {}>'.format(self.name)
@@ -73,6 +96,7 @@ class VcType(db.Model):
         nullable=False
     )
     profiles = db.relationship("VcProfile", back_populates="type")
+    schemas = db.relationship("Schema", back_populates="type")
 
     def __repr__(self):
         return '<VcType {}>'.format(self.name)
@@ -117,7 +141,12 @@ class SdStatement(db.Model):
         model_dict["sdName"] = self.name
         model_dict["requires"] = []
         for prop in self.properties:
-            model_dict["requires"].append(prop.name)
+            if prop.name == "all":
+                model_dict["requires"].append("*")
+            else:
+                model_dict["requires"].append(prop.name)
+        if len(self.properties) == 0:
+            model_dict["requires"] = None
         return model_dict
 
 
@@ -132,7 +161,6 @@ class Property(db.Model):
     name = db.Column(
         db.String(256),
         index=False,
-        unique=True,
         nullable=False
     )
     statements = db.relationship(
@@ -140,12 +168,14 @@ class Property(db.Model):
         secondary=association_table,
         back_populates="properties"
     )
+    schema_id = db.Column(db.Integer, db.ForeignKey('schema.id'))
+    schema = db.relationship("Schema", back_populates="properties")
 
     def __repr__(self):
         return '<Property {}>'.format(self.name)
 
     def __str__(self):
-        return self.name.toJSON()
+        return self.name
 
 
 class Policies(db.Model):

@@ -2,7 +2,7 @@
 
 {% block nav %}
 <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
-    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Validation Policy Manager v1.5') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -67,7 +67,7 @@
                     <select id="input_issuer" name="input_issuer" class="form-control">
                         <option selected="true" disabled="disabled">{{ _('List of issuers') }}</option>
                         {% for option in issuers_options %}
-                            {% if loop.index == 1 %}
+                            {% if option == selected_issuer %}
                                 <option selected="selected">{{ option }}</option>
                             {% else %}
                                 <option>{{ option }}</option>
@@ -87,7 +87,7 @@
                     <select id="input_vc_type "name="input_vc_type" class="form-control">
                         <option selected="true" disabled="disabled">{{ _('List of credential types') }}</option>
                         {% for option in vc_types_options %}
-                            {% if loop.index == 1 %}
+                            {% if option == selected_type %}
                                 <option selected="selected">{{ option }}</option>
                             {% else %}
                                 <option>{{ option }}</option>

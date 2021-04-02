@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block nav %}
 <nav class="navbar navbar-dark navbar-expand-md bg-dark justify-content-center">
-    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Home') }}</a>
+    <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{ _('Validation Policy Manager v1.5') }}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -96,10 +96,10 @@ $(document).ready(function() {
         var intId = lastField.data('idx') + 1;
         var fieldWrapper = $("<div id=\"line-" + intId + "\"data-idx=\"" + intId + "\"/>");
         fieldWrapper.data("idx", intId);
-        var fStartDiv = $("<div style=\"margin-top: 15px;\" id=\"line\">");
+        var fStartDiv = $("<div style=\"margin-top: 15px;\" id=\"line-" + intId +"\">");
         var fName = $("<div class=\"form-check form-check-inline\"> <input type=\"text\" id=\"property_name\"  class=\"form-control\" style=\"width: 310px;\" placeholder= \"{{_('Enter your name for property selection')}}\" /> </div>");
         var fLabel = $("<div class=\"form-check form-check-inline\"> <label>{{ _('requires') }}</label> </div>");
-        var fType = $("<div style=\"margin-left: 393px; margin-top: 15px;\" class=\"form-check form-check-inline\"> <select class=\"form-control\" id=\"property_select\"> <option selected=\"true\" disabled=\"disabled\"> {{ _('List of properties') }}</option>{% for option in properties_options %}<option>{{ option }}</option>{% endfor %}</select> </div>");
+        var fType = $("<div style=\"margin-left: 393px; margin-top: 15px;\" class=\"form-check form-check-inline\"> <select class=\"form-control\" id=\"property_select\" name=\"property_select-" + intId +"\"> <option selected=\"true\" disabled=\"disabled\"> {{ _('List of properties') }}</option>{% for option in properties_options %}<option>{{ option }}</option>{% endfor %}</select> </div>");
         var addButton = $("<div id=\"add\" class=\"form-check form-check-inline\"> <button type=\"button\" class=\"btn btn-default\"> <img src=\"../static/images/plus_icon.png\" width=\"20\" /> </button> </div> ");
         addButton.click(function() {
             add_line();

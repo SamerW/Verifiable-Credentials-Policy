@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, HiddenField, SubmitField
 from flask_babel import _
-from .models import SdStatement, VcProfile, PolicyMatch
+from .models import SdStatement, VcProfile, PolicyMatch, Schema
 
 
 class ListPropertySelectionForm(FlaskForm):
@@ -86,3 +86,15 @@ class ListPolicyForm(FlaskForm):
         self.policy.choices.append(('', _('please select an option')))
         for c in PolicyMatch.query.all():
             self.policy.choices.append((c.id, c.action+" "+c.target))
+
+
+class ListSchemaForm(FlaskForm):
+    schema = SelectField(render_kw={"class": "form-control", "onchange": "this.form.submit()"})
+
+    def __init__(self):
+        super(ListSchemaForm, self).__init__()
+        self.schema.choices = []
+        self.schema.choices.append(('', _('please select an option')))
+        for c in Schema.query.all():
+            self.schema.choices.append((c.id, c.name))
+

@@ -23,7 +23,26 @@ def create_app():
     db.init_app(app)
     with app.app_context():
         from . import profile_api, statement_api, policy_api, schema_api
+        from .models import Issuer, Property
         db.create_all()
+        self_issuer = Issuer.query.filter(
+            Issuer.name == "self"
+        ).first()
+        all_prop = Property.query.filter(
+            Property.name == "all"
+        ).first()
+        if not self_issuer:
+            new_issuer = Issuer(
+                name="self"
+            )
+            db.session.add(new_issuer)
+            db.session.commit()
+        if not all_prop:
+            new_all_prop = Property(
+                name="all"
+            )
+            db.session.add(new_all_prop)
+            db.session.commit()
 
     from . import core
     app.register_blueprint(core.bp)

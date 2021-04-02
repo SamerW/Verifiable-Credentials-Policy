@@ -13,25 +13,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="/property_selection/create">{{ _('Property Selection') }}</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">{{ _('Policy') }}</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/policy/create">{{ _('Policy') }}</a>
             </li>
         </ul>
         <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link" href="/schema/upload">{{ _('Upload Schema') }}</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">{{ _('Upload Schema') }}</a>
             </li>
         </ul>
     </div>
 </nav>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h2 class="display-5">{{ _('Policy') }}</h2>
-    <p>{{ _("A policy says which properties you want from a user's credentials in order for the user to perform a particular task (i.e. action on a resource).)") }}</p>
-    <p>{{ _("The policy is built by combining a series of And and Or statements, using the Profiles and SD Statements you have already created. If the user can submit alternative sets of credentials, start with 'either'. If the user must submit a single set of credentials start with 'blank'.)") }}</p>
-    <p>{{ _("For each credential in a set, the user can choose between alternative sources e.g. a credit card number from a visa card or a mastercard, or their name and address from a gas bill or an electricity bill.)") }}</p>
-    <p>{{ _("An example policy comprising a single set of credentials is:)") }}</p>
-    <p>{{ _("In order to purchase car parking permit you must present for Credit card number ( Visa number from a Visa card or Mastercard number from a Mastercard or Amex number from a Amex card ) and for Car details ( car registration number from a car ownership ) and for Name and address ( name and address from a gas bill or name and address from a electricity bill )") }}</p>
+    <h2 class="display-5">{{ _('Upload Schema') }}</h2>
   </div>
 </div>
 <div class="bg-dark text-white">
@@ -39,10 +34,10 @@
         <div class="navbar-collapse collapse w-100" id="collapsingNavbar32">
             <ul class="navbar-nav w-100 justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="/policy/create">{{ _('Create new Policy') }}</a>
+                    <a class="nav-link" href="/schema/upload    ">{{ _('Upload new Schema') }}</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/policy/manage">{{ _('Manage existing Policies') }}</a>
+                    <a class="nav-link" href="/schema/manage">{{ _('Manage existing Schemas') }}</a>
                 </li>
             </ul>
         </div>
@@ -54,9 +49,9 @@
         </div>
         <div class="row">
             <div class="col-sm">
-                <form method="post"  action="{{ url_for('core.manage_policy') }}">
+                <form method="post"  action="{{ url_for('core.manage_schema') }}">
                     <div class="form-check form-check-inline">
-                        {{ _('Select a Policy:') }}
+                        {{ _('Select a Schema:') }}
                     </div>
                     <div class="form-check form-check-inline">
                         {% for field in form %}
@@ -74,44 +69,38 @@
                 </form>
             </div>
             <div class="col-sm">
-                <form method="post"  action="{{ url_for('core.manage_policy') }}">
+                <form method="post"  action="{{ url_for('core.manage_schema') }}">
                     <div class="form-check form-check-inline">
                         {{ _('Search for') }}
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-control" id="input_search_policy" name="input_search_policy">
+                        <input class="form-control" id="input_search_schema" name="input_search_schema">
                     </div>
                     <div class="form-check form-check-inline">
-                        {{ _('in a Policy') }}
+                        {{ _('in a Schema') }}
                     </div>
                     <input class="btn btn-primary" id="final_submit" name="final_submit" type="submit" value="{{ _('Submit') }}">
                 </form>
             </div>
         </div>
     </div>
-    {% if policies is defined %}
+    {% if schemas is defined %}
         <div class="divider py-1 bg-dark"><hr style="border-top: 1px solid #ccc; background: transparent;"></div>
         <div class="container">
             <p>
             </p>
             <div>
-                {% for policy in policies %}
+                {% for schema in schemas %}
                     <div class="row">
                         <div class="col-sm">
-                            {{policy["str"] | safe}}
+                            {{schema["str"] | safe}}
                         </div>
                         <div class="col-sm align-middle">
-                            <div class="form-check form-check-inline">
-                                <form method="post"  action="{{ url_for('core.update_policy') }}">
-                                    <input id="modify_{{policy['id'] | safe}}" name="modify_{{policy['id'] | safe}}"  class="btn btn-secondary" type="submit" value="{{ _('Modify') }}">
-                                </form>
-                                <form style="margin-left: 15px;" method="post"  action="{{ url_for('core.manage_policy') }}">
-                                    <input id="delete_{{policy['id'] | safe}}" name="delete_{{policy['id'] | safe}}"  class="btn btn-danger" type="submit" value="{{ _('Delete') }}">
-                                </form>
-                                <form style="margin-left: 15px;" method="post"  action="{{ url_for('core.manage_policy') }}">
-                                    <input id="get_json_{{policy['id'] | safe}}" name="get_json_{{policy['id'] | safe}}"  class="btn btn-primary" type="submit" value="{{ _('Get Policy in Json') }}">
-                                </form>
-                            </div>
+                            <form method="post"  action="{{ url_for('core.manage_schema') }}">
+                                <input id="replace_{{schema['id'] | safe}}" name="replace_{{schema['id'] | safe}}"  class="btn btn-secondary" type="submit" value="{{ _('Replace') }}">
+                                <p></p>
+                                <input id="delete_{{schema['id'] | safe}}" name="delete_{{schema['id'] | safe}}"  class="btn btn-danger" type="submit" value="{{ _('Delete') }}">
+                            </form>
                         </div>
                     </div>
                     <hr>
@@ -130,9 +119,4 @@
         </div>
     {% endif %}
 </div>
-{% if json_policy is defined %}
-    <div>
-        <pre>{{ json_policy }}</pre>
-    </div>
-{% endif %}
 {% endblock %}
