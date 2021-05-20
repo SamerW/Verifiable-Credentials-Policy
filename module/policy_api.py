@@ -479,10 +479,10 @@ def delete_policy_by_policy_match_id(policy_match_id):
 def search_policy():
     """search a policy via query string parameters."""
     b64_policy_match = request.args.get('policyMatch')
-    policy_match_str = base64.urlsafe_b64decode(b64_policy_match)
     b64_cnl_policy = request.args.get('cNLpolicy')
-    cnl_policy_str = base64.urlsafe_b64decode(b64_cnl_policy)
-    if policy_match_str and cnl_policy_str:
+    if b64_policy_match and b64_cnl_policy:
+        policy_match_str = base64.urlsafe_b64decode(b64_policy_match)
+        cnl_policy_str = base64.urlsafe_b64decode(b64_cnl_policy)
         all_matchable_policies = []
         policies = []
         existing_policy_match = PolicyMatch.query.filter(
@@ -508,7 +508,8 @@ def search_policy():
                 policies.append(policy.asdict())
         response = {"policies": policies}
         return response, 200
-    elif policy_match_str:
+    elif b64_policy_match:
+        policy_match_str = base64.urlsafe_b64decode(b64_policy_match)
         policies = []
         existing_policy_match = PolicyMatch.query.filter(
             func.lower(PolicyMatch.target.contains(func.lower(policy_match_str))) |
@@ -523,7 +524,8 @@ def search_policy():
                     policies.append(existing_policy.asdict())
         response = {"policies": policies}
         return response, 200
-    elif cnl_policy_str:
+    elif b64_cnl_policy:
+        cnl_policy_str = base64.urlsafe_b64decode(b64_cnl_policy)
         policies = []
         all_policies = Policies.query.all()
         for policy in all_policies:
@@ -539,8 +541,12 @@ def search_policy():
         response = {"policies": policies}
         return response, 200
     else:
-        return Response(status=400)
-
+        policies = []
+        all_policies = Policies.query.all()
+        for policy in all_policies:
+            policies.append(policy.asdict())
+        response = {"policies": policies}
+        return response, 200
 
 def search_policies_by_arg(pol_str):
     """search a policy via arg."""
