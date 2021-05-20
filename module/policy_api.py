@@ -22,9 +22,11 @@ from .statement_api import get_sd_statement
 @app.route('/v1/cnlpolicy/create', methods=['GET'])
 def create_policy():
     """Create a policy via query string parameters."""
-    policy_match = request.args.get('policyMatch')
+    b64_policy_match = request.args.get('policyMatch')
+    policy_match = base64.urlsafe_b64decode(b64_policy_match)
     json_policy_match = json.loads(policy_match)
-    cnl_policy = request.args.get('cNLpolicy')
+    b64_cnl_policy = request.args.get('cNLpolicy')
+    cnl_policy = base64.urlsafe_b64decode(b64_cnl_policy)
     json_cnl_policy = json.loads(cnl_policy)
     json_data = {}
     json_data["policyMatch"] = json_policy_match
@@ -373,9 +375,11 @@ def read_policy_by_policy_match_id(policy_match_id):
 @app.route('/v1/cnlpolicy/update', methods=['GET'])
 def update_policy():
     """update a policy via query string parameters."""
-    policy_match = request.args.get('policyMatch')
+    b64_policy_match = request.args.get('policyMatch')
+    policy_match = base64.urlsafe_b64decode(b64_policy_match)
     json_policy_match = json.loads(policy_match)
-    cnl_policy = request.args.get('cNLpolicy')
+    b64_cnl_policy = request.args.get('cNLpolicy')
+    cnl_policy = base64.urlsafe_b64decode(b64_cnl_policy)
     json_cnl_policy = json.loads(cnl_policy)
     json_data = {}
     json_data["policyMatch"] = json_policy_match
@@ -474,8 +478,10 @@ def delete_policy_by_policy_match_id(policy_match_id):
 @app.route('/v1/cnlpolicy/search', methods=['GET'])
 def search_policy():
     """search a policy via query string parameters."""
-    policy_match_str = request.args.get('policyMatch')
-    cnl_policy_str = request.args.get('cNLpolicy')
+    b64_policy_match = request.args.get('policyMatch')
+    policy_match_str = base64.urlsafe_b64decode(b64_policy_match)
+    b64_cnl_policy = request.args.get('cNLpolicy')
+    cnl_policy_str = base64.urlsafe_b64decode(b64_cnl_policy)
     if policy_match_str and cnl_policy_str:
         all_matchable_policies = []
         policies = []
