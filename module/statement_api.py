@@ -61,7 +61,7 @@ def read_sd_statement():
             res = json.dumps(existing_sd_statement.asdict(),
                              sort_keys=False,
                              indent=2)
-            return res, 200
+            return Response(res, mimetype='application/json', status=200)
         else:
             return Response(status=404)
     else:
@@ -199,7 +199,7 @@ def search_sd_statement():
     res = json.dumps(statements,
                      sort_keys=False,
                      indent=2)
-    return res, 200
+    return Response(res, mimetype='application/json', status=200)
 
 
 def search_sd_statement_by_arg(search_str):
