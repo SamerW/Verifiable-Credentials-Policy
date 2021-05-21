@@ -347,7 +347,7 @@ def read_policy():
                 res = json.dumps(existing_policy.asdict(),
                                  sort_keys=False,
                                  indent=2)
-                return Response(res, mimetype='application/json', status=200)
+                return Response(res, content_type='application/json', status=200)
             else:
                 return Response(status=404)
         else:
@@ -507,7 +507,10 @@ def search_policy():
             if is_contained:
                 policies.append(policy.asdict())
         response = {"policies": policies}
-        return response, 200
+        res = json.dumps(response,
+                         sort_keys=False,
+                         indent=2)
+        return Response(res, content_type='application/json', status=200)
     elif b64_policy_match:
         policy_match_str = base64.urlsafe_b64decode(b64_policy_match)
         policies = []
@@ -523,7 +526,10 @@ def search_policy():
                 if existing_policy:
                     policies.append(existing_policy.asdict())
         response = {"policies": policies}
-        return response, 200
+        res = json.dumps(response,
+                         sort_keys=False,
+                         indent=2)
+        return Response(res, content_type='application/json', status=200)
     elif b64_cnl_policy:
         cnl_policy_str = base64.urlsafe_b64decode(b64_cnl_policy)
         policies = []
@@ -539,14 +545,20 @@ def search_policy():
             if is_contained:
                 policies.append(policy.asdict())
         response = {"policies": policies}
-        return Response(response, mimetype='application/json', status=200)
+        res = json.dumps(response,
+                         sort_keys=False,
+                         indent=2)
+        return Response(res, content_type='application/json', status=200)
     else:
         policies = []
         all_policies = Policies.query.all()
         for policy in all_policies:
             policies.append(policy.asdict())
         response = {"policies": policies}
-        return Response(response, mimetype='application/json', status=200)
+        res = json.dumps(response,
+                         sort_keys=False,
+                         indent=2)
+        return Response(res, content_type='application/json', status=200)
 
 def search_policies_by_arg(pol_str):
     """search a policy via arg."""

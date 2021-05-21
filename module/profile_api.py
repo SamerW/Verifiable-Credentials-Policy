@@ -55,7 +55,7 @@ def read_vc_profile():
             res = json.dumps(existing_vc_profile.asdict(),
                              sort_keys=False,
                              indent=2)
-            return Response(res, mimetype='application/json', status=200)
+            return Response(res, content_type='application/json', status=200)
         else:
             return Response(status=404)
     else:
@@ -171,7 +171,7 @@ def search_vc_profile():
     res = json.dumps(profiles,
                      sort_keys=False,
                      indent=2)
-    return Response(res, mimetype='application/json', status=200)
+    return Response(res, content_type='application/json', status=200)
 
 
 def search_vc_profile_by_arg(search_str):
