@@ -3,12 +3,16 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
+# Database
+module/cnl.sqlite*
+
 # Node artifact files
 node_modules/
 dist/
 
 # Virtual Env
 venv/
+env/
 
 # Bootstrap files
 bootstrap/
