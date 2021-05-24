@@ -524,7 +524,7 @@ msgid ""
 "A VC profile contains the filtering criteria that are needed to select a "
 "VC from the VC Holder’s wallet"
 msgstr ""
-"Ein VC-Profil enthält die Filterkriterien, die zur Auswahl eines "
+"Ein VC-Profil enthält die Filterkriterien zur Auswahl eines "
 "VC aus der Geldbörse des VC-Inhabers"
 
 #: module/templates/credential_profile/create.html:40
@@ -626,9 +626,9 @@ msgid ""
 "order for the user to perform a particular task (i.e. action on a "
 "resource).)"
 msgstr ""
-"Eine Richtlinie gibt an, welche Eigenschaften Sie von den Anmeldedaten eines Benutzers in " 
+"Eine Richtlinie gibt an, welche Eigenschaften Sie von den Anmeldedaten eines Benutzers benötigt " 
 "damit der Benutzer eine bestimmte Aufgabe ausführen kann (d. h. eine Aktion auf einem"
-"Ressource).)"
+"Ressource)"
 
 #: module/templates/policy/create.html:36
 #: module/templates/policy/manage.html:31
@@ -640,7 +640,7 @@ msgid ""
 " must submit a single set of credentials start with 'blank'.)"
 msgstr ""
 "Die Richtlinie wird durch die Kombination einer Reihe von Und- und Oder-Anweisungen erstellt, indem"
-" die Profile und SD-Anweisungen, die Sie bereits erstellt haben. Wenn der Benutzer"
+" die Profile und SD-Anweisungen die Sie bereits erstellt haben, genutzt werden. Wenn der Benutzer"
 " alternative Sätze von Anmeldeinformationen einreichen kann, beginnen Sie mit 'either'. Wenn der Benutzer "
 " einen einzigen Satz von Anmeldeinformationen einreichen muss, beginnen Sie mit 'blank'.)"
 
@@ -653,14 +653,14 @@ msgid ""
 "their name and address from a gas bill or an electricity bill.)"
 msgstr ""
 "Für jeden Berechtigungsnachweis in einem Satz kann der Benutzer zwischen alternativen "
-"Quellen, z. B. eine Kreditkartennummer von einer Visa-Karte oder einer Mastercard, oder"
-"Sie können ihren Namen und ihre Adresse von einer Gasrechnung oder einer Stromrechnung ablesen.)"
+"Quellen, z. B. eine Kreditkartennummer von einer Visa-Karte oder einer Mastercard, oder "
+"eine Gasrechnung oder eine Stromrechnung zum Ablesen des Namens und der Adresse, wählen.)"
 
 #: module/templates/policy/create.html:38
 #: module/templates/policy/manage.html:33
 #: module/templates/policy/update.html:38
 msgid "An example policy comprising a single set of credentials is:)"
-msgstr "Eine Beispielrichtlinie, die einen einzelnen Satz von Anmeldeinformationen umfasst, lautet:)"
+msgstr "Eine Beispielrichtlinie, die einen einzelnen Satz von Anmeldeinformationen umfasst, lautet:"
 
 #: module/templates/policy/create.html:39
 #: module/templates/policy/manage.html:34
@@ -674,11 +674,11 @@ msgid ""
 "bill )"
 msgstr ""
 "Um einen Parkausweis zu erwerben, müssen Sie eine Kreditkartennummer "
-"Nummer ( Visa-Nummer von einer Visa-Karte oder Mastercard-Nummer von einer "
+"( Visa-Nummer von einer Visa-Karte oder Mastercard-Nummer von einer "
 "Mastercard oder Amex-Nummer von einer Amex-Karte ) und für Autodetails ( Auto "
 "Zulassungsnummer aus einem Autobesitz ) und für Name und Adresse ( "
 "Name und Adresse aus einer Gasrechnung oder Name und Adresse aus einer Strom "
-"Rechnung )"
+"Rechnung), angeben."
 
 #: module/templates/policy/create.html:47
 #: module/templates/policy/manage.html:42
