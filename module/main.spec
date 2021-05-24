@@ -4,12 +4,12 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['/Users/admin/Irit/Projets/CNL/development/module'],
+             pathex=['/root/module'],
              binaries=[],
              datas=[
-               ('/Users/admin/Irit/Projets/CNL/development/module/static', 'static'),
-               ('/Users/admin/Irit/Projets/CNL/development/module/templates', 'templates'),
-               ('/Users/admin/Irit/Projets/CNL/development/module/translations', 'translations')
+               ('/root/module/static', 'static'),
+               ('/root/module/templates', 'templates'),
+               ('/root/module/translations', 'translations')
              ],
              hiddenimports=[],
              hookspath=[],

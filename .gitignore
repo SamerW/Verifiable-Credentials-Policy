@@ -13,6 +13,10 @@ dist/
 # Virtual Env
 venv/
 env/
+envlinux/
+
+# Cache
+.cache/**
 
 # Bootstrap files
 bootstrap/
