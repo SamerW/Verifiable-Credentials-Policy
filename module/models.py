@@ -145,8 +145,6 @@ class SdStatement(db.Model):
                 model_dict["requires"].append("*")
             else:
                 model_dict["requires"].append(prop.name)
-        if len(self.properties) == 0:
-            model_dict["requires"] = None
         return model_dict
 
 
