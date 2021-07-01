@@ -46,43 +46,43 @@
     <hr>
     <div class="container">
         <fieldset id="buildyourform">
+            <div style="margin-top: 15px;" id="line-1" data-idx="1">
+                <div class="form-check form-check-inline" data-idx="1">
+                    <div class="form-check form-check-inline">
+                    <input type="hidden" id="statement_id" value="{{statement_id}}">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input id="property_name" style="width: 310px;" class="form-control" placeholder= "{{_('Enter your name for property selection')}}" value="{{statement_name}}">
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <label>{{ _('requires') }}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <select id="property_select" class="form-control">
+                            <option selected="true" disabled="disabled"> {{ _('List of properties') }}</option>
+                            {% for option in properties_options %}
+                                {% if require == option %}
+                                    <option selected="selected">{{ option }}</option>
+                                {% else %}
+                                    <option>{{ option }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <button id="add" type="button" class="btn btn-default butt_add">
+                             <img src="../static/images/plus_icon.png" width="20" />
+                        </button>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <button type="button" class="btn btn-default" disabled>
+                             <img src="../static/images/minus_icon.png" width="20"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
             {% for require in requires %}
                 {% if loop.index == 1 %}
-                    <div style="margin-top: 15px;" id="line-1" data-idx="1">
-                        <div class="form-check form-check-inline" data-idx="1">
-                            <div class="form-check form-check-inline">
-                            <input type="hidden" id="statement_id" value="{{statement_id}}">
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input id="property_name" style="width: 310px;" class="form-control" placeholder= "{{_('Enter your name for property selection')}}" value="{{statement_name}}">
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <label>{{ _('requires') }}</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <select id="property_select" class="form-control">
-                                    <option selected="true" disabled="disabled"> {{ _('List of properties') }}</option>
-                                    {% for option in properties_options %}
-                                        {% if require == option %}
-                                            <option selected="selected">{{ option }}</option>
-                                        {% else %}
-                                            <option>{{ option }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <button id="add" type="button" class="btn btn-default butt_add">
-                                     <img src="../static/images/plus_icon.png" width="20" />
-                                </button>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <button type="button" class="btn btn-default" disabled>
-                                     <img src="../static/images/minus_icon.png" width="20"/>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 {% else %}
                     <div style="margin-top: 15px;" id="line-{{loop.index}}" data-idx="{{loop.index}}">
                         <div class="form-check form-check-inline" data-idx="{{loop.index}}">
