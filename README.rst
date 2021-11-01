@@ -1,4 +1,6 @@
-CNL Project:
+This tool allows to define a verifiable credentials (VC) policy using controlled natural langauge.
+The administrator of a service provider can send the resultant policy to the wallet of the user who will then colllect the required VCs from the issuers and send them back to the service provider.
+
 
 Requirements:
     Python 3
