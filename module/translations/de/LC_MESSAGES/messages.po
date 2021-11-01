@@ -1,0 +1,928 @@
+# German translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-03-19 15:00+0100\n"
+"PO-Revision-Date: 2021-04-12 22:53+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: module/core.py:88
+msgid "Profile with name {profile_name} already exists."
+msgstr "Profilname mit dem Namen {profile_name} existiert bereits"
+
+#: module/core.py:91 module/core.py:306
+msgid "Unknown Error"
+msgstr "Unbekannter Fehler"
+
+#: module/core.py:97
+msgid "Profile created"
+msgstr "Profil erstellt"
+
+#: module/core.py:104 module/core.py:317
+msgid "Please fill all parameters"
+msgstr "Bitte alle Parameter ausfüllen"
+
+#: module/core.py:152
+msgid "Profile not updated: A profile with this name already exists"
+msgstr "Profil nicht aktualisiert: Ein Profil mit diesem Namen existiert bereits"
+
+#: module/core.py:160
+msgid "Could not update profile"
+msgstr "Profil konnte nicht aktualisiert werden"
+
+#: module/core.py:162
+msgid "Profile updated"
+msgstr "Profil aktualisiert"
+
+#: module/core.py:208 module/core.py:425 module/core.py:668 module/core.py:999
+#: module/templates/credential_profile/manage.html:107
+#: module/templates/policy/manage.html:109
+#: module/templates/property_selection/manage.html:105
+#: module/templates/schema/manage.html:102
+msgid "Delete"
+msgstr "Löschen"
+
+#: module/core.py:209 module/core.py:426
+msgid "Error - Profile can't be deleted"
+msgstr "Fehler - Profil kann nicht gelöscht werden"
+
+#: module/core.py:217
+msgid "Profile deleted"
+msgstr "Profil gelöscht"
+
+#: module/core.py:250
+msgid "A {name} credential must :<br>"
+msgstr "Ein {name} Berechtigungsnachweis muss :<br>"
+
+#: module/core.py:253
+msgid "<div style=\"margin-left: 40px\">• be issued by {issuer}<br></div>"
+msgstr "<div style=\"margin-left: 40px\">• wird ausgestellt von {issuer}<br></div>"
+
+#: module/core.py:255
+msgid "<div style=\"margin-left: 40px\">• be of type {type}<br></div>"
+msgstr "<div style=\"margin-left: 40px\">• ist von der Art {type}<br></div>"
+
+#: module/core.py:303
+msgid "Statement with name \"{property_name}\" already exists."
+msgstr "Anweisung mit dem Namen \"{property_name}\" existiert bereits."
+
+#: module/core.py:311
+msgid "Selective Disclosure Statement created"
+msgstr "Selective Disclosure Statement erstellt"
+
+#: module/core.py:363
+msgid "Statement not updated: A statement with this name already exists"
+msgstr "Anweisung nicht aktualisiert: Eine Anweisung mit diesem Namen existiert bereits"
+
+#: module/core.py:373
+msgid "Statement \"{statement_name}\" updated"
+msgstr "Anweisung \"{statement_name}\" aktualisiert"
+
+#: module/core.py:379
+msgid "Error: Statement \"{statement_name}\" could not be updated"
+msgstr "Fehler: Anweisung \"{statement_name}\" konnte nicht aktualisiert werden"
+
+#: module/core.py:434
+msgid "Statement deleted"
+msgstr "Anweisung gelöscht"
+
+#: module/core.py:461
+msgid "{sdName} requires :<br>"
+msgstr "{sdName} erfordert :<br>"
+
+#: module/core.py:489 module/core.py:490 module/core.py:833
+#: module/templates/policy/create.html:75
+#: module/templates/policy/create.html:95
+#: module/templates/policy/update.html:79
+#: module/templates/policy/update.html:83
+#: module/templates/policy/update.html:251
+msgid "either"
+msgstr "entweder"
+
+#: module/core.py:601 module/templates/policy/manage.html:112
+msgid "Get Policy in Json"
+msgstr "Richtlinie in Json abrufen"
+
+#: module/core.py:669
+msgid "Error - Policy can't be deleted"
+msgstr "Fehler - Richtlinie kann nicht gelöscht werden"
+
+#: module/core.py:674
+msgid "Policy deleted"
+msgstr "Richtlinie gelöscht"
+
+#: module/core.py:761 module/core.py:793 module/forms.py:48
+#: module/templates/policy/create.html:117
+#: module/templates/policy/create.html:143
+#: module/templates/policy/create.html:162
+#: module/templates/policy/create.html:185
+#: module/templates/policy/create.html:205
+#: module/templates/policy/create.html:228
+#: module/templates/policy/create.html:254
+#: module/templates/policy/create.html:280
+#: module/templates/policy/create.html:298
+#: module/templates/policy/create.html:309
+#: module/templates/policy/create.html:321
+#: module/templates/policy/update.html:273
+#: module/templates/policy/update.html:299
+#: module/templates/policy/update.html:318
+#: module/templates/policy/update.html:341
+#: module/templates/policy/update.html:361
+#: module/templates/policy/update.html:384
+#: module/templates/policy/update.html:410
+#: module/templates/policy/update.html:436
+#: module/templates/policy/update.html:454
+#: module/templates/policy/update.html:465
+#: module/templates/policy/update.html:477
+msgid "or"
+msgstr "oder"
+
+#: module/core.py:761 module/core.py:793
+#: module/templates/policy/create.html:117
+#: module/templates/policy/create.html:162
+#: module/templates/policy/create.html:185
+#: module/templates/policy/create.html:205
+#: module/templates/policy/create.html:228
+#: module/templates/policy/create.html:254
+#: module/templates/policy/create.html:310
+#: module/templates/policy/create.html:322
+#: module/templates/policy/update.html:273
+#: module/templates/policy/update.html:318
+#: module/templates/policy/update.html:341
+#: module/templates/policy/update.html:361
+#: module/templates/policy/update.html:384
+#: module/templates/policy/update.html:410
+#: module/templates/policy/update.html:466
+#: module/templates/policy/update.html:478
+msgid ") and"
+msgstr "und"
+
+#: module/core.py:793 module/templates/policy/create.html:162
+#: module/templates/policy/create.html:205
+#: module/templates/policy/create.html:254
+#: module/templates/policy/create.html:323
+#: module/templates/policy/update.html:318
+#: module/templates/policy/update.html:361
+#: module/templates/policy/update.html:410
+#: module/templates/policy/update.html:479
+msgid ")or("
+msgstr "oder"
+
+#: module/core.py:865
+msgid "Policy updated"
+msgstr "Richtlinie aktualisiert"
+
+#: module/core.py:873 module/core.py:902
+msgid "In order to "
+msgstr "Um zu"
+
+#: module/core.py:876
+msgid "you must present "
+msgstr "Sie müssen präsentieren"
+
+#: module/core.py:881
+msgid " for "
+msgstr "für"
+
+#: module/core.py:888 module/core.py:923
+msgid "from a "
+msgstr "vom"
+
+#: module/core.py:891 module/core.py:926
+msgid "or "
+msgstr "oder"
+
+#: module/core.py:896
+msgid "and "
+msgstr "und"
+
+#: module/core.py:905
+msgid "you must present either ("
+msgstr "Sie müssen entweder( präsentieren"
+
+#: module/core.py:912
+msgid "being "
+msgstr "sein"
+
+#: module/core.py:930
+msgid "and for "
+msgstr "und für"
+
+#: module/core.py:933
+msgid ") or ("
+msgstr ") oder ("
+
+#: module/core.py:1000
+msgid "Error - Schema can't be deleted"
+msgstr "Fehler - Schema kann nicht gelöscht werden"
+
+#: module/core.py:1005
+msgid "Schema is used in Profile(s) or Statement(s), it can't be deleted"
+msgstr "Schema wird in Profil(en) oder Anweisung(en) verwendet, es kann nicht gelöscht werden"
+
+#: module/core.py:1008
+msgid "Schema deleted"
+msgstr "Schema gelöscht"
+
+#: module/core.py:1014 module/templates/schema/manage.html:100
+msgid "Replace"
+msgstr "Ersetze"
+
+#: module/core.py:1048
+msgid "Schema's name:  \"{schema_name}\"<br>"
+msgstr "Schema's name:  \"{schema_name}\"<br>"
+
+#: module/core.py:1049
+msgid "Schema's issuer:  \"{schema_issuer}\"<br>"
+msgstr "Schema's ausgeber:  \"{schema_issuer}\"<br>"
+
+#: module/core.py:1050
+msgid "Schema's type:  \"{schema_type}\"<br>"
+msgstr "Schema's Typ:  \"{schema_type}\"<br>"
+
+#: module/core.py:1051
+msgid "Schema's properties:<br>"
+msgstr "Die Eigenschaften des Schemas:<br>"
+
+#: module/forms.py:13 module/forms.py:75 module/forms.py:86 module/forms.py:97
+msgid "please select an option"
+msgstr "Bitte wählen Sie eine Option"
+
+#: module/forms.py:19 module/templates/property_selection/create.html:53
+#: module/templates/property_selection/create.html:100
+#: module/templates/property_selection/update.html:57
+#: module/templates/property_selection/update.html:136
+msgid "Enter your name for property selection"
+msgstr "Geben Sie Ihren Namen für die Eigenschaftsauswahl ein"
+
+#: module/forms.py:20 module/templates/property_selection/create.html:56
+#: module/templates/property_selection/create.html:101
+#: module/templates/property_selection/update.html:60
+#: module/templates/property_selection/update.html:137
+msgid "requires"
+msgstr "erfordert"
+
+#: module/forms.py:21 module/forms.py:42
+#: module/templates/property_selection/create.html:60
+#: module/templates/property_selection/create.html:102
+#: module/templates/property_selection/update.html:64
+#: module/templates/property_selection/update.html:91
+#: module/templates/property_selection/update.html:138
+msgid "List of properties"
+msgstr "Liste der Eigenschaften"
+
+#: module/forms.py:40 module/templates/policy/create.html:113
+#: module/templates/policy/create.html:137
+#: module/templates/policy/create.html:158
+#: module/templates/policy/create.html:224
+#: module/templates/policy/create.html:250
+#: module/templates/policy/create.html:274
+#: module/templates/policy/update.html:94
+#: module/templates/policy/update.html:112
+#: module/templates/policy/update.html:182
+#: module/templates/policy/update.html:269
+#: module/templates/policy/update.html:293
+#: module/templates/policy/update.html:314
+#: module/templates/policy/update.html:380
+#: module/templates/policy/update.html:406
+#: module/templates/policy/update.html:430
+msgid "("
+msgstr "("
+
+#: module/forms.py:41 module/templates/policy/create.html:115
+#: module/templates/policy/create.html:141
+#: module/templates/policy/create.html:160
+#: module/templates/policy/create.html:183
+#: module/templates/policy/create.html:203
+#: module/templates/policy/create.html:226
+#: module/templates/policy/create.html:252
+#: module/templates/policy/create.html:278
+#: module/templates/policy/update.html:132
+#: module/templates/policy/update.html:202
+#: module/templates/policy/update.html:271
+#: module/templates/policy/update.html:297
+#: module/templates/policy/update.html:316
+#: module/templates/policy/update.html:339
+#: module/templates/policy/update.html:359
+#: module/templates/policy/update.html:382
+#: module/templates/policy/update.html:408
+#: module/templates/policy/update.html:434
+msgid "from a"
+msgstr "von einer"
+
+#: module/forms.py:43
+msgid "List of credential profiles"
+msgstr "Liste der Berechtigungsprofile"
+
+#: module/forms.py:45
+msgid "and, ), or"
+msgstr "und, ) , or"
+
+#: module/forms.py:46 module/templates/credential_profile/create.html:75
+#: module/templates/credential_profile/update.html:79
+msgid "and"
+msgstr "und"
+
+#: module/forms.py:47
+msgid ")"
+msgstr ")"
+
+#: module/policy_api.py:62 module/policy_api.py:104 module/policy_api.py:201
+#: module/policy_api.py:324
+msgid "Policy already exists"
+msgstr "Richtlinie existiert bereits"
+
+#: module/policy_api.py:327
+msgid "Json Error"
+msgstr "Json Fehler"
+
+#: module/policy_api.py:368 module/policy_api.py:370
+msgid "Policy with PolicyMatchId {policy_match_id} doesn't exist"
+msgstr "Richtlinie mit PolicyMatchId {policy_match_id} existiert nicht"
+
+#: module/policy_api.py:422
+msgid "Policy with id {policy_id} doesn't exist"
+msgstr "Richtlinie mit id {policy_id} existiert nicht"
+
+#: module/profile_api.py:73 module/profile_api.py:217
+msgid "VC Profile with id {profile_id} doesn't exist"
+msgstr "VC Profil mit id {profile_id} existiert nicht"
+
+#: module/profile_api.py:215
+msgid "VC Profile with id {profile_id} deleted"
+msgstr "VC Profil with id {profile_id} wurde gelöscht"
+
+#: module/schema_api.py:30 module/schema_api.py:102
+msgid "Schema \"{schema_name}\" already exist"
+msgstr "Schema \"{schema_name}\" existiert bereits"
+
+#: module/schema_api.py:49 module/schema_api.py:121
+msgid "Schema \"{type_name}\" already exist"
+msgstr "Schema \"{type_name}\" existiert bereits"
+
+#: module/schema_api.py:67 module/schema_api.py:139
+msgid "Schema \"{type_name}\" uploaded"
+msgstr "hochgeladen"
+
+#: module/schema_api.py:69 module/schema_api.py:141 module/schema_api.py:218
+#: module/schema_api.py:323
+msgid "Schema not valid"
+msgstr "Schema nicht gültig"
+
+#: module/schema_api.py:155 module/schema_api.py:260
+msgid "Can't replace schema: schema \"{type_name}\" doesn't exist"
+msgstr "Schema kann nicht ersetzt werden: schema \"{type_name}\" existiert nicht"
+
+#: module/schema_api.py:181 module/schema_api.py:286
+msgid ""
+"Can't replace schema: Some properties you want to replace are used in "
+"profiles or statements"
+msgstr ""
+"Das Schema kann nicht ersetzt werden: Einige Eigenschaften, die Sie ersetzen möchten, werden verwendet in "
+"Profile oder Angaben"
+
+#: module/schema_api.py:194 module/schema_api.py:299
+msgid ""
+"Can't replace schema: The issuer in the old schema is used in some "
+"profiles"
+msgstr ""
+"Das Schema kann nicht ersetzt werden: Der Aussteller im alten Schema wird in einigen"
+"Profile"
+
+#: module/schema_api.py:216 module/schema_api.py:321
+msgid "Schema \"{type_name}\" replaced"
+msgstr "Schema \"{type_name}\" ersetzt"
+
+#: module/schema_api.py:241
+msgid "Schema with id {schema_id} deleted"
+msgstr "Schema mit dem id {schema_id} gelöscht"
+
+#: module/schema_api.py:243
+msgid "Schema with id {schema_id} doesn't exist"
+msgstr "Schema mit dem id {schema_id} existiert nicht"
+
+#: module/statement_api.py:79 module/statement_api.py:161
+msgid "Sd Statement with id {statement_id} doesn't exist"
+msgstr "Sd Anweisung mit id {statement_id} existiert nicht"
+
+#: module/statement_api.py:159
+msgid "Sd Statement with id {statement_id} deleted"
+msgstr "Sd Anweisung mit id {statement_id} wurde gelöscht"
+
+#: module/templates/api.html:4
+msgid "Home"
+msgstr "Startseite"
+
+#: module/templates/api.html:8
+msgid "CRUD API"
+msgstr "CRUD API"
+
+#: module/templates/base.html:11
+msgid "CNL"
+msgstr "CNL"
+
+#: module/templates/credential_profile/create.html:5
+#: module/templates/credential_profile/manage.html:5
+#: module/templates/credential_profile/update.html:5
+#: module/templates/policy/create.html:9 module/templates/policy/manage.html:4
+#: module/templates/policy/update.html:9
+#: module/templates/property_selection/create.html:4
+#: module/templates/property_selection/manage.html:4
+#: module/templates/property_selection/update.html:4
+#: module/templates/schema/manage.html:4 module/templates/schema/replace.html:9
+#: module/templates/schema/upload.html:9
+msgid "Validation Policy Manager v1.4"
+msgstr "Validation Policy Manager v1.4"
+
+#: module/templates/credential_profile/create.html:12
+#: module/templates/credential_profile/create.html:30
+#: module/templates/credential_profile/manage.html:12
+#: module/templates/credential_profile/manage.html:30
+#: module/templates/credential_profile/update.html:12
+#: module/templates/credential_profile/update.html:30
+#: module/templates/policy/create.html:16
+#: module/templates/policy/manage.html:11
+#: module/templates/policy/update.html:16
+#: module/templates/property_selection/create.html:11
+#: module/templates/property_selection/manage.html:11
+#: module/templates/property_selection/update.html:11
+#: module/templates/schema/manage.html:11
+#: module/templates/schema/replace.html:16
+#: module/templates/schema/upload.html:16
+msgid "Credential Profile"
+msgstr "Berechtigungsprofil"
+
+#: module/templates/credential_profile/create.html:15
+#: module/templates/credential_profile/manage.html:15
+#: module/templates/credential_profile/update.html:15
+#: module/templates/policy/create.html:19
+#: module/templates/policy/manage.html:14
+#: module/templates/policy/update.html:19
+#: module/templates/property_selection/create.html:14
+#: module/templates/property_selection/create.html:29
+#: module/templates/property_selection/manage.html:14
+#: module/templates/property_selection/manage.html:29
+#: module/templates/property_selection/update.html:14
+#: module/templates/property_selection/update.html:29
+#: module/templates/schema/manage.html:14
+#: module/templates/schema/replace.html:19
+#: module/templates/schema/upload.html:19
+msgid "Property Selection"
+msgstr "Auswahl der Eigenschaft"
+
+#: module/templates/credential_profile/create.html:18
+#: module/templates/credential_profile/manage.html:18
+#: module/templates/credential_profile/update.html:18
+#: module/templates/policy/create.html:22
+#: module/templates/policy/create.html:34
+#: module/templates/policy/manage.html:17
+#: module/templates/policy/manage.html:29
+#: module/templates/policy/update.html:22
+#: module/templates/policy/update.html:34
+#: module/templates/property_selection/create.html:17
+#: module/templates/property_selection/manage.html:17
+#: module/templates/property_selection/update.html:17
+#: module/templates/schema/manage.html:17
+#: module/templates/schema/replace.html:22
+#: module/templates/schema/upload.html:22
+msgid "Policy"
+msgstr "Richtlinie"
+
+#: module/templates/credential_profile/create.html:23
+#: module/templates/credential_profile/manage.html:23
+#: module/templates/credential_profile/update.html:23
+#: module/templates/policy/create.html:27
+#: module/templates/policy/manage.html:22
+#: module/templates/policy/update.html:27
+#: module/templates/property_selection/create.html:22
+#: module/templates/property_selection/manage.html:22
+#: module/templates/property_selection/update.html:22
+#: module/templates/schema/manage.html:22
+#: module/templates/schema/manage.html:29
+#: module/templates/schema/replace.html:27
+#: module/templates/schema/upload.html:27
+#: module/templates/schema/upload.html:34
+msgid "Upload Schema"
+msgstr "Schema hochladen"
+
+#: module/templates/credential_profile/create.html:31
+#: module/templates/credential_profile/manage.html:31
+#: module/templates/credential_profile/update.html:31
+msgid ""
+"A VC profile contains the filtering criteria that are needed to select a "
+"VC from the VC Holder’s wallet"
+msgstr ""
+"Ein VC-Profil enthält die Filterkriterien zur Auswahl eines "
+"VC aus der Geldbörse des VC-Inhabers"
+
+#: module/templates/credential_profile/create.html:40
+#: module/templates/credential_profile/manage.html:40
+msgid "Create new profile"
+msgstr "Neues Profil erstellen"
+
+#: module/templates/credential_profile/create.html:43
+#: module/templates/credential_profile/manage.html:43
+msgid "Manage existing profiles"
+msgstr "vorhandene Profile verwalten"
+
+#: module/templates/credential_profile/create.html:53
+#: module/templates/credential_profile/update.html:53
+msgid "A"
+msgstr "A"
+
+#: module/templates/credential_profile/create.html:56
+#: module/templates/credential_profile/update.html:56
+msgid "Enter your name for a credential profile"
+msgstr "Geben Sie Ihren Namen für ein Berechtigungsprofil ein"
+
+#: module/templates/credential_profile/create.html:59
+#: module/templates/credential_profile/update.html:59
+msgid "credential must:"
+msgstr "Berechtigung muss:"
+
+#: module/templates/credential_profile/create.html:64
+#: module/templates/credential_profile/update.html:64
+msgid "be issued by"
+msgstr "ausgestellt werden von"
+
+#: module/templates/credential_profile/create.html:68
+#: module/templates/credential_profile/update.html:68
+msgid "List of issuers"
+msgstr "Liste der Emittenten"
+
+#: module/templates/credential_profile/create.html:80
+#: module/templates/credential_profile/update.html:84
+msgid "be of type"
+msgstr "vom Typ sein"
+
+#: module/templates/credential_profile/create.html:84
+#: module/templates/credential_profile/update.html:88
+msgid "List of credential types"
+msgstr "Liste der Berechtigungstypen"
+
+#: module/templates/credential_profile/create.html:92
+#: module/templates/credential_profile/manage.html:85
+#: module/templates/policy/create.html:81
+#: module/templates/policy/manage.html:87
+#: module/templates/policy/update.html:237
+#: module/templates/property_selection/create.html:79
+#: module/templates/property_selection/manage.html:83
+#: module/templates/property_selection/update.html:116
+#: module/templates/schema/manage.html:82
+#: module/templates/schema/replace.html:73
+#: module/templates/schema/upload.html:73
+msgid "Submit"
+msgstr "Einreichen"
+
+#: module/templates/credential_profile/manage.html:51
+#: module/templates/policy/manage.html:53
+#: module/templates/property_selection/manage.html:49
+#: module/templates/schema/manage.html:48
+msgid "OR"
+msgstr "ODER"
+
+#: module/templates/credential_profile/manage.html:57
+msgid "Select a profile:"
+msgstr "Profil wählen:"
+
+#: module/templates/credential_profile/manage.html:77
+#: module/templates/policy/manage.html:79
+#: module/templates/property_selection/manage.html:75
+#: module/templates/schema/manage.html:74
+msgid "Search for"
+msgstr "Suchen nach"
+
+#: module/templates/credential_profile/manage.html:83
+msgid "in a profile"
+msgstr "in einem Profil"
+
+#: module/templates/credential_profile/manage.html:103
+#: module/templates/policy/manage.html:106
+#: module/templates/property_selection/manage.html:101
+msgid "Modify"
+msgstr "Ändern"
+
+#: module/templates/credential_profile/update.html:100
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: module/templates/policy/create.html:35
+#: module/templates/policy/manage.html:30
+#: module/templates/policy/update.html:35
+msgid ""
+"A policy says which properties you want from a user's credentials in "
+"order for the user to perform a particular task (i.e. action on a "
+"resource).)"
+msgstr ""
+"Eine Richtlinie gibt an, welche Eigenschaften Sie von den Anmeldedaten eines Benutzers benötigt " 
+"damit der Benutzer eine bestimmte Aufgabe ausführen kann (d. h. eine Aktion auf einem"
+"Ressource)"
+
+#: module/templates/policy/create.html:36
+#: module/templates/policy/manage.html:31
+#: module/templates/policy/update.html:36
+msgid ""
+"The policy is built by combining a series of And and Or statements, using"
+" the Profiles and SD Statements you have already created. If the user can"
+" submit alternative sets of credentials, start with 'either'. If the user"
+" must submit a single set of credentials start with 'blank'.)"
+msgstr ""
+"Die Richtlinie wird durch die Kombination einer Reihe von Und- und Oder-Anweisungen erstellt, indem"
+" die Profile und SD-Anweisungen die Sie bereits erstellt haben, genutzt werden. Wenn der Benutzer"
+" alternative Sätze von Anmeldeinformationen einreichen kann, beginnen Sie mit 'either'. Wenn der Benutzer "
+" einen einzigen Satz von Anmeldeinformationen einreichen muss, beginnen Sie mit 'blank'.)"
+
+#: module/templates/policy/create.html:37
+#: module/templates/policy/manage.html:32
+#: module/templates/policy/update.html:37
+msgid ""
+"For each credential in a set, the user can choose between alternative "
+"sources e.g. a credit card number from a visa card or a mastercard, or "
+"their name and address from a gas bill or an electricity bill.)"
+msgstr ""
+"Für jeden Berechtigungsnachweis in einem Satz kann der Benutzer zwischen alternativen "
+"Quellen, z. B. eine Kreditkartennummer von einer Visa-Karte oder einer Mastercard, oder "
+"eine Gasrechnung oder eine Stromrechnung zum Ablesen des Namens und der Adresse, wählen.)"
+
+#: module/templates/policy/create.html:38
+#: module/templates/policy/manage.html:33
+#: module/templates/policy/update.html:38
+msgid "An example policy comprising a single set of credentials is:)"
+msgstr "Eine Beispielrichtlinie, die einen einzelnen Satz von Anmeldeinformationen umfasst, lautet:"
+
+#: module/templates/policy/create.html:39
+#: module/templates/policy/manage.html:34
+#: module/templates/policy/update.html:39
+msgid ""
+"In order to purchase car parking permit you must present for Credit card "
+"number ( Visa number from a Visa card or Mastercard number from a "
+"Mastercard or Amex number from a Amex card ) and for Car details ( car "
+"registration number from a car ownership ) and for Name and address ( "
+"name and address from a gas bill or name and address from a electricity "
+"bill )"
+msgstr ""
+"Um einen Parkausweis zu erwerben, müssen Sie eine Kreditkartennummer "
+"( Visa-Nummer von einer Visa-Karte oder Mastercard-Nummer von einer "
+"Mastercard oder Amex-Nummer von einer Amex-Karte ) und für Autodetails ( Auto "
+"Zulassungsnummer aus einem Autobesitz ) und für Name und Adresse ( "
+"Name und Adresse aus einer Gasrechnung oder Name und Adresse aus einer Strom "
+"Rechnung), angeben."
+
+#: module/templates/policy/create.html:47
+#: module/templates/policy/manage.html:42
+#: module/templates/policy/update.html:47
+msgid "Create new Policy"
+msgstr "Neue Richtlinie erstellen"
+
+#: module/templates/policy/create.html:50
+#: module/templates/policy/manage.html:45
+#: module/templates/policy/update.html:50
+msgid "Manage existing Policies"
+msgstr "Vorhandene Richtlinien verwalten"
+
+#: module/templates/policy/create.html:61
+#: module/templates/policy/update.html:64
+msgid "In order to"
+msgstr "Um die"
+
+#: module/templates/policy/create.html:64
+#: module/templates/policy/update.html:67
+msgid "perform this action"
+msgstr "diese Aktion durchführen"
+
+#: module/templates/policy/create.html:67
+#: module/templates/policy/update.html:70
+msgid "on this resource"
+msgstr "auf diese Ressource"
+
+#: module/templates/policy/create.html:70
+#: module/templates/policy/update.html:73
+msgid "users must present"
+msgstr "Die Benutzer müssen vorlegen"
+
+#: module/templates/policy/create.html:74
+#: module/templates/policy/update.html:77
+msgid "either or blank"
+msgstr "entweder oder leer"
+
+#: module/templates/policy/create.html:76
+#: module/templates/policy/update.html:80
+#: module/templates/policy/update.html:84
+msgid "(blank)"
+msgstr "(leer)"
+
+#: module/templates/policy/create.html:111
+#: module/templates/policy/create.html:156
+#: module/templates/policy/create.html:222
+#: module/templates/policy/create.html:248
+#: module/templates/policy/update.html:106
+#: module/templates/policy/update.html:176
+#: module/templates/policy/update.html:267
+#: module/templates/policy/update.html:312
+#: module/templates/policy/update.html:378
+#: module/templates/policy/update.html:404
+msgid "for"
+msgstr "für"
+
+#: module/templates/policy/create.html:112
+#: module/templates/policy/create.html:157
+#: module/templates/policy/create.html:223
+#: module/templates/policy/create.html:249
+#: module/templates/policy/update.html:268
+#: module/templates/policy/update.html:313
+#: module/templates/policy/update.html:379
+#: module/templates/policy/update.html:405
+msgid "Purpose of this specific credential"
+msgstr "Zweck dieser speziellen Bescheinigung"
+
+#: module/templates/policy/create.html:114
+#: module/templates/policy/create.html:140
+#: module/templates/policy/create.html:159
+#: module/templates/policy/create.html:182
+#: module/templates/policy/create.html:202
+#: module/templates/policy/create.html:225
+#: module/templates/policy/create.html:251
+#: module/templates/policy/create.html:277
+#: module/templates/policy/update.html:121
+#: module/templates/policy/update.html:191
+#: module/templates/policy/update.html:270
+#: module/templates/policy/update.html:296
+#: module/templates/policy/update.html:315
+#: module/templates/policy/update.html:338
+#: module/templates/policy/update.html:358
+#: module/templates/policy/update.html:381
+#: module/templates/policy/update.html:407
+#: module/templates/policy/update.html:433
+msgid "List of statements"
+msgstr "Liste der Anweisungen"
+
+#: module/templates/policy/create.html:116
+#: module/templates/policy/create.html:142
+#: module/templates/policy/create.html:161
+#: module/templates/policy/create.html:184
+#: module/templates/policy/create.html:204
+#: module/templates/policy/create.html:227
+#: module/templates/policy/create.html:253
+#: module/templates/policy/create.html:279
+#: module/templates/policy/update.html:136
+#: module/templates/policy/update.html:206
+#: module/templates/policy/update.html:272
+#: module/templates/policy/update.html:298
+#: module/templates/policy/update.html:317
+#: module/templates/policy/update.html:340
+#: module/templates/policy/update.html:360
+#: module/templates/policy/update.html:383
+#: module/templates/policy/update.html:409
+#: module/templates/policy/update.html:435
+msgid "List of profiles"
+msgstr "Liste der Profile"
+
+#: module/templates/policy/create.html:117
+#: module/templates/policy/create.html:185
+#: module/templates/policy/create.html:228
+#: module/templates/policy/update.html:273
+#: module/templates/policy/update.html:341
+#: module/templates/policy/update.html:384
+msgid ")and / or / )"
+msgstr ")and / or /)"
+
+#: module/templates/policy/create.html:138
+#: module/templates/policy/create.html:275
+#: module/templates/policy/update.html:97
+#: module/templates/policy/update.html:294
+#: module/templates/policy/update.html:431
+msgid "Enter description"
+msgstr "Beschreibung eingeben"
+
+#: module/templates/policy/create.html:139
+#: module/templates/policy/create.html:276
+#: module/templates/policy/update.html:100
+#: module/templates/policy/update.html:295
+#: module/templates/policy/update.html:432
+msgid "being"
+msgstr "sein"
+
+#: module/templates/policy/create.html:143
+#: module/templates/policy/create.html:280
+#: module/templates/policy/update.html:299
+#: module/templates/policy/update.html:436
+msgid "or / blank"
+msgstr "oder / leer"
+
+#: module/templates/policy/create.html:143
+#: module/templates/policy/create.html:280
+#: module/templates/policy/update.html:299
+#: module/templates/policy/update.html:436
+msgid "blank"
+msgstr "leer"
+
+#: module/templates/policy/create.html:162
+#: module/templates/policy/create.html:205
+#: module/templates/policy/create.html:254
+#: module/templates/policy/update.html:148
+#: module/templates/policy/update.html:218
+#: module/templates/policy/update.html:318
+#: module/templates/policy/update.html:361
+#: module/templates/policy/update.html:410
+msgid ")and / or / )) / )or("
+msgstr ")and / or / )) / )or("
+
+#: module/templates/policy/manage.html:59
+msgid "Select a Policy:"
+msgstr "Richtlinie wählen"
+
+#: module/templates/policy/manage.html:85
+msgid "in a Policy"
+msgstr "in einer Richtlinie"
+
+#: module/templates/policy/update.html:109
+#: module/templates/policy/update.html:179
+msgid "Enter purpose"
+msgstr "Zweck eingeben"
+
+#: module/templates/property_selection/create.html:30
+#: module/templates/property_selection/manage.html:30
+#: module/templates/property_selection/update.html:30
+msgid ""
+"A Selective Disclosure Statement tells the VC Holder which properties of "
+"the VC should be returned to the verifier"
+msgstr ""
+"Ein Selective Disclosure Statement teilt dem VC-Inhaber mit, welche Eigenschaften von "
+"die VC sollte an die Prüfstelle zurückgegeben werden"
+
+#: module/templates/property_selection/create.html:38
+#: module/templates/property_selection/manage.html:38
+#: module/templates/property_selection/update.html:38
+msgid "Create new Sd Statement"
+msgstr "Neues Sd-Statement erstellen"
+
+#: module/templates/property_selection/create.html:41
+#: module/templates/property_selection/manage.html:41
+#: module/templates/property_selection/update.html:41
+msgid "Manage existing Sd Statements"
+msgstr "Vorhandene Sd-Anweisungen verwalten"
+
+#: module/templates/property_selection/manage.html:55
+msgid "Select a Sd Statement:"
+msgstr ""
+
+#: module/templates/property_selection/manage.html:81
+msgid "in a Sd Statement"
+msgstr "Wählen Sie eine Sd-Anweisung aus:"
+
+#: module/templates/schema/manage.html:37
+#: module/templates/schema/replace.html:42
+#: module/templates/schema/upload.html:42
+msgid "Upload new Schema"
+msgstr "Neues Schema hochladen"
+
+#: module/templates/schema/manage.html:40
+#: module/templates/schema/replace.html:45
+#: module/templates/schema/upload.html:45
+msgid "Manage existing Schemas"
+msgstr "Vorhandene Schemas verwalten"
+
+#: module/templates/schema/manage.html:54
+msgid "Select a Schema:"
+msgstr "Schema wählen"
+
+#: module/templates/schema/manage.html:80
+msgid "in a Schema"
+msgstr "in einem Schema"
+
+#: module/templates/schema/replace.html:34
+msgid "Replace Schema"
+msgstr "Schema ersetzen"
+
+#: module/templates/schema/replace.html:54
+#: module/templates/schema/upload.html:54
+msgid "Choose a json schema file:"
+msgstr "Wählen Sie eine json-Schemadatei"
+
+#: module/templates/schema/replace.html:63
+#: module/templates/schema/upload.html:63
+msgid "Enter the url of the schema to fetch:"
+msgstr "Geben Sie die URL des abzurufenden Schemas ein:"
+
+#: module/templates/schema/replace.html:66
+#: module/templates/schema/upload.html:66
+msgid "url of the schema"
+msgstr "URL des Schemas"
+
+#: module/templates/schema/replace.html:69
+#: module/templates/schema/upload.html:69
+msgid "Extract nested properties:"
+msgstr "Verschachtelte Eigenschaften extrahieren:"
+
