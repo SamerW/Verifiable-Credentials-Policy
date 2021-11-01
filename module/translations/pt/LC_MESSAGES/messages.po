@@ -36,7 +36,7 @@ msgstr "Por favor, preencha todos os parâmetros"
 
 #: module/core.py:152
 msgid "Profile not updated: A profile with this name already exists"
-msgstr ""
+msgstr "Perfil não atualizado: Já existe um perfil com esse nome"
 
 #: module/core.py:160
 msgid "Could not update profile"
@@ -241,7 +241,7 @@ msgstr "Declaração excluída"
 
 #: module/core.py:1019 module/templates/schema/manage.html:100
 msgid "Replace"
-msgstr ""
+msgstr "Substituir"
 
 #: module/core.py:1053
 #, fuzzy
@@ -434,7 +434,7 @@ msgstr "Menu Principal"
 
 #: module/templates/api.html:8
 msgid "CRUD API"
-msgstr ""
+msgstr "API CRUD"
 
 #: module/templates/base.html:11
 msgid "CNL"
@@ -451,7 +451,7 @@ msgstr "CNL"
 #: module/templates/schema/manage.html:4 module/templates/schema/replace.html:9
 #: module/templates/schema/upload.html:9
 msgid "Validation Policy Manager v1.5"
-msgstr ""
+msgstr "Gerenciador de Política de Gestão v1.5"
 
 #: module/templates/credential_profile/create.html:12
 #: module/templates/credential_profile/create.html:30
@@ -632,7 +632,8 @@ msgid ""
 "A policy says which properties you want from a user's credentials in "
 "order for the user to perform a particular task (i.e. action on a "
 "resource).)"
-msgstr ""
+msgstr "Uma política diz quais propriedades você quer das credenciais dele"
+" para que ele possa realizar uma atividade específica (ex.: ação em um recurso)."
 
 #: module/templates/policy/create.html:36
 #: module/templates/policy/manage.html:31
@@ -642,7 +643,10 @@ msgid ""
 " the Profiles and SD Statements you have already created. If the user can"
 " submit alternative sets of credentials, start with 'either'. If the user"
 " must submit a single set of credentials start with 'blank'.)"
-msgstr ""
+msgstr "A política é construída combinando uma série de afirmações 'e' e 'ou', "
+"usando os perfis e declarações SD que você já criou. Se o usuário puder submeter"
+" diferentes conjuntos de credenciais, comece com 'ou'. Se o usuário só puder submeter"
+" um único conjunto de credenciais, comece com 'em branco'."
 
 #: module/templates/policy/create.html:37
 #: module/templates/policy/manage.html:32
@@ -651,13 +655,16 @@ msgid ""
 "For each credential in a set, the user can choose between alternative "
 "sources e.g. a credit card number from a visa card or a mastercard, or "
 "their name and address from a gas bill or an electricity bill.)"
-msgstr ""
+msgstr "Para cada credencial no conjunto, o usuário deve escolher entre "
+"diferentes fontes (ex.: o número de cartão de crédito de um cartão Visa"
+" de um cartão Mastercard, ou o nome e endereço de uma conta de água ou "
+"uma conta de luz)."
 
 #: module/templates/policy/create.html:38
 #: module/templates/policy/manage.html:33
 #: module/templates/policy/update.html:38
 msgid "An example policy comprising a single set of credentials is:)"
-msgstr ""
+msgstr "Um exemplo de política com um único conjunto de credenciais é:"
 
 #: module/templates/policy/create.html:39
 #: module/templates/policy/manage.html:34
@@ -669,7 +676,12 @@ msgid ""
 "registration number from a car ownership ) and for Name and address ( "
 "name and address from a gas bill or name and address from a electricity "
 "bill )"
-msgstr ""
+msgstr "Para comprar uma licença de estacionamento, você deve apresentar "
+"para número do cartão de crédito ( número de um cartão Visa ou número de"
+" um Mastercard ou número de um cartão Amex ) e para informações do carro"
+ "( número de registo do carro de um título de propriedade de carro ) e "
+ "para nome e endereço ( nome e endereço de uma conta de água ou nome e "
+ "endereço de uma conta de luz )"
 
 #: module/templates/policy/create.html:47
 #: module/templates/policy/manage.html:42
@@ -851,7 +863,7 @@ msgid ""
 "the VC should be returned to the verifier"
 msgstr ""
 "Uma declaração de Divulgação Seletiva (SD) diz ao Portador de VC quais "
-"propriedades daVC devem ser retornadas ao verificador"
+"propriedades da VC devem ser retornadas ao verificador"
 
 #: module/templates/property_selection/create.html:38
 #: module/templates/property_selection/manage.html:38
