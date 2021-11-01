@@ -1,5 +1,6 @@
 import os, sys
 from flask import Flask, request
+from flask_cors import CORS
 from flask_babel import Babel
 from flask_sqlalchemy import SQLAlchemy
 import pathlib
@@ -25,6 +26,8 @@ if __name__ == '__main__':
         SECRET_KEY='dev',
         FLASK_APP='module',
         FLASK_ENV='development',
+        # CORS
+        CORS_HEADERS='Content-Type',
         # Database
         SQLALCHEMY_DATABASE_URI='sqlite:////'+db_uri,
         SQLALCHEMY_ECHO=False,
@@ -32,6 +35,7 @@ if __name__ == '__main__':
         # Babel
         BABEL_TRANSLATION_DIRECTORIES=babel_uri
     )
+    cors = CORS(app)
     try:
         os.makedirs(app.instance_path)
     except OSError:
