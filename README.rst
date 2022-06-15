@@ -9,7 +9,7 @@ Requirements:
 
 Installation:
     1) clone the repository in a new folder
-    2) go to the folder "cnl-gui-policy-man"
+    2) go to the folder "Verifiable-Credentials-Policy"
     3) create a virtual environment with the command "python -m venv env"
     4) Activate the virtual environment with the command "source ./env/bin/activate"
     5) Install all dependencies with the command "pip install -r requirements.txt"
